@@ -1,3 +1,4 @@
+## [Сылка pull requests (Sprint 1)](https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/2)
 ## Messager
 Проект чата, проект в разработке.
 На данные момент реализовано:
@@ -31,5 +32,7 @@ SSH `git clone git@github.com:drozdovdn/middle.messenger.praktikum.yandex.git`
         utils/      //Вспомогательные функции
     static/         //Статические файлы (icons/, index.html)   
 ```
+
+### [Сылка на deploy Netlify](https://fervent-stonebraker-ab93f8.netlify.app)
 
 ### [Сылка на дизайн в Figma](https://www.figma.com/file/SsaMneaZ0TST9Qk7HIfUnZ/YandexPracticumeMessage?node-id=0%3A1)  
