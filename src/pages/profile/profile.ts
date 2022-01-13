@@ -29,7 +29,7 @@ export const Profile:PageProps = () => {
     const profileControl: HTMLElement = document.querySelector('.profile__control')
     const inputSettings: NodeListOf<HTMLInputElement> = document.querySelectorAll('.profile__input')
     changeButton.onclick = ()=> {
-        controlBlock.classList.add('.hidden')
+        controlBlock.classList.add('hidden')
         inputSettings.forEach(item => item.removeAttribute('disabled'))
         profileControl?.insertAdjacentHTML('afterbegin', Button({name: 'Сохранить', className: 'profile__save-button'}))
 
@@ -39,8 +39,8 @@ export const Profile:PageProps = () => {
     const profileSettings: HTMLElement = document.querySelector('.profile__settings')
     const settingsBlock: HTMLElement = document.querySelector('.settings')
     changePasswordButton.onclick = () => {
-        controlBlock.classList.add('.hidden')
-        settingsBlock.classList.add('.hidden')
+        controlBlock.classList.add('hidden')
+        settingsBlock.classList.add('hidden')
         profileSettings?.insertAdjacentHTML('afterbegin', ChangePassword())
         profileControl?.insertAdjacentHTML('afterbegin', Button({name: 'Сохранить', className: 'profile__save-button'}))
     }
