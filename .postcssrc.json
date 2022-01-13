@@ -1,0 +1,10 @@
+{
+  "plugins": {
+
+    "postcss-nested": true,
+    "autoprefixer": {
+      "grid": true,
+      "flex": true
+    }
+  }
+}

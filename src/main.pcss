@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+body, ul, li, h1, h2, h3, h4, h5, h6, p {
+    margin: 0;
+    padding: 0;
+}
+body {
+    background: #151718;
+    color: #EAE9EC
+}
+ul, li {
+    display: block;
+}
+a, a:hover, a:active, a:focus {
+    text-decoration:none;
+    outline: none;
+}
+input, button {
+    border: none;
+}
+button {
+    padding: 0;
+}
+input:hover, input:focus, button:focus {
+    outline: none;
+}
+
+/*Временные стили для ссылок на страницы*/
+.links {
+    position: absolute;
+    left: 100px;
+    top: 50px;
+    background: #147272;
+    font-weight: 500;
+    border-radius: 5px;
+    padding: 10px;
+    color: #ffffff;
+}
+.links__list {
+
+}
+.links__item {
+    margin-top: 10px;
+    a {
+        color: #061e1e;
+        &:hover {
+            color: #4fb2b2;
+        }
+    }
+
+}

@@ -1,0 +1,40 @@
+label {
+    position: relative;
+    display: block;
+    padding: 8px 0;
+    color: #999999;
+}
+.label {
+    position: absolute;
+    left: 0px;
+    top: 12px;
+    font-size: 13px;
+    line-height: 13px;
+    font-weight: 500;
+    transition: all 0.5s ease ;
+}
+.input {
+    display: block;
+    background: none;
+    padding: 5px 0;
+    color: #fff;
+    border-bottom: 1px solid #999999;
+    width: 100%;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    &:focus + span {
+        top: 3px;
+        ont-weight: 500;
+        font-size: 9px;
+        line-height: 9px;
+    }
+    &:valid + span {
+        top: 3px;
+        ont-weight: 500;
+        font-size: 9px;
+        line-height: 9px;
+    }
+
+}
