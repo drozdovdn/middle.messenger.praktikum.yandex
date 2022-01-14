@@ -67,8 +67,6 @@ const linksContext = {
     },
 }
 
-
-
 root.insertAdjacentHTML('afterbegin', compile(linksTemplate, linksContext))
 root.insertAdjacentHTML('afterbegin', Auth())
 
