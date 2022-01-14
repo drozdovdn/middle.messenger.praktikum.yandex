@@ -1,4 +1,4 @@
-import '../form.pcss';
+import '../form.less';
 import {formTmpl} from "../form.tmpl";
 import Title from "../../../../components/title";
 import Input from "../../../../components/input";

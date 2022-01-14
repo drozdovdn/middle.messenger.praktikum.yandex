@@ -1,4 +1,4 @@
-import "./avatar.pcss";
+import "./avatar.less";
 import {compile} from "../../../../templater";
 import {avatarTmpl} from "./avatar.tmpl";
 import {FunProps} from "../../../../models";

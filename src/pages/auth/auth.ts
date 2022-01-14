@@ -1,4 +1,4 @@
-import './aurh.pcss';
+import './aurh.less';
 import {compile} from "../../templater";
 import {authTmpl} from "./auth.tmpl";
 import SignIn from "./modules/signIn";

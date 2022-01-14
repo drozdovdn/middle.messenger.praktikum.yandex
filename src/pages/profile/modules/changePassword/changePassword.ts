@@ -1,4 +1,4 @@
-import "./changePassword.pcss";
+import "./changePassword.less";
 import InputProfile from "../../../../components/inputProfile";
 import {compile} from "../../../../templater";
 import {changePasswordTmpl} from "./changePassword.tmpl";

@@ -1,6 +1,6 @@
 import {compile} from "../../templater";
 import {buttonTmpl} from './button.tmpl';
-import './button.pcss';
+import './button.less';
 
 type DataType = {
     name: string,

@@ -1,4 +1,4 @@
-import './itemControl.pcss';
+import './itemControl.less';
 import {compile} from "../../templater";
 import {itemControlTmpl} from "./itemControl.tmpl";
 

@@ -1,4 +1,4 @@
-import './profile.pcss';
+import './profile.less';
 import SettingsProfile from "./modules/settings";
 import {compile} from "../../templater";
 import {profileTmpl} from "./profile.tmpl";

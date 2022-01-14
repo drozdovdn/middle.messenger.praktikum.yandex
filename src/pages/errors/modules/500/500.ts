@@ -1,3 +1,4 @@
+import '../error.less';
 import {compile} from "../../../../templater";
 import {errorTmpl} from "../error.tmpl";
 import {FunProps} from "../../../../models";

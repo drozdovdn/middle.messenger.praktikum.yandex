@@ -1,4 +1,4 @@
-import './backPanel.pcss';
+import './backPanel.less';
 import {compile} from "../../../../templater";
 import {backPanelTmpl} from "./backPanel.tmpl";
 import {FunProps} from "../../../../models";

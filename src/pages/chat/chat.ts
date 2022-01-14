@@ -1,4 +1,4 @@
-import "./chat.pcss";
+import "./chat.less";
 import {compile} from "../../templater";
 import {chatTmpl} from "./chat.tmpl";
 import {FunProps} from "../../models";

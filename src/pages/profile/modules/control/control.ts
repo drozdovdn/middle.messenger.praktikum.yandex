@@ -1,4 +1,4 @@
-import './control.pcss';
+import './control.less';
 import ItemControl from "../../../../components/itemControl";
 import {compile} from "../../../../templater";
 import {controlTmpl} from "./control.tmpl";

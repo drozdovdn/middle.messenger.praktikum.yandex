@@ -1,4 +1,4 @@
-import './settinps.pcss'
+import './settinps.less'
 import {InputProfile} from "../../../../components/inputProfile/inputProfile";
 import {compile} from "../../../../templater";
 import {settingsTmpl} from "./settings.tmpl";

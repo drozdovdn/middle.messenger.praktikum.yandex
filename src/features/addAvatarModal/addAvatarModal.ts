@@ -1,4 +1,4 @@
-import "./addAvatarModal.pcss";
+import "./addAvatarModal.less";
 import {compile} from "../../templater";
 import {addAvatarModalTmpl} from "./addAvatarModal.tmpl";
 import Button from "../../components/button";

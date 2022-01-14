@@ -1,4 +1,4 @@
-import "../form.pcss";
+import "../form.less";
 import {formTmpl} from "../form.tmpl";
 import Input from "../../../../components/input";
 import {compile} from "../../../../templater";

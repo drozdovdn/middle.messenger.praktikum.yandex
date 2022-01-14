@@ -1,4 +1,4 @@
-import './main.pcss';
+import './main.less';
 import {compile} from "./templater";
 import Auth from "./pages/auth";
 import Profile from "./pages/profile";

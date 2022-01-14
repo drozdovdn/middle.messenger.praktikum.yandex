@@ -1,6 +1,6 @@
 import {compile} from "../../templater";
 import { inputProfileTmpl } from "./inputProfile.tmpl";
-import './inputProfile.pcss'
+import './inputProfile.less'
 
 type DataProps = {
     name: string,
