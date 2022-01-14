@@ -12,7 +12,7 @@ SSH `git clone git@github.com:drozdovdn/middle.messenger.praktikum.yandex.git`
 
 После клонирования выполнить команду `npm i`
 
-`npm run dev` - режим разработки (запускается parcel) PORT=3005
+`npm run dev` - режим разработки (запускается parcel) PORT=3000
 
 `npm run start` - режим servera (вначале проект билдится и express server раздает статику из папки dist) PORT=3000
 
