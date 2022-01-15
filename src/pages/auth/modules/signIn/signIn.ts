@@ -1,4 +1,4 @@
-import "../form.pcss";
+import "../form.less";
 import {formTmpl} from "../form.tmpl";
 import Input from "../../../../components/input";
 import {compile} from "../../../../templater";
@@ -17,7 +17,7 @@ const signInContext = {
             input:  Input({label: 'Пароль', type: 'password', name: 'password'})
         },
     ],
-    button: Button({name: 'Авторизация'}),
+    button: Button({ name: 'Авторизация', className: 'sign-in__button'}),
     link: {
         title: 'Нет аккаунта?',
         href: '#auth#signup',

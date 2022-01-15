@@ -1,6 +1,6 @@
 import {compile} from "../../templater";
 import {buttonTmpl} from './button.tmpl';
-import './button.pcss';
+import './button.less';
 
 type DataType = {
     name: string,
@@ -9,9 +9,6 @@ type DataType = {
 
 type ButtonProps = (data: DataType) => string
 
-export const Button: ButtonProps = ({
-                           name,
-                           className = ''
-}) => {
+export const Button: ButtonProps = ({ name, className = ''}) => {
     return compile(buttonTmpl, {name, className})
 }

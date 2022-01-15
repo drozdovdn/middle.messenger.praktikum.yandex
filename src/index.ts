@@ -1,4 +1,4 @@
-import './main.pcss';
+import './main.less';
 import {compile} from "./templater";
 import Auth from "./pages/auth";
 import Profile from "./pages/profile";
@@ -67,8 +67,6 @@ const linksContext = {
     },
 }
 
-
-
 root.insertAdjacentHTML('afterbegin', compile(linksTemplate, linksContext))
 root.insertAdjacentHTML('afterbegin', Auth())
 
@@ -119,6 +117,3 @@ window.addEventListener('hashchange', ()=>{
         }
     }
 })
-
-
-

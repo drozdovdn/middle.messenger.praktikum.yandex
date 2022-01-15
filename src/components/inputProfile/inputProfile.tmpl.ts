@@ -1,4 +1,3 @@
-
 export const inputProfileTmpl = `
     <label class="profile__label">
     <span class="profile__input__name">{{label}}</span>

@@ -3,6 +3,6 @@
  * identity(object) === object; // => true
  * @param value
  */
-export const identity = (value: any) => {
+export const identity = <T,>(value: T) => {
     return value
 }

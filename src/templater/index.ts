@@ -28,8 +28,11 @@ export const compile = (template, context) => {
     let key = null
     while ((key = TEMPLATE_REGEXP.exec(_template))) { //Выдергиваю по одному значения
 
-        if (key[1]) {
-            const tmplValue = key[1].trim();
+        const keyWithBrackets = key[0]
+        const keyWithoutBrackets = key[1]
+
+        if (keyWithoutBrackets) {
+            const tmplValue = keyWithoutBrackets.trim();
             if(tmplValue.startsWith('#with')) { //Если это цикл
                 //Передаю в функцию по обработке циклов шаблон и ключ начала цикла
                _template = processingWith(_template, key, _context)
@@ -39,17 +42,16 @@ export const compile = (template, context) => {
             if (typeof data === "function") {
                 window[tmplValue] = data;
                 _template = _template.replace(
-                    new RegExp(key[0], "gi"),
-                    `window.${key[1].trim()}(this)`
+                    new RegExp(keyWithBrackets, "gi"),
+                    `window.${keyWithoutBrackets.trim()}(this)`
                 );
                 continue;
             }
 
-            _template = _template.replace(new RegExp(key[0], "gi"), data);
+            _template = _template.replace(new RegExp(keyWithBrackets, "gi"), data);
         }
     }
 
 
     return _template
 }
-

@@ -1,6 +1,6 @@
 import {compile} from "../../templater";
 import { inputProfileTmpl } from "./inputProfile.tmpl";
-import './inputProfile.pcss'
+import './inputProfile.less'
 
 type DataProps = {
     name: string,
@@ -12,18 +12,6 @@ type DataProps = {
 
 type InputProfileProps = (data: DataProps) => string
 
-export const InputProfile: InputProfileProps = ({
-                                name,
-                                label,
-                                value,
-                                type = 'text',
-                                disabled = 'disabled'
-                             }) => {
-    return compile(inputProfileTmpl, {
-        name,
-        label,
-        value,
-        type,
-        disabled,
-    })
+export const InputProfile: InputProfileProps = ({ name, label, value, type = 'text', disabled = 'disabled' }) => {
+    return compile(inputProfileTmpl, { name, label, value, type, disabled})
 }
