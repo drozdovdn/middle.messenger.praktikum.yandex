@@ -9,9 +9,6 @@ type DataProps = {
 
 type ItemControlProps = (data: DataProps) => string
 
-export const ItemControl: ItemControlProps = ({
-                                title,
-                                className = ''
-}) => {
+export const ItemControl: ItemControlProps = ({ title, className = ''}) => {
     return compile(itemControlTmpl, {title, className})
 }

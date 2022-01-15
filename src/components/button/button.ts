@@ -9,9 +9,6 @@ type DataType = {
 
 type ButtonProps = (data: DataType) => string
 
-export const Button: ButtonProps = ({
-                           name,
-                           className = ''
-}) => {
+export const Button: ButtonProps = ({ name, className = ''}) => {
     return compile(buttonTmpl, {name, className})
 }

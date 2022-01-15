@@ -1,4 +1,3 @@
-
 export const profileTmpl = `
     <section class="profile">
       <div class="profile__left">
@@ -14,5 +13,4 @@ export const profileTmpl = `
           </div>   
       </div>
     </section>
-  
 `;

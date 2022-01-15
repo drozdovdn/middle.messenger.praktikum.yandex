@@ -1,5 +1,3 @@
-
-
 export const backPanelTmpl = `
     <div class="back-panel">
         <div class="back-panel__wrapper-link">

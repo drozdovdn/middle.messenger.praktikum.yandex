@@ -1,4 +1,3 @@
-
 export const errorTmpl = `
     <section class="error {{className}}">
         <h1 class="error__title">{{title}}</h1>
@@ -7,5 +6,4 @@ export const errorTmpl = `
             {{link.title}}
         </a>
     </section>
-
 `

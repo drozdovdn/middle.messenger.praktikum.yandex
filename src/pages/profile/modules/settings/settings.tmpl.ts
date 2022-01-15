@@ -1,4 +1,3 @@
-
 export const settingsTmpl = `
     <section class="settings"> 
         {{#with data}}

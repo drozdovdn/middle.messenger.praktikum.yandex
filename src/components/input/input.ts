@@ -12,17 +12,6 @@ type DataProps = {
 type InputProps = (data: DataProps) => string
 
 
-export const Input: InputProps = ({
-                                      type,
-                                      label,
-                                      className= '',
-                                      name
-}) => {
-
- return compile(InputTmpl, {
-     label,
-     className,
-     type,
-     name
- })
+export const Input: InputProps = ({ type, label, className= '', name}) => {
+     return compile(InputTmpl, {label, className, type, name })
 }

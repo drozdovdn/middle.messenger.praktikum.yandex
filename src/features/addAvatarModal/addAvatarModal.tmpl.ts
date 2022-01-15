@@ -1,4 +1,3 @@
-
 export const addAvatarModalTmpl = `
     <div class="add-avatar-modal">
        <div class="add-avatar-modal__content">

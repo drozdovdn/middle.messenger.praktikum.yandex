@@ -1,6 +1,5 @@
 import {get} from "../utils/get";
 
-
 export const substitutionData =  (tmpl: string, context: object): string => {
     let _tmpl = `${tmpl}`
     let _context = {...context}
@@ -8,8 +7,11 @@ export const substitutionData =  (tmpl: string, context: object): string => {
     const TEMPLATE_REGEXP = /\{\{(.*?)\}\}/gi;
 
     while ((key = TEMPLATE_REGEXP.exec(_tmpl))) {
-        if (key[1]) {
-            const tmplValue = key[1].trim();
+        const keyWithBrackets = key[0]
+        const keyWithoutBrackets = key[1]
+
+        if (keyWithoutBrackets) {
+            const tmplValue = keyWithoutBrackets.trim();
 
             const data = get(_context, tmplValue);
 
@@ -17,12 +19,12 @@ export const substitutionData =  (tmpl: string, context: object): string => {
             if (typeof data === "function") {
                 window[tmplValue] = data;
                 _tmpl = _tmpl.replace(
-                    new RegExp(key[0], "gi"),
-                    `window.${key[1].trim()}()`
+                    new RegExp(keyWithBrackets, "gi"),
+                    `window.${keyWithoutBrackets.trim()}(this)`
                 );
                 continue;
             }
-            _tmpl = _tmpl.replace(new RegExp(key[0], "gi"), data);
+            _tmpl = _tmpl.replace(new RegExp(keyWithBrackets, "gi"), data);
         }
     }
     return _tmpl

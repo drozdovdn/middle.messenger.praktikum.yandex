@@ -1,4 +1,3 @@
-
 export const controlTmpl = `
     <section class="control">
         {{#with data}}

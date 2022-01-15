@@ -1,4 +1,3 @@
-
 export const avatarTmpl = `
     <div class="avatar">
     <button class="avatar__button">
