@@ -1,4 +1,4 @@
-## ССЫлка на Netlify
+## Сылка на Netlify
     https://fervent-stonebraker-ab93f8.netlify.app/
     
 ## Figma
