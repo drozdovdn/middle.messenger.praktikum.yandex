@@ -10,8 +10,9 @@
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
-        "sourceType": "module"
+        "sourceType": "module" //Позволяет использовать import/export
     },
+    //Тут подключаются используемые плагины
     "plugins": [
         "@typescript-eslint"
     ],
