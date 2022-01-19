@@ -7,7 +7,7 @@
     "build": "parcel build static/index.html",
     "dev": "parcel static/index.html  --port=4000 --open",
     "lint": "eslint --fix ./ --ext .ts",
-    "stylelint": "stylelint",
+    "stylelint": "stylelint '**/*.less'",
     "prettier": "prettier --write ./ --ext .ts"
   },
   "author": "drozdovdn",
