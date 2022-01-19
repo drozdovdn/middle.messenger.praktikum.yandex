@@ -25,8 +25,11 @@ export const compile = (template, context) => {
   const _context = { ...context };
   let _template = `${template}`;
   const TEMPLATE_REGEXP = /\{\{(.*?)\}\}/gi;
+  const TEMPLATE_REGEXP_KEY = /\{\{(.*?)\}\}/gi;
+
   let key = null;
-  while (key = TEMPLATE_REGEXP.exec(_template)) {
+  while (TEMPLATE_REGEXP.exec(_template)) {
+    key = TEMPLATE_REGEXP_KEY.exec(_template)
     //Выдергиваю по одному значения
 
     const keyWithBrackets = key[0];

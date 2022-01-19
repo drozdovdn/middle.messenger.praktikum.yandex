@@ -5,8 +5,10 @@
     },
     "extends": [
         "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended"
+        "plugin:prettier/recommended",
+        "prettier"
     ],
     "parser": "@typescript-eslint/parser",
     "parserOptions": {
@@ -19,6 +21,8 @@
         "prettier"
     ],
     "rules": {
+        "@typescript-eslint/no-explicit-any": "off",
+        "prettier/prettier": 0,
         "@typescript-eslint/no-var-requires": 0,
         "no-compare-neg-zero": "error",           //Запрещает сравнивание с "-0"
         "no-cond-assign": ["error", "always"],    //Запрещает опреаторы присваивания в условных выражениях
@@ -38,7 +42,6 @@
         "no-empty-pattern": "error",              //Запретить пустые шаблоны деструктурирования
         "no-implicit-coercion": "error",          //Запретить преобразование сокращенных типов
         "no-lone-blocks": "error",                //Запретить ненужные вложенные блоки
-        "no-magic-numbers": "error",              //Запретить магические числа
         "no-multi-spaces": "error",               //Запретить несколько пробелов
         "no-useless-concat": "error",             //Запретить ненужную конкатенацию литералов или литералов шаблонов
         "no-useless-escape": "error",             //Запретить ненужные escape-символы

@@ -25,7 +25,7 @@ export const AddAvatarModal: FeatureProps = () => {
     '.add-avatar-modal__input'
   );
   if (input) {
-    input.onchange = (e) => {
+    input.onchange = () => {
       const nameLabel = document.querySelector('.add-avatar-modal__name');
       const files = input.files;
       if (files && nameLabel) {

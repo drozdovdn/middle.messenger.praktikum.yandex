@@ -3,10 +3,10 @@ const PORT = 3001;
 
 const port = process.env.PORT || PORT;
 
-const app =express();
+const app = express();
 
 app.use(express.static('dist'));
 
 app.listen(port, () => {
-    console.log(`Сервер запущен на  http://localhost:${port}`);
+  console.log(`Сервер запущен на  http://localhost:${port}`);
 });

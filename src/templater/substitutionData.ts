@@ -5,8 +5,12 @@ export const substitutionData = (tmpl: string, context: object): string => {
   const _context = { ...context };
   let key = null;
   const TEMPLATE_REGEXP = /\{\{(.*?)\}\}/gi;
+  const TEMPLATE_REGEXP_KEY = /\{\{(.*?)\}\}/gi;
 
-  while (key = TEMPLATE_REGEXP.exec(_tmpl)) {
+  while (TEMPLATE_REGEXP.exec(_tmpl)) {
+
+    key = TEMPLATE_REGEXP_KEY.exec(_tmpl)
+
     const keyWithBrackets = key[0];
     const keyWithoutBrackets = key[1];
 

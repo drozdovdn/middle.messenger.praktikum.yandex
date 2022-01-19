@@ -16,12 +16,13 @@ export const processingWith = (
   const _startKey = [...startKey];
   let key = null;
   const TEMPLATE_REGEXP = /\{\{(.*?)\}\}/gi;
+  const TEMPLATE_REGEXP_KEY = /\{\{(.*?)\}\}/gi;
 
   let _endKey = null;
 
   //В цикле нахожу последний ключ цикла
-  while (key = TEMPLATE_REGEXP.exec(_template)) {
-    const keyWithBrackets = key[0];
+  while (TEMPLATE_REGEXP.exec(_template)) {
+    key = TEMPLATE_REGEXP_KEY.exec(_template)
     const keyWithoutBrackets = key[1];
     if (keyWithoutBrackets) {
       const tmplValue = keyWithoutBrackets.trim();
