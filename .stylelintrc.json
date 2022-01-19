@@ -1,0 +1,16 @@
+{
+  "extends": "stylelint-config-standard",
+  "plugins": [
+    "stylelint-less"
+  ],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "color-invalid-hex": "true",
+    "less/color-invalid-hex": true
+  },
+  "ignoreFiles": [
+    "dist/*",
+    "node_modules/*",
+    ".parcel-cache/*"
+  ]
+}
