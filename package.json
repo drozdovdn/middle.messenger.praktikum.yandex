@@ -6,7 +6,7 @@
     "start": "npm run build && node index.ts",
     "build": "parcel build static/index.html",
     "dev": "parcel static/index.html  --port=4000 --open",
-    "lint": "eslint ./ --ext .ts",
+    "lint": "eslint ./ --ext .ts"
   },
   "author": "drozdovdn",
   "license": "ISC",
