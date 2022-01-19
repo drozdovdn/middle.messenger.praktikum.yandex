@@ -15,15 +15,10 @@ const addAvatarModalContext = {
 export const AddAvatarModal: FeatureProps = () => {
   const profile = document.querySelector('.profile');
   if (profile) {
-    profile?.insertAdjacentHTML(
-      'afterbegin',
-      compile(addAvatarModalTmpl, addAvatarModalContext)
-    );
+    profile?.insertAdjacentHTML( 'afterbegin', compile(addAvatarModalTmpl, addAvatarModalContext) );
   }
 
-  const input: HTMLInputElement = document.querySelector(
-    '.add-avatar-modal__input'
-  );
+  const input: HTMLInputElement = document.querySelector( '.add-avatar-modal__input' );
   if (input) {
     input.onchange = () => {
       const nameLabel = document.querySelector('.add-avatar-modal__name');

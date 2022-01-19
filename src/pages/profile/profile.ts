@@ -22,37 +22,26 @@ export const Profile: PageProps = () => {
 
   root?.insertAdjacentHTML('afterbegin', compile(profileTmpl, profileContext));
 
-  const changeButton: HTMLButtonElement = document.querySelector(
-    '.item-control__change-data'
-  );
+  const changeButton: HTMLButtonElement = document.querySelector('.item-control__change-data');
   const controlBlock: HTMLElement = document.querySelector('.control');
-  const profileControl: HTMLElement =
-    document.querySelector('.profile__control');
-  const inputSettings: NodeListOf<HTMLInputElement> =
-    document.querySelectorAll('.profile__input');
+  const profileControl: HTMLElement = document.querySelector('.profile__control');
+  const inputSettings: NodeListOf<HTMLInputElement> = document.querySelectorAll('.profile__input');
+
   changeButton.onclick = () => {
     controlBlock.classList.add('hidden');
     inputSettings.forEach((item) => item.removeAttribute('disabled'));
-    profileControl?.insertAdjacentHTML(
-      'afterbegin',
-      Button({ name: 'Сохранить', className: 'profile__save-button' })
-    );
+    profileControl?.insertAdjacentHTML( 'afterbegin', Button({ name: 'Сохранить', className: 'profile__save-button' }) );
   };
 
-  const changePasswordButton: HTMLButtonElement = document.querySelector(
-    '.item-control__change-password'
-  );
-  const profileSettings: HTMLElement =
-    document.querySelector('.profile__settings');
+  const changePasswordButton: HTMLButtonElement = document.querySelector('.item-control__change-password' );
+  const profileSettings: HTMLElement = document.querySelector('.profile__settings');
   const settingsBlock: HTMLElement = document.querySelector('.settings');
+
   changePasswordButton.onclick = () => {
     controlBlock.classList.add('hidden');
     settingsBlock.classList.add('hidden');
     profileSettings?.insertAdjacentHTML('afterbegin', ChangePassword());
-    profileControl?.insertAdjacentHTML(
-      'afterbegin',
-      Button({ name: 'Сохранить', className: 'profile__save-button' })
-    );
+    profileControl?.insertAdjacentHTML( 'afterbegin', Button({ name: 'Сохранить', className: 'profile__save-button' }) );
   };
 
   const avatarButton: HTMLElement = document.querySelector('.avatar__button');
