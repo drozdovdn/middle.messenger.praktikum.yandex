@@ -1,2 +1,2 @@
-import {BackPanel} from "./backPanel";
+import { BackPanel } from './backPanel';
 export default BackPanel;

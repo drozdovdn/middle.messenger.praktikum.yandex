@@ -1,2 +1,2 @@
-import {Errors} from './errors';
+import { Errors } from './errors';
 export default Errors;

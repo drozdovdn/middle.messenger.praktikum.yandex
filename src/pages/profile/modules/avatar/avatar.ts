@@ -1,14 +1,14 @@
-import "./avatar.less";
-import {compile} from "../../../../templater";
-import {avatarTmpl} from "./avatar.tmpl";
-import {FunProps} from "../../../../models";
+import './avatar.less';
+import { compile } from '../../../../templater';
+import { avatarTmpl } from './avatar.tmpl';
+import { FunProps } from '../../../../models';
 
 const avatarContext = {
-    src: '',
-    name: 'Иван',
-    text: 'Поменять аватар'
-}
+  src: '',
+  name: 'Иван',
+  text: 'Поменять аватар',
+};
 
-export const Avatar:FunProps = () => {
-    return compile(avatarTmpl, avatarContext)
-}
+export const Avatar: FunProps = () => {
+  return compile(avatarTmpl, avatarContext);
+};

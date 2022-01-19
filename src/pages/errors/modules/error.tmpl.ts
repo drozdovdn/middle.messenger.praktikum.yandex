@@ -6,4 +6,4 @@ export const errorTmpl = `
             {{link.title}}
         </a>
     </section>
-`
+`;

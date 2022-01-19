@@ -9,4 +9,4 @@ export const inputProfileTmpl = `
            class="profile__input"     
             />
     </label>
-`
+`;

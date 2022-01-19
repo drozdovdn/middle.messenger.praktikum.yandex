@@ -13,4 +13,4 @@ export const formTmpl = `
         {{link.title}}
     </a>
     </form>
-`
+`;

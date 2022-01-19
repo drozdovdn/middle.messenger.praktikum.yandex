@@ -4,4 +4,4 @@ export const settingsTmpl = `
         {{input}}
         {{/with}}
     </section>
-`
+`;
