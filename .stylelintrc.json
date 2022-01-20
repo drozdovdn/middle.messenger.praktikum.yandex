@@ -4,23 +4,7 @@
     "stylelint-less"
   ],
   "rules": {
-    "declaration-property-value-blacklist": null,
-    "indentation": 2,
-    "selector-list-comma-newline-after": "always",
-    "declaration-colon-space-after": "always",
-    "declaration-colon-space-before": "never",
-    "block-opening-brace-space-before": "always",
-    "declaration-block-single-line-max-declarations": 1,
-
-
-    "at-rule-no-unknown": [ true, {
-      "ignoreAtRules": [
-        "extends",
-        "ignores"
-      ]
-    }],
-    "color-no-invalid-hex": true,
-    "less/color-no-invalid-hex": true
+    "declaration-property-value-blacklist": null
   },
   "ignoreFiles": [
     "dist/*",
