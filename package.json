@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npm run build && node index.ts",
     "build": "parcel build static/index.html",
-    "dev": "parcel static/index.html  --port=4000 --open",
+    "dev": "parcel static/index.html  --port=3000 --open",
     "lint": "eslint --fix ./ --ext .ts",
     "stylelint": "stylelint  \"**/*.{css,less}\"",
     "stylelint:fix": "stylelint  \"**/*.{css,less}\" --fix",
