@@ -21,7 +21,9 @@
         "prettier"
     ],
     "rules": {
+        "@typescript-eslint/ban-ts-comment": "off",
         "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-this-alias": "off",
         "prettier/prettier": 0,
         "@typescript-eslint/no-var-requires": 0,
         "no-compare-neg-zero": "error",           //Запрещает сравнивание с "-0"
