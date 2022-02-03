@@ -141,7 +141,7 @@ export default class Block<P = any> {
   }
 
   _removeEvents() {
-    const events: Record<string, () => void> = this.props as any.events;
+    const events: Record<string, () => void> = (this.props as any).events;
 
     if (!events) {
       return;
@@ -153,7 +153,7 @@ export default class Block<P = any> {
   }
 
   _addEvents() {
-    const events: Record<string, () => void> = this.props as any.events;
+    const events: Record<string, () => void> = (this.props as any).events;
 
     if (!events) {
       return;

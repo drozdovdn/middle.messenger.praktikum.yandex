@@ -3,9 +3,6 @@ export const formTmpl = `
     {{title}}
     {{input}}
     <div class="form__body">
-     {{#with data}}
-           <div class="form__input">{{input}}</div>
-     {{/with}}
     </div>
     <div class="form__button">
      {{button}}

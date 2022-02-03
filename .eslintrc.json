@@ -29,7 +29,7 @@
         "no-compare-neg-zero": "error",           //Запрещает сравнивание с "-0"
         "no-cond-assign": ["error", "always"],    //Запрещает опреаторы присваивания в условных выражениях
         "no-dupe-args": "error",                  //Запрещает повторяющие аргументы в function определениях
-        "no-extra-parens": "error",               //Запрещает ненужные скобки
+//        "no-extra-parens": "error",               //Запрещает ненужные скобки
         "no-extra-semi": "error",                 //Запрещает не нужные ";"
         "no-invalid-regexp": "error",             //Запрещает не допустимые строки регулярных выражений в конструкторах RegExp
         "no-irregular-whitespace": "error",       //Запрещвет неправильные пробелы вне строк и комментариев
