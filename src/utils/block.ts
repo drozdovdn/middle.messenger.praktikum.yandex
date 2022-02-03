@@ -1,22 +1,25 @@
 import EventBus from './event-bus';
+import { nanoid } from 'nanoid';
 
-type PropsType = Record<string, any>;
-
-export default class Block<P extends PropsType> {
+export default class Block<P = any> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
     FLOW_CDU: 'flow:component-did-update',
     FLOW_RENDER: 'flow:render',
-  };
+  } as const;
 
-  private _element: HTMLElement | null = null;
-  private _meta: any = null;
+  _element: HTMLElement | null = null;
+  _meta: {
+    tagName: string;
+    props: any;
+  } = null;
 
-  private eventBus: () => EventBus;
-  public props: P | object;
+  id = nanoid(6);
+  eventBus: () => EventBus;
+  props: P | Record<string, unknown>;
 
-  constructor(tagName = 'div', props: P) {
+  constructor(tagName = 'div', props = {}) {
     const eventBus = new EventBus();
     this._meta = {
       tagName,
@@ -31,37 +34,37 @@ export default class Block<P extends PropsType> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  private _registerEvents(eventBus: EventBus) {
+  _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
   }
 
-  private _createResources() {
+  _createResources() {
     const { tagName } = this._meta;
     this._element = this._createDocumentElement(tagName);
   }
 
-  public init() {
+  init() {
     this._createResources();
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  private _componentDidMount() {
-    this.componentDidMount();
+  _componentDidMount(oldProps) {
+    this.componentDidMount(oldProps);
   }
 
   // Может переопределять пользователь, необязательно трогать
-  public componentDidMount() {
-    //componentDIdMount
+  componentDidMount(oldProps: P) {
+    //
   }
 
-  // public dispatchComponentDidMoun() {
+  // dispatchComponentDidMoun() {
   //   this._eventBus().emit(Block.EVENTS.FLOW_CDM);
   // }
 
-  private _componentDidUpdate(oldProps: P, newProps: P) {
+  _componentDidUpdate(oldProps, newProps) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -69,13 +72,12 @@ export default class Block<P extends PropsType> {
     this._render();
   }
 
-  // @ts-ignore
   // Может переопределять пользователь, необязательно трогать
-  public componentDidUpdate(oldProps: P, newProps: P) {
+  componentDidUpdate(oldProps, newProps) {
     return true;
   }
 
-  public setProps = (nextProps: P) => {
+  setProps = (nextProps: P) => {
     if (!nextProps) {
       return;
     }
@@ -83,60 +85,89 @@ export default class Block<P extends PropsType> {
     Object.assign(this.props, nextProps);
   };
 
-  public get element() {
+  get element() {
     return this._element;
   }
 
-  private _render() {
-    const block = this.render();
-    // Этот небезопасный метод для упрощения логики
-    // Используйте шаблонизатор из npm или напишите свой безопасный
-    // Нужно не в строку компилировать (или делать это правильно),
-    // либо сразу в DOM-элементы возвращать из compile DOM-ноду
-    this._element.innerHTML = block;
+  _render() {
+    const fragment = this.render();
+
+    this._removeEvents();
+    this._element.innerHTML = '';
+
+    this._element.appendChild(fragment);
+    this._addEvents();
   }
 
   // Может переопределять пользователь, необязательно трогать
-  public render(): string {
-    return '';
+  render(): DocumentFragment {
+    return new DocumentFragment();
   }
 
   getContent() {
     return this.element;
   }
 
-  private _makePropsProxy(props: P) {
+  _makePropsProxy(props: any): any {
     // Можно и так передать this
     // Такой способ больше не применяется с приходом ES6+
     const self = this;
 
-    return new Proxy(props as unknown as object, {
+    return new Proxy(props, {
       get(target: Record<string, unknown>, prop: string) {
-        const value = target[prop];
+        const value: unknown = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target: Record<string, unknown>, prop: string, value: unknown) {
+      set(target: Record<string, unknown>, prop: any, value: unknown) {
         target[prop] = value;
 
         self.eventBus().emit(Block.EVENTS.FLOW_CDU, { ...target }, target);
         return true;
       },
-      deleteProperty() {
-        throw new Error('Нет доступа');
+      deleteProperty(target: Record<string, unknown>, prop: any) {
+        if (prop.indexOf('_') === 0) {
+          throw new Error('Нет доступа');
+        } else {
+          delete target[prop];
+          return true;
+        }
       },
     });
   }
 
-  private _createDocumentElement(tagName: string) {
+  _createDocumentElement(tagName: string) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
   }
 
-  public show() {
+  _removeEvents() {
+    const events: Record<string, () => void> = this.props as any.events;
+
+    if (!events) {
+      return;
+    }
+
+    Object.entries(events).forEach(([event, listener]) => {
+      this._element.removeEventListener(event, listener);
+    });
+  }
+
+  _addEvents() {
+    const events: Record<string, () => void> = this.props as any.events;
+
+    if (!events) {
+      return;
+    }
+
+    Object.entries(events).forEach(([event, listener]) => {
+      this._element.addEventListener(event, listener);
+    });
+  }
+  show() {
     this.getContent().style.display = 'block';
   }
 
-  public hide() {
+  hide() {
     this.getContent().style.display = 'none';
   }
 }

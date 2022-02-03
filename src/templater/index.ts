@@ -21,7 +21,7 @@ import { processingWith } from './processWith';
  * @param template
  * @param context
  */
-export const compile = (template, context) => {
+export const templater = (template, context) => {
   const _context = { ...context };
   let _template = `${template}`;
   const TEMPLATE_REGEXP = /\{\{(.*?)\}\}/gi;
@@ -29,7 +29,7 @@ export const compile = (template, context) => {
 
   let key = null;
   while (TEMPLATE_REGEXP.exec(_template)) {
-    key = TEMPLATE_REGEXP_KEY.exec(_template)
+    key = TEMPLATE_REGEXP_KEY.exec(_template);
     //Выдергиваю по одному значения
 
     const keyWithBrackets = key[0];

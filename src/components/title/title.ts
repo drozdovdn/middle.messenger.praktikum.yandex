@@ -1,7 +1,14 @@
-import { compile } from '../../templater';
-import { titleTmpl } from './title.tmpl';
 import './title.less';
+import { templater } from '../../templater';
+import { titleTmpl } from './title.tmpl';
+import { compile } from '../../utils/compile';
+import Block from '../../utils/block';
 
-export const Title = (title: string) => {
-  return compile(titleTmpl, { title });
-};
+export default class Title extends Block {
+  constructor(props) {
+    super('div', props);
+  }
+  render(): DocumentFragment {
+    return compile(templater, titleTmpl, { ...this.props });
+  }
+}

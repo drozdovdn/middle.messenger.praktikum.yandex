@@ -8,17 +8,22 @@ const addAvatarModalContext = {
   error: 'Ошибка, попробуйте еще раз',
   title: 'Загрузите файл',
   name: 'Выберите файл на компьюторе',
-  button: Button({ name: 'Поменять' }),
+  // button: Button({ name: 'Поменять' }),
   warning: 'Нужно выбрать файл',
 };
 
 export const AddAvatarModal: FeatureProps = () => {
   const profile = document.querySelector('.profile');
   if (profile) {
-    profile?.insertAdjacentHTML( 'afterbegin', compile(addAvatarModalTmpl, addAvatarModalContext) );
+    profile?.insertAdjacentHTML(
+      'afterbegin',
+      compile(addAvatarModalTmpl, addAvatarModalContext)
+    );
   }
 
-  const input: HTMLInputElement = document.querySelector( '.add-avatar-modal__input' );
+  const input: HTMLInputElement = document.querySelector(
+    '.add-avatar-modal__input'
+  );
   if (input) {
     input.onchange = () => {
       const nameLabel = document.querySelector('.add-avatar-modal__name');

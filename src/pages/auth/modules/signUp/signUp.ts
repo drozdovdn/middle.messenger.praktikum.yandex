@@ -36,7 +36,7 @@ const signUpContext = {
       }),
     },
   ],
-  button: Button({ name: 'Зарегистрироваться', className: 'sign-up__button' }),
+  // button: Button({ name: 'Зарегистрироваться', className: 'sign-up__button' }),
   link: {
     title: 'Войти',
     href: '#auth#signin',

@@ -1,6 +1,7 @@
 export const formTmpl = `
     <form class="form {{className}}">
     {{title}}
+    {{input}}
     <div class="form__body">
      {{#with data}}
            <div class="form__input">{{input}}</div>

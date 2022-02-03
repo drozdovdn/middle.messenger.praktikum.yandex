@@ -1,14 +1,23 @@
-import { compile } from '../../templater';
+import { templater } from '../../templater';
 import { buttonTmpl } from './button.tmpl';
 import './button.less';
+import Block from '../../utils/block';
+import { compile } from '../../utils/compile';
 
 type DataType = {
   name: string;
   className?: string;
+  events?: {
+    click: () => void;
+  };
 };
 
-type ButtonProps = (data: DataType) => string;
+export class Button extends Block {
+  constructor(props: DataType) {
+    super('div', props);
+  }
 
-export const Button: ButtonProps = ({ name, className = '' }) => {
-  return compile(buttonTmpl, { name, className });
-};
+  render(): DocumentFragment {
+    return compile(templater, buttonTmpl, { ...this.props });
+  }
+}
