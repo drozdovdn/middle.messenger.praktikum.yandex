@@ -1,41 +1,48 @@
 import './changePassword.less';
 import InputProfile from '../../../../components/inputProfile';
-import { compile } from '../../../../templater';
+import { templater } from '../../../../templater';
 import { changePasswordTmpl } from './changePassword.tmpl';
-import { FunProps } from '../../../../models';
+import Block from '../../../../utils/block';
+import { compile } from '../../../../utils/compile';
 
-const changePasswordContext = {
-  data: [
-    {
-      inputProfile: InputProfile({
-        label: 'Старый пароль',
-        name: 'oldPassword',
-        value: 'password',
-        type: 'password',
-        disabled: '',
-      }),
-    },
-    {
-      inputProfile: InputProfile({
-        label: 'Новый пароль',
-        name: 'newPassword',
-        value: 'password',
-        type: 'password',
-        disabled: '',
-      }),
-    },
-    {
-      inputProfile: InputProfile({
-        label: 'Повторите новый пароль',
-        name: 'repeatNewPassword',
-        value: 'password',
-        type: 'password',
-        disabled: '',
-      }),
-    },
-  ],
-};
+export class ChangePassword extends Block {
+  constructor() {
+    super('div');
+  }
 
-export const ChangePassword: FunProps = () => {
-  return compile(changePasswordTmpl, changePasswordContext);
-};
+  render(): DocumentFragment {
+    const changePasswordContext = {
+      data: [
+        {
+          inputProfile: new InputProfile({
+            label: 'Старый пароль',
+            name: 'oldPassword',
+            value: 'password',
+            type: 'password',
+            disabled: '',
+          }),
+        },
+        {
+          inputProfile: new InputProfile({
+            label: 'Новый пароль',
+            name: 'newPassword',
+            value: 'password',
+            type: 'password',
+            disabled: '',
+          }),
+        },
+        {
+          inputProfile: new InputProfile({
+            label: 'Повторите новый пароль',
+            name: 'repeatNewPassword',
+            value: 'password',
+            type: 'password',
+            disabled: '',
+          }),
+        },
+      ],
+    };
+
+    return compile(templater, changePasswordTmpl, changePasswordContext);
+  }
+}

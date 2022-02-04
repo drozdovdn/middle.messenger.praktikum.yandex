@@ -1,29 +1,39 @@
 import './control.less';
 import ItemControl from '../../../../components/itemControl';
-import { compile } from '../../../../templater';
+import { templater } from '../../../../templater';
 import { controlTmpl } from './control.tmpl';
-import { FunProps } from '../../../../models';
+import Block from '../../../../utils/block';
+import { compile } from '../../../../utils/compile';
 
-const controlContext = {
-  data: [
-    {
-      item: ItemControl({
-        title: 'Изменить данные',
-        className: 'item-control__change-data',
-      }),
-    },
-    {
-      item: ItemControl({
-        title: 'Изменить пароль',
-        className: 'item-control__change-password',
-      }),
-    },
-    {
-      item: ItemControl({ title: 'Выйти', className: 'item-control_red' }),
-    },
-  ],
-};
+export class Control extends Block {
+  constructor() {
+    super('div');
+  }
 
-export const Control: FunProps = () => {
-  return compile(controlTmpl, controlContext);
-};
+  render(): DocumentFragment {
+    const controlContext = {
+      data: [
+        {
+          item: new ItemControl({
+            title: 'Изменить данные',
+            className: 'item-control__change-data',
+          }),
+        },
+        {
+          item: new ItemControl({
+            title: 'Изменить пароль',
+            className: 'item-control__change-password',
+          }),
+        },
+        {
+          item: new ItemControl({
+            title: 'Выйти',
+            className: 'item-control_red',
+          }),
+        },
+      ],
+    };
+
+    return compile(templater, controlTmpl, controlContext);
+  }
+}

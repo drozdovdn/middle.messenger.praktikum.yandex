@@ -1,14 +1,21 @@
 import './avatar.less';
-import { compile } from '../../../../templater';
+import { templater } from '../../../../templater';
 import { avatarTmpl } from './avatar.tmpl';
-import { FunProps } from '../../../../models';
+import Block from '../../../../utils/block';
+import { compile } from '../../../../utils/compile';
 
-const avatarContext = {
-  src: '',
-  name: 'Иван',
-  text: 'Поменять аватар',
-};
+export class Avatar extends Block {
+  constructor() {
+    super('div');
+  }
 
-export const Avatar: FunProps = () => {
-  return compile(avatarTmpl, avatarContext);
-};
+  render(): DocumentFragment {
+    const avatarContext = {
+      src: '',
+      name: 'Иван',
+      text: 'Поменять аватар',
+    };
+
+    return compile(templater, avatarTmpl, avatarContext);
+  }
+}

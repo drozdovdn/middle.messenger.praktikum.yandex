@@ -3,46 +3,64 @@ import { formTmpl } from '../form.tmpl';
 import Title from '../../../../components/title';
 import Input from '../../../../components/input';
 import Button from '../../../../components/button';
-import { compile } from '../../../../templater';
-import { FunProps } from '../../../../models';
+import { templater } from '../../../../templater';
+import Block from '../../../../utils/block';
+import { compile } from '../../../../utils/compile';
 
-const signUpContext = {
-  title: Title('Регистрация'),
-  className: 'sign-up',
-  data: [
-    {
-      input: Input({ label: 'Почта', type: 'text', name: 'email' }),
-    },
-    {
-      input: Input({ label: 'Логин', type: 'text', name: 'login' }),
-    },
-    {
-      input: Input({ label: 'Имя', type: 'text', name: 'first_name' }),
-    },
-    {
-      input: Input({ label: 'Фамилия', type: 'text', name: 'second_name' }),
-    },
-    {
-      input: Input({ label: 'Телефон', type: 'text', name: 'phone' }),
-    },
-    {
-      input: Input({ label: 'Пароль', type: 'password', name: 'password' }),
-    },
-    {
-      input: Input({
-        label: 'Пароль (ещё раз)',
-        type: 'password',
-        name: 'repeat_password',
+export class SignUp extends Block {
+  constructor() {
+    super('div');
+  }
+
+  render(): DocumentFragment {
+    const signUpContext = {
+      title: new Title({ title: 'Регистрация' }),
+      className: 'sign-up',
+      data: [
+        {
+          input: new Input({ label: 'Почта', type: 'text', name: 'email' }),
+        },
+        {
+          input: new Input({ label: 'Логин', type: 'text', name: 'login' }),
+        },
+        {
+          input: new Input({ label: 'Имя', type: 'text', name: 'first_name' }),
+        },
+        {
+          input: new Input({
+            label: 'Фамилия',
+            type: 'text',
+            name: 'second_name',
+          }),
+        },
+        {
+          input: new Input({ label: 'Телефон', type: 'text', name: 'phone' }),
+        },
+        {
+          input: new Input({
+            label: 'Пароль',
+            type: 'password',
+            name: 'password',
+          }),
+        },
+        {
+          input: new Input({
+            label: 'Пароль (ещё раз)',
+            type: 'password',
+            name: 'repeat_password',
+          }),
+        },
+      ],
+      button: new Button({
+        name: 'Зарегистрироваться',
+        className: 'sign-up__button',
       }),
-    },
-  ],
-  // button: Button({ name: 'Зарегистрироваться', className: 'sign-up__button' }),
-  link: {
-    title: 'Войти',
-    href: '#auth#signin',
-  },
-};
+      link: {
+        title: 'Войти',
+        href: '#auth#signin',
+      },
+    };
 
-export const SignUp: FunProps = () => {
-  return compile(formTmpl, signUpContext);
-};
+    return compile(templater, formTmpl, signUpContext);
+  }
+}

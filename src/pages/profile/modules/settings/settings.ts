@@ -1,52 +1,62 @@
 import './settinps.less';
 import { InputProfile } from '../../../../components/inputProfile/inputProfile';
-import { compile } from '../../../../templater';
+import { templater } from '../../../../templater';
 import { settingsTmpl } from './settings.tmpl';
-import { FunProps } from '../../../../models';
+import Block from '../../../../utils/block';
+import { compile } from '../../../../utils/compile';
 
-const settingsContext = {
-  data: [
-    {
-      input: InputProfile({
-        label: 'Почта',
-        name: 'email',
-        value: 'pochta@yandex.ru',
-      }),
-    },
-    {
-      input: InputProfile({
-        label: 'Логин',
-        name: 'login',
-        value: 'ivanivanov',
-      }),
-    },
-    {
-      input: InputProfile({ label: 'Имя', name: 'first_name', value: 'Иван' }),
-    },
-    {
-      input: InputProfile({
-        label: 'Фамилия',
-        name: 'second_name',
-        value: 'Иванов',
-      }),
-    },
-    {
-      input: InputProfile({
-        label: 'Имя в чате',
-        name: 'display_name',
-        value: 'Иван',
-      }),
-    },
-    {
-      input: InputProfile({
-        label: 'Телефон',
-        name: 'phone',
-        value: '+7 (909) 967 30 30',
-      }),
-    },
-  ],
-};
+export class SettingsProfile extends Block {
+  constructor() {
+    super('div');
+  }
 
-export const SettingsProfile: FunProps = () => {
-  return compile(settingsTmpl, settingsContext);
-};
+  render(): DocumentFragment {
+    const settingsContext = {
+      data: [
+        {
+          input: new InputProfile({
+            label: 'Почта',
+            name: 'email',
+            value: 'pochta@yandex.ru',
+          }),
+        },
+        {
+          input: new InputProfile({
+            label: 'Логин',
+            name: 'login',
+            value: 'ivanivanov',
+          }),
+        },
+        {
+          input: new InputProfile({
+            label: 'Имя',
+            name: 'first_name',
+            value: 'Иван',
+          }),
+        },
+        {
+          input: new InputProfile({
+            label: 'Фамилия',
+            name: 'second_name',
+            value: 'Иванов',
+          }),
+        },
+        {
+          input: new InputProfile({
+            label: 'Имя в чате',
+            name: 'display_name',
+            value: 'Иван',
+          }),
+        },
+        {
+          input: new InputProfile({
+            label: 'Телефон',
+            name: 'phone',
+            value: '+7 (909) 967 30 30',
+          }),
+        },
+      ],
+    };
+    return compile(templater, settingsTmpl, settingsContext);
+  }
+}

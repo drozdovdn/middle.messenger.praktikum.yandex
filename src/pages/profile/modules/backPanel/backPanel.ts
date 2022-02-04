@@ -1,15 +1,21 @@
 import './backPanel.less';
-import { compile } from '../../../../templater';
+import { templater } from '../../../../templater';
 import { backPanelTmpl } from './backPanel.tmpl';
-import { FunProps } from '../../../../models';
+import Block from '../../../../utils/block';
+import { compile } from '../../../../utils/compile';
 
-const backPanelContext = {
-  link: {
-    href: '#chat',
-    name: 'Назад',
-  },
-};
+export class BackPanel extends Block {
+  constructor() {
+    super('div');
+  }
 
-export const BackPanel: FunProps = () => {
-  return compile(backPanelTmpl, backPanelContext);
-};
+  render(): DocumentFragment {
+    const backPanelContext = {
+      link: {
+        href: '#chat',
+        name: 'Назад',
+      },
+    };
+    return compile(templater, backPanelTmpl, backPanelContext);
+  }
+}

@@ -31,14 +31,6 @@ const input = new Input({
     },
   },
 });
-const addAvatarModalContext = {
-  error: 'Ошибка, попробуйте еще раз',
-  title: 'Загрузите файл',
-  name: 'Выберите файл на компьюторе',
-  input,
-  button,
-  warning: 'Нужно выбрать файл',
-};
 
 export class AddAvatarModal extends Block {
   constructor() {
@@ -46,6 +38,15 @@ export class AddAvatarModal extends Block {
   }
 
   render(): DocumentFragment {
+    const addAvatarModalContext = {
+      error: 'Ошибка, попробуйте еще раз',
+      title: 'Загрузите файл',
+      name: 'Выберите файл на компьюторе',
+      input,
+      button,
+      warning: 'Нужно выбрать файл',
+    };
+
     return compile(templater, addAvatarModalTmpl, addAvatarModalContext);
   }
 }
