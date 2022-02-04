@@ -4,7 +4,7 @@ import { titleTmpl } from './title.tmpl';
 import { compile } from '../../utils/compile';
 import Block from '../../utils/block';
 
-export default class Title extends Block {
+export class Title extends Block {
   constructor(props) {
     super('div', props);
   }

@@ -5,7 +5,7 @@ export const addAvatarModalTmpl = `
        <h3 class="add-avatar-modal__title">{{title}}</h3>
         <label class="add-avatar-modal__label">
             <span class="add-avatar-modal__name">{{name}}</span>
-            <input type="file" name="avatar" class="add-avatar-modal__input"/>
+            {{input}}
         </label>
         <div class="add-avatar-modal__button">
             {{button}}

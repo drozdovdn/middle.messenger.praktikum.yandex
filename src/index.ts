@@ -127,6 +127,7 @@ import './main.less';
 import ButtonExample from './exapmleButton';
 import PageExpml from './pageExample';
 import SignIn from './pages/auth/modules/signIn';
+import AddAvatarModal from './features/addAvatarModal';
 
 function render(query, block) {
   const root = document.querySelector(query);
@@ -137,6 +138,7 @@ function render(query, block) {
 
 const pageHome = new PageExpml();
 const signIn = new SignIn();
+const avatar = new AddAvatarModal();
 
 // root — это class дива в корне DOM
-render('.root', signIn);
+render('.root', avatar);

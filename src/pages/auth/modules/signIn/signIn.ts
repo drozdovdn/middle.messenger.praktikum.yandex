@@ -14,7 +14,10 @@ const autButton = new Button({
   name: 'Авторизация',
   className: 'sign-in__button',
   events: {
-    click: () => console.log('click auth'),
+    click: (e) => {
+      e.preventDefault();
+      console.log('click auth');
+    },
   },
 });
 
@@ -28,7 +31,6 @@ const passwordLogin = new Input({
 const signInContext = {
   title: tite,
   className: 'sign-in',
-  input: inputLogin,
   data: [
     {
       input: inputLogin,

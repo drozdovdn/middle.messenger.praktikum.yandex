@@ -8,7 +8,7 @@ type DataType = {
   name: string;
   className?: string;
   events?: {
-    click: () => void;
+    click?: (e?: Event) => void;
   };
 };
 
