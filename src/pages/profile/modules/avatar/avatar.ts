@@ -6,7 +6,7 @@ import { compile } from '../../../../utils/compile';
 
 export class Avatar extends Block {
   constructor() {
-    super('div');
+    super('div', { className: ['avatar'] });
   }
 
   render(): DocumentFragment {

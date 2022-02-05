@@ -9,13 +9,12 @@ import { compile } from '../../../../utils/compile';
 
 export class SignUp extends Block {
   constructor() {
-    super('div');
+    super('form', { className: ['form', 'sign-up'] });
   }
 
   render(): DocumentFragment {
     const signUpContext = {
-      title: new Title({ title: 'Регистрация' }),
-      className: 'sign-up',
+      title: new Title({ title: 'Регистрация', className: [] }),
       data: [
         {
           input: new Input({ label: 'Почта', type: 'text', name: 'email' }),
@@ -53,7 +52,7 @@ export class SignUp extends Block {
       ],
       button: new Button({
         name: 'Зарегистрироваться',
-        className: 'sign-up__button',
+        className: ['sign-up__button'],
       }),
       link: {
         title: 'Войти',

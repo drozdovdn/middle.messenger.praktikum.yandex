@@ -6,22 +6,23 @@ import { compile } from '../../utils/compile';
 
 type DataProps = {
   title: string;
-  className?: string;
+  className?: string[];
+  events?: {
+    click: () => void;
+  };
 };
 
 export class ItemControl extends Block {
   constructor(props: DataProps) {
-    super('div', props);
+    super('button', {
+      ...props,
+      className: [...props.className, 'item-control'],
+    });
   }
 
   render(): DocumentFragment {
     return compile(templater, itemControlTmpl, {
       ...this.props,
-      className: '',
     });
   }
 }
-
-// export const ItemControl: ItemControlProps = ({ title, className = '' }) => {
-//   return compile(itemControlTmpl, { title, className });
-// };

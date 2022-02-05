@@ -1,5 +1,4 @@
 export const profileTmpl = `
-    <section class="profile">
       <div class="profile__left">
         {{backPanel}}
       </div>
@@ -12,5 +11,4 @@ export const profileTmpl = `
            {{control}} 
           </div>   
       </div>
-    </section>
 `;

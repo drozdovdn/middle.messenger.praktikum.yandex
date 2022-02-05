@@ -7,7 +7,7 @@ import { compile } from '../../../../utils/compile';
 
 export class SettingsProfile extends Block {
   constructor() {
-    super('div');
+    super('section', { className: ['settings'] });
   }
 
   render(): DocumentFragment {

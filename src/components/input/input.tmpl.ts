@@ -1,5 +1,4 @@
 export const InputTmpl = `
-<label>
     <input 
        class="input {{className}}" 
        type="{{type}}"
@@ -9,5 +8,4 @@ export const InputTmpl = `
      <span class="label">
       {{label}}
     </span>
-</label>
 `;

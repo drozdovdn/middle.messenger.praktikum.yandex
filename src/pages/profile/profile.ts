@@ -14,7 +14,7 @@ import { compile } from '../../utils/compile';
 
 export class Profile extends Block {
   constructor() {
-    super('div');
+    super('section', { className: ['profile'] });
   }
 
   render(): DocumentFragment {

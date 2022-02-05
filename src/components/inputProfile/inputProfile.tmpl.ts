@@ -1,5 +1,4 @@
 export const inputProfileTmpl = `
-    <label class="profile__label">
     <span class="profile__input__name">{{label}}</span>
     <input 
            {{disabled}}
@@ -8,5 +7,4 @@ export const inputProfileTmpl = `
            value="{{value}}"
            class="profile__input"     
             />
-    </label>
 `;

@@ -6,14 +6,13 @@ import { compile } from '../../../../utils/compile';
 
 export class Error_500 extends Block {
   constructor() {
-    super('div');
+    super('div', { className: ['error', '_500'] });
   }
 
   render(): DocumentFragment {
     const error500Context = {
       title: '500',
       desc: 'Мы уже фиксим',
-      className: '_500',
       link: {
         title: 'Назад к чатам',
         href: '/chat',

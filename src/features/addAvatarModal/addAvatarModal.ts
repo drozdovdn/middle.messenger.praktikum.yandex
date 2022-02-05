@@ -2,7 +2,6 @@ import './addAvatarModal.less';
 import { templater } from '../../templater';
 import { addAvatarModalTmpl } from './addAvatarModal.tmpl';
 import Button from '../../components/button';
-import { FeatureProps } from '../../models';
 import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
 import Input from '../../components/input';
@@ -18,7 +17,7 @@ const input = new Input({
   type: 'file',
   name: 'avatar',
   label: '',
-  className: 'add-avatar-modal__input',
+  className: ['add-avatar-modal__input'],
   events: {
     change: (e) => {
       const nameLabel = document.querySelector('.add-avatar-modal__name');

@@ -6,7 +6,7 @@ import { compile } from '../../../../utils/compile';
 
 export class BackPanel extends Block {
   constructor() {
-    super('div');
+    super('div', { className: ['back-panel'] });
   }
 
   render(): DocumentFragment {

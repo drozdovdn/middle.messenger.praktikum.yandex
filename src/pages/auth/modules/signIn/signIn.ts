@@ -4,21 +4,20 @@ import Input from '../../../../components/input';
 import { templater } from '../../../../templater';
 import Title from '../../../../components/title';
 import Button from '../../../../components/button';
-import { FunProps } from '../../../../models';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 
 export class SignIn extends Block {
   constructor() {
-    super('section');
+    super('form', { className: ['form', 'sign-in'] });
   }
 
   render(): DocumentFragment {
-    const tite = new Title({ title: 'Вход' });
+    const title = new Title({ title: 'Вход', className: [] });
 
     const autButton = new Button({
       name: 'Авторизация',
-      className: 'sign-in__button',
+      className: ['sign-in__button'],
       events: {
         click: (e) => {
           e.preventDefault();
@@ -39,8 +38,7 @@ export class SignIn extends Block {
     });
 
     const signInContext = {
-      title: tite,
-      className: 'sign-in',
+      title: title,
       data: [
         {
           input: inputLogin,

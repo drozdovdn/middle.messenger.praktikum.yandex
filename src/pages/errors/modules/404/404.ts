@@ -7,14 +7,13 @@ import { compile } from '../../../../utils/compile';
 
 export class Error_404 extends Block {
   constructor() {
-    super('div');
+    super('section', { className: ['error', '_404'] });
   }
 
   render(): DocumentFragment {
     const error404Context = {
       title: '404',
       desc: 'Не туда попали',
-      className: '_404',
       link: {
         title: 'Назад к чатам',
         href: '/chat',

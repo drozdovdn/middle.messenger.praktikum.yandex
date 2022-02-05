@@ -7,7 +7,7 @@ import { compile } from '../../utils/compile';
 
 export class Errors extends Block {
   constructor() {
-    super('div');
+    super('section', { className: ['errors'] });
   }
 
   render(): DocumentFragment {

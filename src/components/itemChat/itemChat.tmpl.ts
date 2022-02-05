@@ -1,5 +1,4 @@
 export const itemChatTmpl = `
-  <div class="item-chat">
     <img class="item-chat__img" src="{{src}}">
     <div class="item-chat__block">
       <div class="item-chat__content">
@@ -19,5 +18,4 @@ export const itemChatTmpl = `
          </div>
       </div>
     </div>
-  </div>
-`
+`;

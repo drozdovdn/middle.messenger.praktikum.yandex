@@ -17,7 +17,7 @@ export default class Block<P = any> {
 
   id = nanoid(6);
   eventBus: () => EventBus;
-  props: P | Record<string, unknown>;
+  props: any | Record<string, unknown>;
 
   constructor(tagName = 'div', props = {}) {
     const eventBus = new EventBus();
@@ -43,7 +43,14 @@ export default class Block<P = any> {
 
   _createResources() {
     const { tagName } = this._meta;
+    const { className } = this.props;
     this._element = this._createDocumentElement(tagName);
+
+    if (className?.length) {
+      className.forEach((item) => {
+        this.element.classList.add(item);
+      });
+    }
   }
 
   init() {
@@ -55,14 +62,9 @@ export default class Block<P = any> {
     this.componentDidMount(oldProps);
   }
 
-  // Может переопределять пользователь, необязательно трогать
   componentDidMount(oldProps: P) {
     //
   }
-
-  // dispatchComponentDidMoun() {
-  //   this._eventBus().emit(Block.EVENTS.FLOW_CDM);
-  // }
 
   _componentDidUpdate(oldProps, newProps) {
     const response = this.componentDidUpdate(oldProps, newProps);

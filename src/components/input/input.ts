@@ -8,7 +8,7 @@ type DataProps = {
   type: string;
   name: string;
   label?: string;
-  className?: string;
+  className?: string[];
   events?: {
     click?: (e?: Event) => void;
     change?: (e?: Event) => void;
@@ -19,7 +19,7 @@ type DataProps = {
 
 export class Input extends Block {
   constructor(props: DataProps) {
-    super('div', props);
+    super('label', props);
   }
   render(): DocumentFragment {
     return compile(templater, InputTmpl, this.props);

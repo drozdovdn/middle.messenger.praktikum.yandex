@@ -143,19 +143,3 @@ window.addEventListener('hashchange', () => {
     }
   }
 });
-
-// import ButtonExample from './exapmleButton';
-// import PageExpml from './pageExample';
-// import SignIn from './pages/auth/modules/signIn';
-// import AddAvatarModal from './features/addAvatarModal';
-// import SignUp from './pages/auth/modules/signUp';
-// import Auth from './pages/auth';
-// import Block from "./utils/block";
-
-// const pageHome = new PageExpml();
-// const signIn = new SignIn();
-// const avatar = new AddAvatarModal();
-// const signUp = new SignUp();
-
-// root — это class дива в корне DOM
-// render('.root', new Auth());

@@ -7,7 +7,7 @@ import { compile } from '../../../../utils/compile';
 
 export class ChangePassword extends Block {
   constructor() {
-    super('div');
+    super('section', { className: ['change-password'] });
   }
 
   render(): DocumentFragment {

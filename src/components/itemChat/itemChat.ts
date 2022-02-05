@@ -10,17 +10,14 @@ type DataProps = {
   desc: string;
   date: string;
   counter?: number;
+  className: string[];
 };
 
 export class ItemChat extends Block {
   constructor(props: DataProps) {
-    super('div', props);
+    super('div', { ...props, className: [...props.className, 'item-chat'] });
   }
   render(): DocumentFragment {
     return compile(templater, itemChatTmpl, this.props);
   }
 }
-
-// export const ItemChat: ItemChatProps = ({ src, name, desc, date, counter }) => {
-//   return compile(itemChatTmpl, { src, name, desc, date, counter });
-// };

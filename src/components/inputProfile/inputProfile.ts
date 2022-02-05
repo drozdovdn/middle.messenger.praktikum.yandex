@@ -10,11 +10,15 @@ type DataProps = {
   value: string;
   type?: string;
   disabled?: string;
+  className?: string[];
 };
 
 export class InputProfile extends Block {
   constructor(props: DataProps) {
-    super('div', props);
+    super('label', {
+      ...props,
+      className: ['profile__label'],
+    });
   }
 
   render(): DocumentFragment {
@@ -25,7 +29,3 @@ export class InputProfile extends Block {
     });
   }
 }
-
-// export const InputProfile: InputProfileProps = ({ name, label, value, type = 'text', disabled = 'disabled', }) => {
-//   return compile(inputProfileTmpl, { name, label, value, type, disabled });
-// };
