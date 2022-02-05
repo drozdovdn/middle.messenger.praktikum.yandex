@@ -54,7 +54,6 @@ export class SignIn extends Block {
       },
     };
 
-    const content = compile(templater, formTmpl, signInContext);
-    return content;
+    return compile(templater, formTmpl, signInContext);
   }
 }

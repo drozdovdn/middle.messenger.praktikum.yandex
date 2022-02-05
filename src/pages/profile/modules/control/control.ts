@@ -23,9 +23,10 @@ export class Control extends Block {
       className: ['profile__save-button'],
       events: {
         click: (e) => {
+          const target = e.target as HTMLButtonElement;
           controlBlock.classList.remove('hidden');
           inputSettings.forEach((item) => item.setAttribute('disabled', 'true'));
-          e.target.classList.add('hidden');
+          target.classList.add('hidden');
         },
       },
     });
@@ -46,11 +47,12 @@ export class Control extends Block {
       className: ['profile__save-button'],
       events: {
         click: (e) => {
+          const target = e.target as HTMLButtonElement;
           controlBlock.classList.remove('hidden');
           settingsBlock.classList.remove('hidden');
           const changePassword: HTMLElement = document.querySelector('.change-password');
           changePassword.remove();
-          e.target.classList.add('hidden');
+          target.classList.add('hidden');
         },
       },
     });

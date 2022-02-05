@@ -22,6 +22,6 @@ export class Input extends Block {
     super('label', props);
   }
   render(): DocumentFragment {
-    return compile(templater, InputTmpl, this.props);
+    return compile(templater, InputTmpl, { ...this.props });
   }
 }

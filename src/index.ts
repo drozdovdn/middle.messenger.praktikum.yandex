@@ -128,7 +128,7 @@ window.addEventListener('hashchange', () => {
     auth?.remove();
     errors?.remove();
     profile?.remove();
-    // root.appendChild(new Chat().getContent())
+    root.appendChild(new Chat().getContent());
   }
   if (hash.includes('error')) {
     const auth = document.querySelector('.auth');

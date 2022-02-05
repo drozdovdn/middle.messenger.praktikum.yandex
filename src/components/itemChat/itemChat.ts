@@ -10,7 +10,7 @@ type DataProps = {
   desc: string;
   date: string;
   counter?: number;
-  className: string[];
+  className?: string[];
 };
 
 export class ItemChat extends Block {
@@ -18,6 +18,6 @@ export class ItemChat extends Block {
     super('div', { ...props, className: [...props.className, 'item-chat'] });
   }
   render(): DocumentFragment {
-    return compile(templater, itemChatTmpl, this.props);
+    return compile(templater, itemChatTmpl, { ...this.props });
   }
 }
