@@ -8,14 +8,20 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import Input from '../../../../components/input';
 
+type DataProps = { [key: string]: string | boolean | DataProps };
+
 export class SignIn extends Block {
-  inputs: { [key: string]: string };
+  inputs: DataProps;
 
   constructor() {
     super('form', { className: ['form', 'sign-in'] });
     this.inputs = {
       login: '',
       password: '',
+      errorValid: {
+        login: false,
+        password: false,
+      },
     };
   }
 
@@ -29,7 +35,7 @@ export class SignIn extends Block {
         click: (e) => {
           e.preventDefault();
           if (Object.values(this.inputs).includes('')) {
-            console.error('Поля не заполенны');
+            throw Error('Поля не заполенны');
           } else {
             console.log(this.inputs);
           }

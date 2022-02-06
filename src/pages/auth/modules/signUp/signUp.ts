@@ -7,10 +7,21 @@ import { templater } from '../../../../templater';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import Input from '../../../../components/input';
+import { isEmail } from '../../../../utils/validations';
 
 export class SignUp extends Block {
+  inputs: { [key: string]: string };
   constructor() {
     super('form', { className: ['form', 'sign-up'] });
+    this.inputs = {
+      email: '',
+      login: '',
+      first_name: '',
+      second_name: '',
+      phone: '',
+      password: '',
+      repeat_password: '',
+    };
   }
 
   render(): DocumentFragment {
@@ -18,7 +29,36 @@ export class SignUp extends Block {
       title: new Title({ title: 'Регистрация', className: [] }),
       data: [
         {
-          input: new InputForm({ label: 'Почта', input: new Input({ type: 'text', name: 'email' }) }),
+          input: new InputForm({
+            label: 'Почта',
+            input: new Input({
+              type: 'text',
+              name: 'email',
+              events: {
+                change: (e) => {
+                  const target = e.target as HTMLInputElement;
+                  if (isEmail(target.value)) {
+                    this.inputs = {
+                      ...this.inputs,
+                      email: target.value,
+                    };
+                  } else {
+                    this.inputs = {
+                      ...this.inputs,
+                      email: '',
+                    };
+                  }
+                },
+                blur: (e) => {
+                  const target = e.target as HTMLInputElement;
+                  if (this.inputs.email === '') {
+                    target.classList.add('input-error');
+                  }
+                  console.log('blur', this.inputs);
+                },
+              },
+            }),
+          }),
         },
         {
           input: new InputForm({ label: 'Логин', input: new Input({ type: 'text', name: 'login' }) }),

@@ -5,17 +5,43 @@ import { controlChatTmpl } from './controlChat.tmpl';
 import ButtonSettings from '../../subComponents/buttonSettings';
 import InputMessage from '../inputMessage';
 import './controlChat.less';
+import Input from '../../../../components/input';
 
 export class ControlChat extends Block {
+  message: string;
   constructor() {
     super('div', { className: ['control-chat'] });
+    this.message = '';
   }
 
   render(): DocumentFragment {
+    const input = new Input({
+      className: ['input--message'],
+      placeholder: 'Сообщение',
+      name: 'message',
+      events: {
+        change: (e) => {
+          const target = e.target as HTMLInputElement;
+          this.message = target.value;
+        },
+      },
+    });
+
     const controlChatContext = {
       addFiles: new ButtonSettings({ src: './add_filles.svg' }),
-      inputMessage: new InputMessage({}),
-      sendMessage: new ButtonSettings({ src: './send_message.svg' }),
+      inputMessage: new InputMessage({ input }),
+      sendMessage: new ButtonSettings({
+        src: './send_message.svg',
+        events: {
+          click: () => {
+            if (this.message === '') {
+              throw Error('Поле не заполненно');
+            } else {
+              console.log(this.message);
+            }
+          },
+        },
+      }),
     };
 
     return compile(templater, controlChatTmpl, controlChatContext);

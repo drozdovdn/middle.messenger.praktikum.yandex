@@ -3,8 +3,10 @@ import { compile } from '../../../../utils/compile';
 import { templater } from '../../../../templater';
 import { inputMessageTmpl } from './inputMessage.tmpl';
 import './inputMessage.less';
+import Input from '../../../../components/input';
 
 type DataProps = {
+  input: Input;
   events?: {
     click: (e?: Event) => void;
   };
@@ -12,7 +14,7 @@ type DataProps = {
 
 export class InputMessage extends Block {
   constructor(props: DataProps) {
-    super('label', { ...props, className: ['input_message'] });
+    super('div', { ...props });
   }
 
   render(): DocumentFragment {
