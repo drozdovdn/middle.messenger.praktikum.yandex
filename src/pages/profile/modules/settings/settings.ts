@@ -14,46 +14,22 @@ export class SettingsProfile extends Block {
     const settingsContext = {
       data: [
         {
-          input: new InputProfile({
-            label: 'Почта',
-            name: 'email',
-            value: 'pochta@yandex.ru',
-          }),
+          input: new InputProfile({ label: 'Почта', name: 'email', value: 'pochta@yandex.ru' }),
         },
         {
-          input: new InputProfile({
-            label: 'Логин',
-            name: 'login',
-            value: 'ivanivanov',
-          }),
+          input: new InputProfile({ label: 'Логин', name: 'login', value: 'ivanivanov' }),
         },
         {
-          input: new InputProfile({
-            label: 'Имя',
-            name: 'first_name',
-            value: 'Иван',
-          }),
+          input: new InputProfile({ label: 'Имя', name: 'first_name', value: 'Иван' }),
         },
         {
-          input: new InputProfile({
-            label: 'Фамилия',
-            name: 'second_name',
-            value: 'Иванов',
-          }),
+          input: new InputProfile({ label: 'Фамилия', name: 'second_name', value: 'Иванов' }),
         },
         {
-          input: new InputProfile({
-            label: 'Имя в чате',
-            name: 'display_name',
-            value: 'Иван',
-          }),
+          input: new InputProfile({ label: 'Имя в чате', name: 'display_name', value: 'Иван' }),
         },
         {
-          input: new InputProfile({
-            label: 'Телефон',
-            name: 'phone',
-            value: '+7 (909) 967 30 30',
-          }),
+          input: new InputProfile({ label: 'Телефон', name: 'phone', value: '+7 (909) 967 30 30' }),
         },
       ],
     };

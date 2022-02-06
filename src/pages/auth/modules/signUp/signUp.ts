@@ -26,34 +26,19 @@ export class SignUp extends Block {
           input: new Input({ label: 'Имя', type: 'text', name: 'first_name' }),
         },
         {
-          input: new Input({
-            label: 'Фамилия',
-            type: 'text',
-            name: 'second_name',
-          }),
+          input: new Input({ label: 'Фамилия', type: 'text', name: 'second_name' }),
         },
         {
           input: new Input({ label: 'Телефон', type: 'text', name: 'phone' }),
         },
         {
-          input: new Input({
-            label: 'Пароль',
-            type: 'password',
-            name: 'password',
-          }),
+          input: new Input({ label: 'Пароль', type: 'password', name: 'password' }),
         },
         {
-          input: new Input({
-            label: 'Пароль (ещё раз)',
-            type: 'password',
-            name: 'repeat_password',
-          }),
+          input: new Input({ label: 'Пароль (ещё раз)', type: 'password', name: 'repeat_password' }),
         },
       ],
-      button: new Button({
-        name: 'Зарегистрироваться',
-        className: ['sign-up__button'],
-      }),
+      button: new Button({ name: 'Зарегистрироваться', className: ['sign-up__button'] }),
       link: {
         title: 'Войти',
         href: '#auth#signin',

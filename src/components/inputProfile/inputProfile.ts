@@ -22,10 +22,6 @@ export class InputProfile extends Block {
   }
 
   render(): DocumentFragment {
-    return compile(templater, inputProfileTmpl, {
-      ...this.props,
-      type: 'text',
-      disabled: 'disabled',
-    });
+    return compile(templater, inputProfileTmpl, { ...this.props, type: 'text', disabled: 'disabled' });
   }
 }

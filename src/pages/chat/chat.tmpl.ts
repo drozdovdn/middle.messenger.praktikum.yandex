@@ -18,6 +18,10 @@ export const chatTmpl = `
         {{/with}}    
     </div>
     <div class="chat__dialog">
-    
+        {{header}}
+        <div class="chat__dialog-content">
+        
+        </div>
+        {{controlChat}}
     </div>
 `;

@@ -31,15 +31,31 @@
 }
 
 .chat__wrapper-link {
-
+  margin-top: 5px;
+  padding: 20px 20px 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .chat__link-icon {
-
+  transform: rotate(180deg);
+  position: absolute;
+  top: 22px;
+  right: 10px;
 }
 
 .chat__link {
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 12px;
+  color: #999999;
+  transition: all .33s ease;
 
+  &:hover {
+    color: #b7b7b7;
+  }
 }
 
 .chat__search {
@@ -56,9 +72,15 @@
     bottom: 0;
     background: #595B5D;
   }
-  //border-bottom: 1px solid #595B5D;
 }
 
 .chat__dialog {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
 
+.chat__dialog-content {
+  height: 100%;
 }
