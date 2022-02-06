@@ -4,7 +4,7 @@ import { addAvatarModalTmpl } from './addAvatarModal.tmpl';
 import Button from '../../components/button';
 import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
-import Input from '../../components/input';
+import Input from '../../components/inputForm';
 
 export class AddAvatarModal extends Block {
   constructor() {

@@ -1,14 +1,11 @@
-import { templater } from '../../templater';
-import { InputTmpl } from './input.tmpl';
 import Block from '../../utils/block';
-import { compile } from '../../utils/compile';
 import './input.less';
 
 type DataProps = {
-  type: string;
-  name: string;
-  label?: string;
+  type?: string;
+  name?: string;
   className?: string[];
+  required?: boolean;
   events?: {
     click?: (e?: Event) => void;
     change?: (e?: Event) => void;
@@ -19,9 +16,13 @@ type DataProps = {
 
 export class Input extends Block {
   constructor(props: DataProps) {
-    super('label', props);
-  }
-  render(): DocumentFragment {
-    return compile(templater, InputTmpl, { ...this.props });
+    super('input', { ...props, className: ['input'] });
+    if (props.name) {
+      this._element.setAttribute('name', props.name);
+    }
+    if (props.type) {
+      this._element.setAttribute('type', props.type);
+    }
+    this._element.setAttribute('required', 'required');
   }
 }
