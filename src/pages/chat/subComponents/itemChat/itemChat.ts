@@ -1,8 +1,8 @@
-import { templater } from '../../templater';
+import { templater } from '../../../../templater';
 import { itemChatTmpl } from './itemChat.tmpl';
 import './itemChat.less';
-import Block from '../../utils/block';
-import { compile } from '../../utils/compile';
+import Block from '../../../../utils/block';
+import { compile } from '../../../../utils/compile';
 
 type DataProps = {
   src: string;

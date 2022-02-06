@@ -1,7 +1,7 @@
 import './chat.less';
 import { templater } from '../../templater';
 import { chatTmpl } from './chat.tmpl';
-import itemChat from '../../components/itemChat';
+import itemChat from './subComponents/itemChat';
 import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
 import Search from './modules/search';

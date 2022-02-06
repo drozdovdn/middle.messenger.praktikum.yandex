@@ -2,7 +2,7 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import { templater } from '../../../../templater';
 import { controlChatTmpl } from './controlChat.tmpl';
-import ButtonSettings from '../buttonSettings';
+import ButtonSettings from '../../subComponents/buttonSettings';
 import InputMessage from '../inputMessage';
 import './controlChat.less';
 

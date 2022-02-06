@@ -2,7 +2,7 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import { templater } from '../../../../templater';
 import { headerTmpl } from './header.tmpl';
-import ButtonSettings from '../buttonSettings';
+import ButtonSettings from '../../subComponents/buttonSettings';
 import './header.less';
 
 export class Header extends Block {
