@@ -8,6 +8,15 @@
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+  -webkit-box-shadow: inset 0 0 0 1000px #21252a;
+
+  &:-webkit-autofill {
+    -webkit-text-fill-color: #FFFFFF;
+  }
+
+  &:autofill {
+    -webkit-text-fill-color: #FFFFFF;
+  }
 
   &:focus + span {
     top: 3px;

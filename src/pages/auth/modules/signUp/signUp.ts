@@ -7,7 +7,7 @@ import { templater } from '../../../../templater';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import Input from '../../../../components/input';
-import { isEmail } from '../../../../utils/validations';
+import { isEmail, isLogin, isName, isPassword, isPhone } from '../../../../utils/validations';
 
 export class SignUp extends Block {
   inputs: { [key: string]: string };
@@ -24,6 +24,20 @@ export class SignUp extends Block {
     };
   }
 
+  onFocus(e) {
+    const target = e.target as HTMLInputElement;
+    if (target.classList.contains('input-error')) {
+      target.classList.remove('input-error');
+    }
+  }
+
+  onBlur(e) {
+    const target = e.target as HTMLInputElement;
+    if (this.inputs[target.name] === '') {
+      target.classList.add('input-error');
+    }
+  }
+
   render(): DocumentFragment {
     const signUpContext = {
       title: new Title({ title: 'Регистрация', className: [] }),
@@ -37,49 +51,154 @@ export class SignUp extends Block {
               events: {
                 change: (e) => {
                   const target = e.target as HTMLInputElement;
-                  if (isEmail(target.value)) {
-                    this.inputs = {
-                      ...this.inputs,
-                      email: target.value,
-                    };
-                  } else {
-                    this.inputs = {
-                      ...this.inputs,
-                      email: '',
-                    };
-                  }
+                  this.inputs = {
+                    ...this.inputs,
+                    email: isEmail(target.value),
+                  };
                 },
-                blur: (e) => {
-                  const target = e.target as HTMLInputElement;
-                  if (this.inputs.email === '') {
-                    target.classList.add('input-error');
-                  }
-                  console.log('blur', this.inputs);
-                },
+                focus: (e) => this.onFocus(e),
+                blur: (e) => this.onBlur(e),
               },
             }),
           }),
         },
         {
-          input: new InputForm({ label: 'Логин', input: new Input({ type: 'text', name: 'login' }) }),
+          input: new InputForm({
+            label: 'Логин',
+            input: new Input({
+              type: 'text',
+              name: 'login',
+              events: {
+                change: (e) => {
+                  const target = e.target as HTMLInputElement;
+                  this.inputs = {
+                    ...this.inputs,
+                    login: isLogin(target.value),
+                  };
+                },
+                focus: (e) => this.onFocus(e),
+                blur: (e) => this.onBlur(e),
+              },
+            }),
+          }),
         },
         {
-          input: new InputForm({ label: 'Имя', input: new Input({ type: 'text', name: 'first_name' }) }),
+          input: new InputForm({
+            label: 'Имя',
+            input: new Input({
+              type: 'text',
+              name: 'first_name',
+              events: {
+                change: (e) => {
+                  const target = e.target as HTMLInputElement;
+                  this.inputs = {
+                    ...this.inputs,
+                    first_name: isName(target.value),
+                  };
+                },
+                focus: (e) => this.onFocus(e),
+                blur: (e) => this.onBlur(e),
+              },
+            }),
+          }),
         },
         {
-          input: new InputForm({ label: 'Фамилия', input: new Input({ type: 'text', name: 'second_name' }) }),
+          input: new InputForm({
+            label: 'Фамилия',
+            input: new Input({
+              type: 'text',
+              name: 'second_name',
+              events: {
+                change: (e) => {
+                  const target = e.target as HTMLInputElement;
+                  this.inputs = {
+                    ...this.inputs,
+                    second_name: isName(target.value),
+                  };
+                },
+                focus: (e) => this.onFocus(e),
+                blur: (e) => this.onBlur(e),
+              },
+            }),
+          }),
         },
         {
-          input: new InputForm({ label: 'Телефон', input: new Input({ type: 'text', name: 'phone' }) }),
+          input: new InputForm({
+            label: 'Телефон',
+            input: new Input({
+              type: 'text',
+              name: 'phone',
+              events: {
+                change: (e) => {
+                  const target = e.target as HTMLInputElement;
+                  this.inputs = {
+                    ...this.inputs,
+                    phone: isPhone(target.value),
+                  };
+                },
+                focus: (e) => this.onFocus(e),
+                blur: (e) => this.onBlur(e),
+              },
+            }),
+          }),
         },
         {
-          input: new InputForm({ label: 'Пароль', input: new Input({ type: 'password', name: 'password' }) }),
+          input: new InputForm({
+            label: 'Пароль',
+            input: new Input({
+              type: 'password',
+              name: 'password',
+              events: {
+                change: (e) => {
+                  const target = e.target as HTMLInputElement;
+                  this.inputs = {
+                    ...this.inputs,
+                    password: isPassword(target.value),
+                  };
+                },
+                focus: (e) => this.onFocus(e),
+                blur: (e) => this.onBlur(e),
+              },
+            }),
+          }),
         },
         {
-          input: new InputForm({ label: 'Пароль (ещё раз)', input: new Input({ type: 'password', name: 'repeat_password' }) }),
+          input: new InputForm({
+            label: 'Пароль (ещё раз)',
+            input: new Input({
+              type: 'password',
+              name: 'repeat_password',
+              events: {
+                change: (e) => {
+                  const target = e.target as HTMLInputElement;
+                  if (this.inputs.password === target.value) {
+                    this.inputs = {
+                      ...this.inputs,
+                      repeat_password: isPassword(target.value),
+                    };
+                  }
+                },
+                focus: (e) => this.onFocus(e),
+                blur: (e) => this.onBlur(e),
+              },
+            }),
+          }),
         },
       ],
-      button: new Button({ name: 'Зарегистрироваться', className: ['sign-up__button'] }),
+      button: new Button({
+        name: 'Зарегистрироваться',
+        className: ['sign-up__button'],
+        events: {
+          click: (e) => {
+            e.preventDefault();
+            if (Object.values(this.inputs).includes('')) {
+              throw Error('Поля не заполенны');
+            } else {
+              console.log(this.inputs);
+            }
+          },
+        },
+      }),
       link: {
         title: 'Войти',
         href: '#auth#signin',

@@ -7,6 +7,7 @@ import Button from '../../../../components/button';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import Input from '../../../../components/input';
+import { isLogin, isPassword } from '../../../../utils/validations';
 
 type DataProps = { [key: string]: string | boolean | DataProps };
 
@@ -53,7 +54,7 @@ export class SignIn extends Block {
             const target = e.target as HTMLInputElement;
             this.inputs = {
               ...this.inputs,
-              login: target.value,
+              login: isLogin(target.value),
             };
           },
           focus: (e) => {
@@ -81,7 +82,7 @@ export class SignIn extends Block {
             const target = e.target as HTMLInputElement;
             this.inputs = {
               ...this.inputs,
-              password: target.value,
+              password: isPassword(target.value),
             };
           },
           focus: (e) => {
