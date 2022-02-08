@@ -26,13 +26,13 @@ export class Control extends Block {
         click: (e) => {
           const target = e.target as HTMLButtonElement;
           if (Object.values(Store.inputSettings).includes('')) {
-            throw Error('Поля не заполенны');
+            throw Error('Поля не валидны');
           } else {
             console.log(Store.inputSettings);
+            controlBlock.classList.remove('hidden');
+            inputSettings.forEach((item) => item.setAttribute('disabled', 'true'));
+            target.classList.add('hidden');
           }
-          controlBlock.classList.remove('hidden');
-          inputSettings.forEach((item) => item.setAttribute('disabled', 'true'));
-          target.classList.add('hidden');
         },
       },
     });
@@ -54,11 +54,16 @@ export class Control extends Block {
       events: {
         click: (e) => {
           const target = e.target as HTMLButtonElement;
-          controlBlock.classList.remove('hidden');
-          settingsBlock.classList.remove('hidden');
-          const changePassword: HTMLElement = document.querySelector('.change-password');
-          changePassword.remove();
-          target.classList.add('hidden');
+          if (Object.values(Store.changePassword).includes('')) {
+            throw Error('Поля не валидны');
+          } else {
+            console.log(Store.changePassword);
+            controlBlock.classList.remove('hidden');
+            settingsBlock.classList.remove('hidden');
+            const changePassword: HTMLElement = document.querySelector('.change-password');
+            changePassword.remove();
+            target.classList.add('hidden');
+          }
         },
       },
     });

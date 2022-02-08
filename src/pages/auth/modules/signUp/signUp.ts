@@ -176,6 +176,11 @@ export class SignUp extends Block {
                       ...this.inputs,
                       repeat_password: isPassword(target.value),
                     };
+                  } else {
+                    this.inputs = {
+                      ...this.inputs,
+                      repeat_password: '',
+                    };
                   }
                 },
                 focus: (e) => this.onFocus(e),
