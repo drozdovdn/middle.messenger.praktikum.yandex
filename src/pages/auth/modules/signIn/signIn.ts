@@ -12,23 +12,19 @@ import { isLogin, isPassword } from '../../../../utils/validations';
 type DataProps = { [key: string]: string | boolean | DataProps };
 
 export class SignIn extends Block {
-  inputs: DataProps;
+  inputs: { [key: string]: string };
 
   constructor() {
     super('form', { className: ['form', 'sign-in'] });
     this.inputs = {
       login: '',
       password: '',
-      errorValid: {
-        login: false,
-        password: false,
-      },
     };
   }
 
   render(): DocumentFragment {
     const title = new Title({ title: 'Вход', className: [] });
-
+    console.log(this.inputs);
     const autButton = new Button({
       name: 'Авторизация',
       className: ['sign-in__button'],

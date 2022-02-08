@@ -4,6 +4,8 @@ import './input.less';
 type DataProps = {
   type?: string;
   name?: string;
+  value?: string;
+  disabled?: boolean;
   placeholder?: string;
   className?: string[];
   required?: boolean;
@@ -14,7 +16,6 @@ type DataProps = {
     blur?: (e?: Event) => void;
   };
 };
-
 export class Input extends Block {
   constructor(props: DataProps) {
     super('input', { ...props, className: [props.className, 'input'] });
@@ -26,6 +27,12 @@ export class Input extends Block {
     }
     if (props.placeholder) {
       this._element.setAttribute('placeholder', props.placeholder);
+    }
+    if (props.value) {
+      this._element.value = props.value;
+    }
+    if (props.disabled) {
+      this._element.disabled = props.disabled;
     }
     this._element.setAttribute('required', 'required');
   }

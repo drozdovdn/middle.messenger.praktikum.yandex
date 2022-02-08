@@ -14,6 +14,7 @@ export class Profile extends Block {
   }
 
   render(): DocumentFragment {
+    console.log(this.props.state);
     const profileContext = {
       backPanel: new BackPanel(),
       avatar: new Avatar(),

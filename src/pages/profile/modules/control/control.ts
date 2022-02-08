@@ -6,6 +6,7 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import Button from '../../../../components/button';
 import ChangePassword from '../changePassword';
+import { Store } from '../../../../store';
 
 export class Control extends Block {
   constructor() {
@@ -24,6 +25,11 @@ export class Control extends Block {
       events: {
         click: (e) => {
           const target = e.target as HTMLButtonElement;
+          if (Object.values(Store.inputSettings).includes('')) {
+            throw Error('Поля не заполенны');
+          } else {
+            console.log(Store.inputSettings);
+          }
           controlBlock.classList.remove('hidden');
           inputSettings.forEach((item) => item.setAttribute('disabled', 'true'));
           target.classList.add('hidden');

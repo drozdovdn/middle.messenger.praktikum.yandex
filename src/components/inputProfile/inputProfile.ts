@@ -3,13 +3,11 @@ import { inputProfileTmpl } from './inputProfile.tmpl';
 import './inputProfile.less';
 import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
+import Input from '../input';
 
 type DataProps = {
-  name: string;
+  input: Input;
   label: string;
-  value: string;
-  type?: string;
-  disabled?: string;
   className?: string[];
 };
 
@@ -22,6 +20,6 @@ export class InputProfile extends Block {
   }
 
   render(): DocumentFragment {
-    return compile(templater, inputProfileTmpl, { ...this.props, type: 'text', disabled: 'disabled' });
+    return compile(templater, inputProfileTmpl, { ...this.props });
   }
 }
