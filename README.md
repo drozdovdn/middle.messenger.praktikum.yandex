@@ -9,9 +9,9 @@
 Проект чата, проект в разработке.
 На данные момент реализовано:
 - Шаблон генерирующий строку с тегами и подставленными значениями из контекста
-- Верстка страниц кроме страницы чата
+- Верстка всех страниц
 - Временный роутинг с использованием тега \<a>
-- Можно открыть модалку и загрузить аватарку
+- Реализована  валидация с выводом данных в консоль
 
 ## Клонирование проекта
 SSH `git clone git@github.com:drozdovdn/middle.messenger.praktikum.yandex.git`
@@ -23,6 +23,19 @@ SSH `git clone git@github.com:drozdovdn/middle.messenger.praktikum.yandex.git`
 `npm run start` - режим servera (вначале проект билдится и express server раздает статику из папки dist) PORT=3000
 
 `npm run buid` - сборка проекта
+
+`npm run lint` - запускает Eslint c Prettier 
+
+`npm run stylelint` - запускает Stylelint
+
+`npm run stylelint:fix` - запускает Stylelint и фиксит код
+
+`npm run prettier` - запускает Prettier 
+
+
+  В проекте подключен Eslint, Stylelint и Prettier так же подключен пакет Hucky
+  который запускает перед коммитом Stylelint и Eslint c Prettier
+
 
 ### Структура проекта
 
