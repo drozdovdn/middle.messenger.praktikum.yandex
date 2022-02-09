@@ -9,8 +9,6 @@ import { compile } from '../../../../utils/compile';
 import Input from '../../../../components/input';
 import { isLogin, isPassword } from '../../../../utils/validations';
 
-type DataProps = { [key: string]: string | boolean | DataProps };
-
 export class SignIn extends Block {
   inputs: { [key: string]: string };
 
@@ -22,14 +20,14 @@ export class SignIn extends Block {
     };
   }
 
-  onFocus(e) {
+  onFocus(e: Event) {
     const target = e.target as HTMLInputElement;
     if (target.classList.contains('input-error')) {
       target.classList.remove('input-error');
     }
   }
 
-  onBlur(e) {
+  onBlur(e: Event) {
     const target = e.target as HTMLInputElement;
     if (this.inputs[target.name] === '') {
       target.classList.add('input-error');
@@ -43,7 +41,7 @@ export class SignIn extends Block {
       className: ['sign-in__button'],
       events: {
         click: (e) => {
-          e.preventDefault();
+          e!.preventDefault();
           if (Object.values(this.inputs).includes('')) {
             throw Error('Поля не заполенны');
           } else {
@@ -60,14 +58,14 @@ export class SignIn extends Block {
         name: 'login',
         events: {
           change: (e) => {
-            const target = e.target as HTMLInputElement;
+            const target = e!.target as HTMLInputElement;
             this.inputs = {
               ...this.inputs,
               login: isLogin(target.value),
             };
           },
-          focus: (e) => this.onFocus(e),
-          blur: (e) => this.onBlur(e),
+          focus: (e) => this.onFocus(e!),
+          blur: (e) => this.onBlur(e!),
         },
       }),
     });
@@ -78,14 +76,14 @@ export class SignIn extends Block {
         name: 'password',
         events: {
           change: (e) => {
-            const target = e.target as HTMLInputElement;
+            const target = e!.target as HTMLInputElement;
             this.inputs = {
               ...this.inputs,
               password: isPassword(target.value),
             };
           },
-          focus: (e) => this.onFocus(e),
-          blur: (e) => this.onBlur(e),
+          focus: (e) => this.onFocus(e!),
+          blur: (e) => this.onBlur(e!),
         },
       }),
     });

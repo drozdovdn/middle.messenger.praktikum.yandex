@@ -1,7 +1,3 @@
-function fetchWithRetry(url, options) {
-  const requery = new HTTPTransport();
-  return requery.get(url, options);
-}
 type DataProps = XMLHttpRequestBodyInit;
 
 type MethodProps = 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -87,15 +83,20 @@ export class HTTPTransport {
 function queryStringify(data: DataProps): string {
   let result = '?';
   if (!data) {
-return '';
-}
+    return '';
+  }
   Object.keys(data).forEach((item) => {
     if (Array.isArray(data[item])) {
-      result += `${item }=${ data[item].join(',') }&`;
+      result += `${item}=${data[item].join(',')}&`;
     } else {
-      result += `${item }=${ data[item] }&`;
+      result += `${item}=${data[item]}&`;
     }
   });
 
   return result.slice(0, result.length - 1);
+}
+
+export function fetchWithRetry(url: string, options: OptionsProps): Promise<unknown> {
+  const requery = new HTTPTransport();
+  return requery.get(url, options);
 }

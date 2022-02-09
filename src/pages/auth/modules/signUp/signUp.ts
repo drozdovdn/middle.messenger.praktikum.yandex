@@ -24,14 +24,14 @@ export class SignUp extends Block {
     };
   }
 
-  onFocus(e) {
+  onFocus(e: Event) {
     const target = e.target as HTMLInputElement;
     if (target.classList.contains('input-error')) {
       target.classList.remove('input-error');
     }
   }
 
-  onBlur(e) {
+  onBlur(e: Event) {
     const target = e.target as HTMLInputElement;
     if (this.inputs[target.name] === '') {
       target.classList.add('input-error');
@@ -50,14 +50,14 @@ export class SignUp extends Block {
               name: 'email',
               events: {
                 change: (e) => {
-                  const target = e.target as HTMLInputElement;
+                  const target = e!.target as HTMLInputElement;
                   this.inputs = {
                     ...this.inputs,
                     email: isEmail(target.value),
                   };
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e) => this.onFocus(e!),
+                blur: (e) => this.onBlur(e!),
               },
             }),
           }),
@@ -70,14 +70,14 @@ export class SignUp extends Block {
               name: 'login',
               events: {
                 change: (e) => {
-                  const target = e.target as HTMLInputElement;
+                  const target = e!.target as HTMLInputElement;
                   this.inputs = {
                     ...this.inputs,
                     login: isLogin(target.value),
                   };
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e) => this.onFocus(e!),
+                blur: (e) => this.onBlur(e!),
               },
             }),
           }),
@@ -90,14 +90,14 @@ export class SignUp extends Block {
               name: 'first_name',
               events: {
                 change: (e) => {
-                  const target = e.target as HTMLInputElement;
+                  const target = e!.target as HTMLInputElement;
                   this.inputs = {
                     ...this.inputs,
                     first_name: isName(target.value),
                   };
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e) => this.onFocus(e!),
+                blur: (e) => this.onBlur(e!),
               },
             }),
           }),
@@ -110,14 +110,14 @@ export class SignUp extends Block {
               name: 'second_name',
               events: {
                 change: (e) => {
-                  const target = e.target as HTMLInputElement;
+                  const target = e!.target as HTMLInputElement;
                   this.inputs = {
                     ...this.inputs,
                     second_name: isName(target.value),
                   };
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e) => this.onFocus(e!),
+                blur: (e) => this.onBlur(e!),
               },
             }),
           }),
@@ -130,14 +130,14 @@ export class SignUp extends Block {
               name: 'phone',
               events: {
                 change: (e) => {
-                  const target = e.target as HTMLInputElement;
+                  const target = e!.target as HTMLInputElement;
                   this.inputs = {
                     ...this.inputs,
                     phone: isPhone(target.value),
                   };
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e) => this.onFocus(e!),
+                blur: (e) => this.onBlur(e!),
               },
             }),
           }),
@@ -150,14 +150,14 @@ export class SignUp extends Block {
               name: 'password',
               events: {
                 change: (e) => {
-                  const target = e.target as HTMLInputElement;
+                  const target = e!.target as HTMLInputElement;
                   this.inputs = {
                     ...this.inputs,
                     password: isPassword(target.value),
                   };
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e) => this.onFocus(e!),
+                blur: (e) => this.onBlur(e!),
               },
             }),
           }),
@@ -170,7 +170,7 @@ export class SignUp extends Block {
               name: 'repeat_password',
               events: {
                 change: (e) => {
-                  const target = e.target as HTMLInputElement;
+                  const target = e!.target as HTMLInputElement;
                   if (this.inputs.password === target.value) {
                     this.inputs = {
                       ...this.inputs,
@@ -183,8 +183,8 @@ export class SignUp extends Block {
                     };
                   }
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e) => this.onFocus(e!),
+                blur: (e) => this.onBlur(e!),
               },
             }),
           }),
@@ -195,7 +195,7 @@ export class SignUp extends Block {
         className: ['sign-up__button'],
         events: {
           click: (e) => {
-            e.preventDefault();
+            e!.preventDefault();
             if (Object.values(this.inputs).includes('')) {
               throw Error('Поля не заполенны');
             } else {
