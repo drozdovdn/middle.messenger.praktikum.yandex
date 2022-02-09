@@ -4,7 +4,7 @@ import { addAvatarModalTmpl } from './addAvatarModal.tmpl';
 import Button from '../../components/button';
 import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
-import Input from '../../components/inputForm';
+import Input from '../../components/input';
 
 export class AddAvatarModal extends Block {
   constructor() {
@@ -23,7 +23,6 @@ export class AddAvatarModal extends Block {
     const input = new Input({
       type: 'file',
       name: 'avatar',
-      label: '',
       className: ['add-avatar-modal__input'],
       events: {
         change: (e) => {

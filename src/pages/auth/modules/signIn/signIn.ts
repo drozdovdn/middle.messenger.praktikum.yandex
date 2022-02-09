@@ -22,9 +22,22 @@ export class SignIn extends Block {
     };
   }
 
+  onFocus(e) {
+    const target = e.target as HTMLInputElement;
+    if (target.classList.contains('input-error')) {
+      target.classList.remove('input-error');
+    }
+  }
+
+  onBlur(e) {
+    const target = e.target as HTMLInputElement;
+    if (this.inputs[target.name] === '') {
+      target.classList.add('input-error');
+    }
+  }
+
   render(): DocumentFragment {
     const title = new Title({ title: 'Вход', className: [] });
-    console.log(this.inputs);
     const autButton = new Button({
       name: 'Авторизация',
       className: ['sign-in__button'],
@@ -53,18 +66,8 @@ export class SignIn extends Block {
               login: isLogin(target.value),
             };
           },
-          focus: (e) => {
-            const target = e.target as HTMLInputElement;
-            if (target.classList.contains('input-error')) {
-              target.classList.remove('input-error');
-            }
-          },
-          blur: (e) => {
-            const target = e.target as HTMLInputElement;
-            if (this.inputs.login === '') {
-              target.classList.add('input-error');
-            }
-          },
+          focus: (e) => this.onFocus(e),
+          blur: (e) => this.onBlur(e),
         },
       }),
     });
@@ -81,18 +84,8 @@ export class SignIn extends Block {
               password: isPassword(target.value),
             };
           },
-          focus: (e) => {
-            const target = e.target as HTMLInputElement;
-            if (target.classList.contains('input-error')) {
-              target.classList.remove('input-error');
-            }
-          },
-          blur: (e) => {
-            const target = e.target as HTMLInputElement;
-            if (this.inputs.password === '') {
-              target.classList.add('input-error');
-            }
-          },
+          focus: (e) => this.onFocus(e),
+          blur: (e) => this.onBlur(e),
         },
       }),
     });
