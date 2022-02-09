@@ -4,7 +4,9 @@
 ## Figma
     https://www.figma.com/file/SsaMneaZ0TST9Qk7HIfUnZ/YandexPracticumeMessage?node-id=0%3A1
     
-## [Сылка pull requests (Sprint 1)](https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/2)
+## [Сылка pull requests (Sprint 2)](https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/4)
+    https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/4
+
 ## Messager
 Проект чата, проект в разработке.
 На данные момент реализовано:
