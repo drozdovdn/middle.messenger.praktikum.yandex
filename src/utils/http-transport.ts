@@ -1,4 +1,5 @@
 type DataProps = XMLHttpRequestBodyInit;
+type ParamsProps = Record<string, unknown>;
 
 type MethodProps = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
@@ -6,27 +7,40 @@ type OptionsProps = {
   method: MethodProps;
   timeout?: number;
   data?: DataProps;
-  headers?: { [key: string]: string };
+  params?: ParamsProps;
+  headers?: Record<string, string>;
 };
 
-const METHODS: { [k: string]: MethodProps } = {
-  GET: 'GET',
-  POST: 'POST',
-  PUT: 'PUT',
-  DELETE: 'DELETE',
-};
+enum METHODS {
+  GET = 'GET',
+  POST = 'POST',
+  PUT = 'PUT',
+  DELETE = 'DELETE',
+}
 
 export class HTTPTransport {
   get = (url: string, options: OptionsProps) => {
-    return this.request(url, { ...options, method: METHODS.GET }, options.timeout);
+    let urlRequest = url;
+    if (options.params && Object.values(options.params).length) {
+      urlRequest += queryStringify(options.params);
+    }
+    return this.request(urlRequest, { ...options, method: METHODS.GET }, options.timeout);
   };
 
   put = (url: string, options: OptionsProps) => {
-    return this.request(url, { ...options, method: METHODS.PUT }, options.timeout);
+    let urlRequest = url;
+    if (options.params && Object.values(options.params).length) {
+      urlRequest += queryStringify(options.params);
+    }
+    return this.request(urlRequest, { ...options, method: METHODS.PUT }, options.timeout);
   };
 
   post = (url: string, options: OptionsProps) => {
-    return this.request(url, { ...options, method: METHODS.POST }, options.timeout);
+    let urlRequest = url;
+    if (options.params && Object.values(options.params).length) {
+      urlRequest += queryStringify(options.params);
+    }
+    return this.request(urlRequest, { ...options, method: METHODS.POST }, options.timeout);
   };
 
   delete = (url: string, options: OptionsProps) => {
@@ -41,12 +55,7 @@ export class HTTPTransport {
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-
-      if (method === METHODS.GET) {
-        xhr.open(method, url + queryStringify(data));
-      } else {
-        xhr.open(method, url);
-      }
+      xhr.open(method, url);
 
       if (Object.values(headers).lenght !== 0) {
         Object.keys(headers).forEach((item) => {
@@ -66,10 +75,10 @@ export class HTTPTransport {
       xhr.onerror = reject;
       xhr.ontimeout = reject;
 
-      if (method === METHODS.GET || !data) {
-        xhr.send();
-      } else {
+      if (data) {
         xhr.send(data);
+      } else {
+        xhr.send();
       }
     });
   };
@@ -80,23 +89,18 @@ export class HTTPTransport {
  * На входе: объект. Пример: {a: 1, b: 2, c: {d: 123}, k: [1, 2, 3]}
  * На выходе: строка. Пример: ?a=1&b=2&c=[object Object]&k=1,2,3
  */
-function queryStringify(data: DataProps): string {
-  let result = '?';
+function queryStringify(data: ParamsProps): string {
   if (!data) {
     return '';
   }
-  Object.keys(data).forEach((item) => {
-    if (Array.isArray(data[item])) {
-      result += `${item}=${data[item].join(',')}&`;
-    } else {
-      result += `${item}=${data[item]}&`;
+  const result = Object.entries(data).reduce((acc, [name, value]) => {
+    if (Array.isArray(value)) {
+      return `${acc}${name}=${value.join(',')}&`;
     }
-  });
-
-  return result.slice(0, result.length - 1);
-}
-
-export function fetchWithRetry(url: string, options: OptionsProps): Promise<unknown> {
-  const requery = new HTTPTransport();
-  return requery.get(url, options);
+    if (typeof value === 'object') {
+      return `${acc}${name}=${JSON.stringify(value)}&`;
+    }
+    return `${acc}${name}=${value}&`;
+  }, '?');
+  return result.slice(1, -1);
 }

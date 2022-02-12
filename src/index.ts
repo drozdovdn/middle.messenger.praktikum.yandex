@@ -4,11 +4,8 @@ import Auth from './pages/auth';
 import Profile from './pages/profile';
 import Error from './pages/errors';
 import Chat from './pages/chat';
-import SignIn from './pages/auth/modules/signIn';
 import Block from './utils/block';
 import { compile } from './utils/compile';
-//
-const root = document.querySelector('.root');
 
 //Временные ссылки для демонстрации
 const linksTemplate = `
@@ -82,6 +79,9 @@ class Links extends Block {
 
 function render(query, block) {
   const root = document.querySelector(query);
+  if (!root) {
+    return;
+  }
   root.appendChild(block.getContent());
 
   return root;
@@ -89,13 +89,7 @@ function render(query, block) {
 
 render('.root', new Links());
 
-// root.insertAdjacentHTML('afterbegin', compile(linksTemplate, linksContext));
-if (root) {
-  // const content = new SignIn();
-  // root.appendChild(content.getContent());
-}
-
-root.appendChild(new Auth().getContent());
+render('.root', new Auth());
 
 //Временно вместо роутинга
 window.addEventListener('hashchange', () => {
@@ -109,7 +103,7 @@ window.addEventListener('hashchange', () => {
     profile?.remove();
     errors?.remove();
     if (!auth) {
-      root.appendChild(new Auth().getContent());
+      render('.root', new Auth());
     }
   }
   if (hash.includes('profile')) {
@@ -119,7 +113,7 @@ window.addEventListener('hashchange', () => {
     chat?.remove();
     auth?.remove();
     errors?.remove();
-    root.appendChild(new Profile().getContent());
+    render('.root', new Profile());
   }
   if (hash.includes('chat')) {
     const auth = document.querySelector('.auth');
@@ -128,7 +122,7 @@ window.addEventListener('hashchange', () => {
     auth?.remove();
     errors?.remove();
     profile?.remove();
-    root.appendChild(new Chat().getContent());
+    render('.root', new Chat());
   }
   if (hash.includes('error')) {
     const auth = document.querySelector('.auth');
@@ -139,7 +133,7 @@ window.addEventListener('hashchange', () => {
     auth?.remove();
     profile?.remove();
     if (!errors) {
-      root.appendChild(new Error().getContent());
+      render('.root', new Error());
     }
   }
 });

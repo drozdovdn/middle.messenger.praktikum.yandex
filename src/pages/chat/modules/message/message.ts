@@ -1,3 +1,4 @@
+import './message.less';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import { templater } from '../../../../templater';

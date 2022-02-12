@@ -9,20 +9,18 @@ import { Store } from '../../../../store';
 import { isPassword } from '../../../../utils/validations';
 
 export class ChangePassword extends Block {
-  oldPassword: string;
   constructor() {
     super('section', { className: ['change-password'] });
-    this.oldPassword = 'Q123456789'; //Временно, данные старого пароля
   }
 
-  onFocus(e) {
+  onFocus(e: Event) {
     const target = e.target as HTMLInputElement;
     if (target.classList.contains('input-error-settings')) {
       target.classList.remove('input-error-settings');
     }
   }
 
-  onBlur(e) {
+  onBlur(e: Event) {
     const target = e.target as HTMLInputElement;
     if (Store.changePassword[target.name] === '') {
       target.classList.add('input-error-settings');
@@ -42,19 +40,21 @@ export class ChangePassword extends Block {
               name: 'oldPassword',
               value: oldPassword,
               type: 'password',
-              disabled: false,
               events: {
-                change: (e) => {
+                change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
-                  if (this.oldPassword === target.value) {
-                    Store.changePassword = {
-                      ...Store.changePassword,
-                      [target.name]: isPassword(target.value),
-                    };
+                  const isValidValue = isPassword(target.value);
+                  if (isValidValue) {
+                    if (Store.oldData.oldPassword === isValidValue) {
+                      Store.changePassword = {
+                        ...Store.changePassword,
+                        [target.name]: isValidValue,
+                      };
+                    }
                   }
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e: Event) => this.onFocus(e),
+                blur: (e: Event) => this.onBlur(e),
               },
             }),
           }),
@@ -67,17 +67,19 @@ export class ChangePassword extends Block {
               name: 'newPassword',
               value: newPassword,
               type: 'password',
-              disabled: false,
               events: {
-                change: (e) => {
+                change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
-                  Store.changePassword = {
-                    ...Store.changePassword,
-                    [target.name]: isPassword(target.value),
-                  };
+                  const isValidValue = isPassword(target.value);
+                  if (isValidValue) {
+                    Store.changePassword = {
+                      ...Store.changePassword,
+                      [target.name]: isValidValue,
+                    };
+                  }
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e: Event) => this.onFocus(e),
+                blur: (e: Event) => this.onBlur(e),
               },
             }),
           }),
@@ -90,25 +92,22 @@ export class ChangePassword extends Block {
               name: 'repeatNewPassword',
               value: repeatNewPassword,
               type: 'password',
-              disabled: false,
               events: {
-                change: (e) => {
+                change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
                   const { newPassword } = Store.changePassword;
-                  if (newPassword === target.value) {
-                    Store.changePassword = {
-                      ...Store.changePassword,
-                      [target.name]: isPassword(target.value),
-                    };
-                  } else {
-                    Store.changePassword = {
-                      ...Store.changePassword,
-                      [target.name]: '',
-                    };
+                  const isValudValue = isPassword(target.value);
+                  if (isValudValue) {
+                    if (newPassword === target.value) {
+                      Store.changePassword = {
+                        ...Store.changePassword,
+                        [target.name]: isValudValue,
+                      };
+                    }
                   }
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e: Event) => this.onFocus(e),
+                blur: (e: Event) => this.onBlur(e),
               },
             }),
           }),

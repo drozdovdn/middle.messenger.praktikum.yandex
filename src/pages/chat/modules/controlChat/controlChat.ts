@@ -1,10 +1,10 @@
+import './controlChat.less';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import { templater } from '../../../../templater';
 import { controlChatTmpl } from './controlChat.tmpl';
 import ButtonSettings from '../../subComponents/buttonSettings';
 import InputMessage from '../inputMessage';
-import './controlChat.less';
 import Input from '../../../../components/input';
 
 export class ControlChat extends Block {
@@ -19,6 +19,7 @@ export class ControlChat extends Block {
       className: ['input--message'],
       placeholder: 'Сообщение',
       name: 'message',
+      type: 'text',
       events: {
         change: (e) => {
           const target = e.target as HTMLInputElement;

@@ -1,3 +1,4 @@
+import './errors.less';
 import Error_404 from './modules/404';
 import Error_500 from './modules/500';
 import { templater } from '../../templater';
@@ -22,7 +23,9 @@ export class Errors extends Block {
         const _500 = document.querySelector('._500');
         const _404 = document.querySelector('._404');
         const errors = document.querySelector('.errors');
-        _500?.remove();
+        if (_500) {
+          _500?.remove();
+        }
         if (!_404) {
           errors.appendChild(new Error_404().getContent());
         }
@@ -31,7 +34,9 @@ export class Errors extends Block {
         const _404 = document.querySelector('._404');
         const _500 = document.querySelector('._500');
         const errors = document.querySelector('.errors');
-        _404?.remove();
+        if (_404) {
+          _404?.remove();
+        }
         if (!_500) {
           errors.appendChild(new Error_500().getContent());
         }

@@ -1,8 +1,8 @@
+import './buttonSettings.less';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import { templater } from '../../../../templater';
 import { buttonSettingsTmpl } from './buttonSettings.tmpl';
-import './buttonSettings.less';
 
 type DataProps = {
   src: string;

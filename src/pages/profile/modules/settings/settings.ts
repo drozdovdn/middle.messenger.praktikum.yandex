@@ -13,14 +13,14 @@ export class SettingsProfile extends Block {
     super('section', { className: ['settings'] });
   }
 
-  onFocus(e) {
+  onFocus(e: Event) {
     const target = e.target as HTMLInputElement;
     if (target.classList.contains('input-error-settings')) {
       target.classList.remove('input-error-settings');
     }
   }
 
-  onBlur(e) {
+  onBlur(e: Event) {
     const target = e.target as HTMLInputElement;
     if (Store.inputSettings[target.name] === '') {
       target.classList.add('input-error-settings');
@@ -37,19 +37,23 @@ export class SettingsProfile extends Block {
             label: 'Почта',
             input: new Input({
               disabled: true,
+              type: 'text',
               className: ['profile__input'],
               name: 'email',
               value: email,
               events: {
-                change: (e) => {
+                change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
-                  Store.inputSettings = {
-                    ...Store.inputSettings,
-                    [target.name]: isEmail(target.value),
-                  };
+                  const isValidValue = isEmail(target.value);
+                  if (isValidValue) {
+                    Store.inputSettings = {
+                      ...Store.inputSettings,
+                      [target.name]: isValidValue,
+                    };
+                  }
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e: Event) => this.onFocus(e),
+                blur: (e: Event) => this.onBlur(e),
               },
             }),
           }),
@@ -59,19 +63,23 @@ export class SettingsProfile extends Block {
             label: 'Логин',
             input: new Input({
               disabled: true,
+              type: 'text',
               className: ['profile__input'],
               name: 'login',
               value: login,
               events: {
-                change: (e) => {
+                change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
-                  Store.inputSettings = {
-                    ...Store.inputSettings,
-                    [target.name]: isLogin(target.value),
-                  };
+                  const isValidValue = isLogin(target.value);
+                  if (isValidValue) {
+                    Store.inputSettings = {
+                      ...Store.inputSettings,
+                      [target.name]: isValidValue,
+                    };
+                  }
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e: Event) => this.onFocus(e),
+                blur: (e: Event) => this.onBlur(e),
               },
             }),
           }),
@@ -81,19 +89,23 @@ export class SettingsProfile extends Block {
             label: 'Имя',
             input: new Input({
               disabled: true,
+              type: 'text',
               className: ['profile__input'],
               name: 'first_name',
               value: first_name,
               events: {
-                change: (e) => {
+                change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
-                  Store.inputSettings = {
-                    ...Store.inputSettings,
-                    [target.name]: isName(target.value),
-                  };
+                  const isValidValue = isName(target.value);
+                  if (isValidValue) {
+                    Store.inputSettings = {
+                      ...Store.inputSettings,
+                      [target.name]: isValidValue,
+                    };
+                  }
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e: Event) => this.onFocus(e),
+                blur: (e: Event) => this.onBlur(e),
               },
             }),
           }),
@@ -103,19 +115,23 @@ export class SettingsProfile extends Block {
             label: 'Фамилия',
             input: new Input({
               disabled: true,
+              type: 'text',
               className: ['profile__input'],
               name: 'second_name',
               value: second_name,
               events: {
-                change: (e) => {
+                change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
-                  Store.inputSettings = {
-                    ...Store.inputSettings,
-                    [target.name]: isName(target.value),
-                  };
+                  const isValidValue = isName(target.value);
+                  if (isValidValue) {
+                    Store.inputSettings = {
+                      ...Store.inputSettings,
+                      [target.name]: isValidValue,
+                    };
+                  }
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e: Event) => this.onFocus(e),
+                blur: (e: Event) => this.onBlur(e),
               },
             }),
           }),
@@ -125,19 +141,23 @@ export class SettingsProfile extends Block {
             label: 'Имя в чате',
             input: new Input({
               disabled: true,
+              type: 'text',
               className: ['profile__input'],
               name: 'display_name',
               value: display_name,
               events: {
-                change: (e) => {
+                change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
-                  Store.inputSettings = {
-                    ...Store.inputSettings,
-                    [target.name]: isName(target.value),
-                  };
+                  const isValidValue = isName(target.value);
+                  if (isValidValue) {
+                    Store.inputSettings = {
+                      ...Store.inputSettings,
+                      [target.name]: isValidValue,
+                    };
+                  }
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e: Event) => this.onFocus(e),
+                blur: (e: Event) => this.onBlur(e),
               },
             }),
           }),
@@ -147,19 +167,23 @@ export class SettingsProfile extends Block {
             label: 'Телефон',
             input: new Input({
               disabled: true,
+              type: 'text',
               className: ['profile__input'],
               name: 'phone',
               value: phone,
               events: {
-                change: (e) => {
+                change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
-                  Store.inputSettings = {
-                    ...Store.inputSettings,
-                    [target.name]: isPhone(target.value),
-                  };
+                  const isValidValue = isPhone(target.value);
+                  if (isValidValue) {
+                    Store.inputSettings = {
+                      ...Store.inputSettings,
+                      [target.name]: isValidValue,
+                    };
+                  }
                 },
-                focus: (e) => this.onFocus(e),
-                blur: (e) => this.onBlur(e),
+                focus: (e: Event) => this.onFocus(e),
+                blur: (e: Event) => this.onBlur(e),
               },
             }),
           }),

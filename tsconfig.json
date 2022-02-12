@@ -7,7 +7,12 @@
     "noImplicitAny": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "strictNullChecks": true
+    "strictNullChecks": true,
+//    "strict":  true,
+    "alwaysStrict":  true,
+    "strictFunctionTypes":  true,
+    "strictPropertyInitialization":  true,
+    "noImplicitThis":  true,
 
   },
   "exclude": [

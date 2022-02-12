@@ -1,7 +1,8 @@
-type ItemPros = { [key: string]: string };
+type ItemPros = Record<string, string>;
 type StoreProps = {
   inputSettings: ItemPros;
   changePassword: ItemPros;
+  oldData: ItemPros;
 };
 export const Store: StoreProps = {
   inputSettings: {
@@ -16,5 +17,8 @@ export const Store: StoreProps = {
     oldPassword: '',
     newPassword: '',
     repeatNewPassword: '',
+  },
+  oldData: {
+    oldPassword: 'Q123456789',
   },
 };

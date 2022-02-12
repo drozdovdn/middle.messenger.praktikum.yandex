@@ -43,7 +43,7 @@ export class SignIn extends Block {
         click: (e) => {
           e!.preventDefault();
           if (Object.values(this.inputs).includes('')) {
-            throw Error('Поля не заполенны');
+            console.log('Поля не заполенны');
           } else {
             console.log(this.inputs);
           }

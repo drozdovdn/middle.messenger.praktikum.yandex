@@ -1,6 +1,6 @@
+import './itemChat.less';
 import { templater } from '../../../../templater';
 import { itemChatTmpl } from './itemChat.tmpl';
-import './itemChat.less';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 

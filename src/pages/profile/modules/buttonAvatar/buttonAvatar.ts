@@ -1,8 +1,8 @@
+import './buttonAvatar.less';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import { templater } from '../../../../templater';
 import { buttonAvatarTmpl } from './buttonAvatar.tmpl';
-import './buttonAvatar.less';
 
 type DataType = {
   text: string;

@@ -1,7 +1,6 @@
 import '../error.less';
 import { templater } from '../../../../templater';
 import { errorTmpl } from '../error.tmpl';
-import { FunProps } from '../../../../models';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 

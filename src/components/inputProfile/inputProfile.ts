@@ -1,6 +1,6 @@
+import './inputProfile.less';
 import { templater } from '../../templater';
 import { inputProfileTmpl } from './inputProfile.tmpl';
-import './inputProfile.less';
 import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
 import Input from '../input';

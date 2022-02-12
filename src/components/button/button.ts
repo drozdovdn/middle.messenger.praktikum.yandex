@@ -1,6 +1,6 @@
+import './button.less';
 import { templater } from '../../templater';
 import { buttonTmpl } from './button.tmpl';
-import './button.less';
 import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
 
@@ -20,5 +20,4 @@ export class Button extends Block {
   render(): DocumentFragment {
     return compile(templater, buttonTmpl, { ...this.props });
   }
-  1;
 }

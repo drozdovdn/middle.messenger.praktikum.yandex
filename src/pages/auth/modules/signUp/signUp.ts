@@ -10,7 +10,7 @@ import Input from '../../../../components/input';
 import { isEmail, isLogin, isName, isPassword, isPhone } from '../../../../utils/validations';
 
 export class SignUp extends Block {
-  inputs: { [key: string]: string };
+  inputs: Record<string, string>;
   constructor() {
     super('form', { className: ['form', 'sign-up'] });
     this.inputs = {
@@ -197,7 +197,7 @@ export class SignUp extends Block {
           click: (e) => {
             e!.preventDefault();
             if (Object.values(this.inputs).includes('')) {
-              throw Error('Поля не заполенны');
+              console.log('Поля не заполенны');
             } else {
               console.log(this.inputs);
             }

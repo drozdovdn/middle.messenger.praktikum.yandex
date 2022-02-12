@@ -1,7 +1,7 @@
 import EventBus from './event-bus';
 import { nanoid } from 'nanoid';
 
-export default class Block<P = any> {
+export default class Block<P extends Record<string, unknown> = {}> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -9,17 +9,17 @@ export default class Block<P = any> {
     FLOW_RENDER: 'flow:render',
   } as const;
 
-  _element: HTMLElement | null = null;
-  _meta: {
+  private _element: HTMLElement | undefined;
+  private _meta: {
     tagName: string;
-    props: any;
-  } = null;
+    props: P;
+  } | null = null;
 
-  id = nanoid(6);
-  eventBus: () => EventBus;
-  props: any | Record<string, unknown>;
+  public id = nanoid(6);
+  public eventBus: () => EventBus;
+  protected props: P;
 
-  constructor(tagName = 'div', props = {}) {
+  public constructor(tagName = 'div', props = {}) {
     const eventBus = new EventBus();
     this._meta = {
       tagName,
@@ -34,39 +34,39 @@ export default class Block<P = any> {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _registerEvents(eventBus: EventBus) {
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this.init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
   }
 
-  _createResources() {
+  private _createResources() {
     const { tagName } = this._meta;
     const { className } = this.props;
     this._element = this._createDocumentElement(tagName);
 
     if (className?.length) {
-      className.forEach((item) => {
-        this.element.classList.add(item);
+      className.forEach((item: string) => {
+        this.element && this.element.classList.add(item);
       });
     }
   }
 
-  init() {
+  public init() {
     this._createResources();
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
 
-  _componentDidMount(oldProps) {
+  private _componentDidMount(oldProps: P) {
     this.componentDidMount(oldProps);
   }
 
-  componentDidMount(oldProps: P) {
+  public componentDidMount(oldProps: P) {
     //
   }
 
-  _componentDidUpdate(oldProps, newProps) {
+  private _componentDidUpdate(oldProps: P, newProps: P) {
     const response = this.componentDidUpdate(oldProps, newProps);
     if (!response) {
       return;
@@ -74,12 +74,11 @@ export default class Block<P = any> {
     this._render();
   }
 
-  // Может переопределять пользователь, необязательно трогать
-  componentDidUpdate(oldProps, newProps) {
+  public componentDidUpdate(oldProps: P, newProps: P) {
     return true;
   }
 
-  setProps = (nextProps: P) => {
+  public setProps = (nextProps: P) => {
     if (!nextProps) {
       return;
     }
@@ -87,14 +86,18 @@ export default class Block<P = any> {
     Object.assign(this.props, nextProps);
   };
 
-  get element() {
+  public get element() {
     return this._element;
   }
 
-  _render() {
+  private _render() {
     const fragment = this.render();
 
+    if (!this._element) {
+      return;
+    }
     this._removeEvents();
+
     this._element.innerHTML = '';
 
     this._element.appendChild(fragment);
@@ -102,15 +105,15 @@ export default class Block<P = any> {
   }
 
   // Может переопределять пользователь, необязательно трогать
-  render(): DocumentFragment {
+  public render(): DocumentFragment {
     return new DocumentFragment();
   }
 
-  getContent() {
+  public getContent() {
     return this.element;
   }
 
-  _makePropsProxy(props: any): any {
+  private _makePropsProxy(props: any): any {
     // Можно и так передать this
     // Такой способ больше не применяется с приходом ES6+
     const self = this;
@@ -137,12 +140,12 @@ export default class Block<P = any> {
     });
   }
 
-  _createDocumentElement(tagName: string) {
+  private _createDocumentElement(tagName: string) {
     // Можно сделать метод, который через фрагменты в цикле создаёт сразу несколько блоков
     return document.createElement(tagName);
   }
 
-  _removeEvents() {
+  private _removeEvents() {
     const events: Record<string, () => void> = (this.props as any).events;
 
     if (!events) {
@@ -154,7 +157,7 @@ export default class Block<P = any> {
     });
   }
 
-  _addEvents() {
+  private _addEvents() {
     const events: Record<string, () => void> = (this.props as any).events;
 
     if (!events) {
@@ -165,11 +168,11 @@ export default class Block<P = any> {
       this._element.addEventListener(event, listener);
     });
   }
-  show() {
+  public show() {
     this.getContent().style.display = 'block';
   }
 
-  hide() {
+  public hide() {
     this.getContent().style.display = 'none';
   }
 }
