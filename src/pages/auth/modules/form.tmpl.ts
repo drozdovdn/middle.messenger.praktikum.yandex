@@ -1,5 +1,4 @@
 export const formTmpl = `
-    <form class="form {{className}}">
     {{title}}
     <div class="form__body">
      {{#with data}}
@@ -12,5 +11,4 @@ export const formTmpl = `
     <a class="form__link" href="{{link.href}}">
         {{link.title}}
     </a>
-    </form>
-`
+`;

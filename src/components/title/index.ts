@@ -1,2 +1,2 @@
-import {Title} from "./title";
+import { Title } from './title';
 export default Title;

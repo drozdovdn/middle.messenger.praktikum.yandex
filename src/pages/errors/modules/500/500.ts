@@ -1,19 +1,24 @@
 import '../error.less';
-import {compile} from "../../../../templater";
-import {errorTmpl} from "../error.tmpl";
-import {FunProps} from "../../../../models";
+import { templater } from '../../../../templater';
+import { errorTmpl } from '../error.tmpl';
+import Block from '../../../../utils/block';
+import { compile } from '../../../../utils/compile';
 
+export class Error_500 extends Block {
+  constructor() {
+    super('div', { className: ['error', '_500'] });
+  }
 
-const error500Context = {
-    title: '500',
-    desc: 'Мы уже фиксим',
-    className: '_500',
-    link: {
+  render(): DocumentFragment {
+    const error500Context = {
+      title: '500',
+      desc: 'Мы уже фиксим',
+      link: {
         title: 'Назад к чатам',
-        href: '/chat'
-    }
-}
+        href: '/chat',
+      },
+    };
 
-export const Error_500:FunProps = () => {
-    return compile(errorTmpl, error500Context)
+    return compile(templater, errorTmpl, error500Context);
+  }
 }

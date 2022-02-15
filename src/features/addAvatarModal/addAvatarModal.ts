@@ -1,34 +1,52 @@
-import "./addAvatarModal.less";
-import {compile} from "../../templater";
-import {addAvatarModalTmpl} from "./addAvatarModal.tmpl";
-import Button from "../../components/button";
-import {FeatureProps} from "../../models";
+import './addAvatarModal.less';
+import { templater } from '../../templater';
+import { addAvatarModalTmpl } from './addAvatarModal.tmpl';
+import Button from '../../components/button';
+import Block from '../../utils/block';
+import { compile } from '../../utils/compile';
+import Input from '../../components/input';
 
+export class AddAvatarModal extends Block {
+  constructor() {
+    super('div', { className: ['add-avatar-modal'] });
+  }
 
-const addAvatarModalContext = {
-    error: 'Ошибка, попробуйте еще раз',
-    title: 'Загрузите файл',
-    name: 'Выберите файл на компьюторе',
-    button: Button({name: 'Поменять'}),
-    warning: 'Нужно выбрать файл'
-}
+  render(): DocumentFragment {
+    const button = new Button({
+      name: 'Поменять',
+      className: [],
+      events: {
+        click: () => console.log('Поменять клик'),
+      },
+    });
 
-export const AddAvatarModal:FeatureProps = () => {
-    const profile = document.querySelector('.profile')
-    if(profile) {
-        profile?.insertAdjacentHTML('afterbegin', compile(addAvatarModalTmpl, addAvatarModalContext))
-    }
+    const input = new Input({
+      type: 'file',
+      name: 'avatar',
+      className: ['add-avatar-modal__input'],
+      events: {
+        change: (e) => {
+          const target = e.target as HTMLInputElement;
+          const nameLabel = document.querySelector('.add-avatar-modal__name');
+          const files = target.files;
+          if (files && nameLabel) {
+            nameLabel.textContent = files[0].name;
+            nameLabel.classList.add('file-name');
+            target.disabled = true;
+          }
+        },
+      },
+    });
 
-    const input: HTMLInputElement = document.querySelector('.add-avatar-modal__input')
-    if(input) {
-        input.onchange = (e) => {
-            const nameLabel = document.querySelector('.add-avatar-modal__name')
-            const files = input.files
-            if(files && nameLabel) {
-                nameLabel.textContent = files[0].name;
-                nameLabel.classList.add('file-name')
-                input.disabled = true
-            }
-        }
-    }
+    const addAvatarModalContext = {
+      error: 'Ошибка, попробуйте еще раз',
+      title: 'Загрузите файл',
+      name: 'Выберите файл на компьюторе',
+      input,
+      button,
+      warning: 'Нужно выбрать файл',
+    };
+
+    return compile(templater, addAvatarModalTmpl, addAvatarModalContext);
+  }
 }

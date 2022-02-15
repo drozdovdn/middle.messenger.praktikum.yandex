@@ -1,2 +1,2 @@
-import {ChangePassword} from "./changePassword";
+import { ChangePassword } from './changePassword';
 export default ChangePassword;

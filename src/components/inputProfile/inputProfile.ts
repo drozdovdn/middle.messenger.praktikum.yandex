@@ -1,17 +1,25 @@
-import {compile} from "../../templater";
-import { inputProfileTmpl } from "./inputProfile.tmpl";
-import './inputProfile.less'
+import './inputProfile.less';
+import { templater } from '../../templater';
+import { inputProfileTmpl } from './inputProfile.tmpl';
+import Block from '../../utils/block';
+import { compile } from '../../utils/compile';
+import Input from '../input';
 
 type DataProps = {
-    name: string,
-    label: string,
-    value: string,
-    type?: string
-    disabled?: string
-}
+  input: Input;
+  label: string;
+  className?: string[];
+};
 
-type InputProfileProps = (data: DataProps) => string
+export class InputProfile extends Block {
+  constructor(props: DataProps) {
+    super('label', {
+      ...props,
+      className: ['profile__label'],
+    });
+  }
 
-export const InputProfile: InputProfileProps = ({ name, label, value, type = 'text', disabled = 'disabled' }) => {
-    return compile(inputProfileTmpl, { name, label, value, type, disabled})
+  render(): DocumentFragment {
+    return compile(templater, inputProfileTmpl, { ...this.props });
+  }
 }
