@@ -1,37 +1,40 @@
 import './aurh.less';
-import {compile} from "../../templater";
-import {authTmpl} from "./auth.tmpl";
-import SignIn from "./modules/signIn";
-import SignUp from "./modules/signUp";
-import {FunProps} from "../../models";
+import { templater } from '../../templater';
+import { authTmpl } from './auth.tmpl';
+import SignIn from './modules/signIn';
+import SignUp from './modules/signUp';
+import { compile } from '../../utils/compile';
+import Block from '../../utils/block';
 
-export const Auth: FunProps = () => {
+//Временная замена роутингу
 
-    //Переменная хранящая в себе контент
-    let content = SignIn()
-
-    //Временная замена роутингу
-    window.addEventListener('hashchange', ()=>{
-        const {hash} = window.location
-        if(hash.includes('signin')) {
-            const auth = document.querySelector('.auth')
-            const sighUp = document.querySelector('.sign-up')
-            const sighIn = document.querySelector('.sign-in')
-            sighUp?.remove()
-             if(!sighIn) {
-                 auth?.insertAdjacentHTML('afterbegin', SignIn())
-             }
+export class Auth extends Block {
+  constructor() {
+    super('div');
+  }
+  render(): DocumentFragment {
+    window.addEventListener('hashchange', () => {
+      const { hash } = window.location;
+      if (hash.includes('signin')) {
+        const auth = document.querySelector('.auth');
+        const sighUp = document.querySelector('.sign-up');
+        const sighIn = document.querySelector('.sign-in');
+        sighUp?.remove();
+        if (!sighIn) {
+          auth?.appendChild(new SignIn().getContent());
         }
-        if(hash.includes('signup')) {
-            const auth = document.querySelector('.auth')
-            const sighIn = document.querySelector('.sign-in')
-            const sighUp = document.querySelector('.sign-up')
-            sighIn?.remove()
-            if(!sighUp) {
-                auth?.insertAdjacentHTML('afterbegin', SignUp())
-            }
+      }
+      if (hash.includes('signup')) {
+        const auth = document.querySelector('.auth');
+        const sighIn = document.querySelector('.sign-in');
+        const sighUp = document.querySelector('.sign-up');
+        sighIn?.remove();
+        if (!sighUp) {
+          auth?.appendChild(new SignUp().getContent());
         }
-    })
+      }
+    });
 
-    return compile(authTmpl, {content})
+    return compile(templater, authTmpl, { content: new SignIn() });
+  }
 }

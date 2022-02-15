@@ -1,0 +1,14 @@
+{
+  "extends": ["stylelint-less","stylelint-config-airbnb"],
+  "plugins": [
+    "stylelint-less"
+  ],
+  "rules": {
+    "declaration-property-value-blacklist": null
+  },
+  "ignoreFiles": [
+    "dist/*",
+    "node_modules/*",
+    ".parcel-cache/*"
+  ]
+}

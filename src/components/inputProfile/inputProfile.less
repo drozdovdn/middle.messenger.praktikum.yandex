@@ -1,24 +1,38 @@
 .profile__label {
-    font-weight: 500;
-    display: flex;
-    align-content: center;
-    justify-content: space-between;
-    padding: 8px 0;
-    &:not(:last-child) {
-        border-bottom: 1px solid #EAEAEA;
-    }
+  font-weight: 500;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  padding: 8px 0;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid #EAEAEA;
+  }
 }
+
 .profile__input__name {
-    font-size: 13px;
-    line-height: 13px;
-    width: 100%;
+  font-size: 13px;
+  line-height: 13px;
+  width: 100%;
 }
 
 .profile__input {
-    font-size: 13px;
-    line-height: 13px;
-    color: #999999;
-    text-align: right;
-    background: none;
-    width: 100%;
+  font-size: 13px;
+  line-height: 13px;
+  color: #999999;
+  text-align: right;
+  background: none;
+  width: 100%;
+  border: none;
+  padding: 0;
+
+  -webkit-box-shadow: inset 0 0 0 1000px #151718;
+
+  &:-webkit-autofill {
+    -webkit-text-fill-color: #999999;
+  }
+
+  &:autofill {
+    -webkit-text-fill-color: #999999;
+  }
 }

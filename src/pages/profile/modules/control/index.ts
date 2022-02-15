@@ -1,2 +1,2 @@
-import {Control} from "./control";
+import { Control } from './control';
 export default Control;

@@ -1,2 +1,2 @@
-import {SettingsProfile} from "./settings";
+import { SettingsProfile } from './settings';
 export default SettingsProfile;

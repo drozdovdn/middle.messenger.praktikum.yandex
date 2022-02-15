@@ -1,2 +1,2 @@
-import {ItemControl} from "./itemControl";
+import { ItemControl } from './itemControl';
 export default ItemControl;

@@ -1,0 +1,69 @@
+{
+    "env": {
+        "browser": true,
+        "es2021": true
+    },
+    "extends": [
+        "eslint:recommended",
+        "plugin:@typescript-eslint/eslint-recommended",
+        "plugin:@typescript-eslint/recommended",
+        "plugin:prettier/recommended",
+        "prettier"
+    ],
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module" //Позволяет использовать import/export
+    },
+    //Тут подключаются используемые плагины
+    "plugins": [
+        "@typescript-eslint",
+        "prettier"
+    ],
+    "rules": {
+        "@typescript-eslint/ban-types": [
+        "error",
+        {
+          "extendDefaults": true,
+          "types": {
+            "{}": false
+          }
+        }
+        ],
+        "@typescript-eslint/ban-ts-comment": "off",
+        "@typescript-eslint/no-explicit-any": "off",
+        "@typescript-eslint/no-this-alias": "off",
+        "prettier/prettier": 0,
+        "@typescript-eslint/no-var-requires": 0,
+        "no-compare-neg-zero": "error",           //Запрещает сравнивание с "-0"
+        "no-cond-assign": ["error", "always"],    //Запрещает опреаторы присваивания в условных выражениях
+        "no-dupe-args": "error",                  //Запрещает повторяющие аргументы в function определениях
+        "no-extra-semi": "error",                 //Запрещает не нужные ";"
+        "no-invalid-regexp": "error",             //Запрещает не допустимые строки регулярных выражений в конструкторах RegExp
+        "no-irregular-whitespace": "error",       //Запрещвет неправильные пробелы вне строк и комментариев
+        "no-sparse-arrays": "error",              //Запрещает разреженные массивы
+        "no-template-curly-in-string": "error",   //Запрещает синтаксис заполнителя литерала шаблона в обычных строках
+        "no-unexpected-multiline": "error",       //Запрещает запутанные многострочные выражения
+        "no-unreachable": "error",                //Запрещает недостижимый код после операторов return, throw, continueиbreak
+        "curly": "error",                         //Применять согласованный стиль фигурных скобок для всех операторов управления
+        "default-case": "error",                  //Требовать default падежи в switchоператорах
+        "eqeqeq": "error",                        //Требовать использования === и !==
+        "no-empty-function": "error",             //Запретить пустые функции
+        "no-empty-pattern": "error",              //Запретить пустые шаблоны деструктурирования
+        "no-implicit-coercion": "error",          //Запретить преобразование сокращенных типов
+        "no-lone-blocks": "error",                //Запретить ненужные вложенные блоки
+        "no-multi-spaces": "error",               //Запретить несколько пробелов
+        "no-useless-concat": "error",             //Запретить ненужную конкатенацию литералов или литералов шаблонов
+        "no-useless-escape": 0,             //Запретить ненужные escape-символы
+        "no-useless-return": "error",             //Запретить избыточные операторы возврата
+        "require-await": "error",                 //Запретить асинхронные функции, которые не имеют await выражения
+        "brace-style": "error",                    //Применять согласованный стиль скобок для блоков
+        "comma-spacing": ["error", { "before": false, "after": true }],   //Обеспечить постоянный интервал до и после запятых
+        "eol-last": ["error", "always"],                                  //Требовать новую строку в конце файла
+        "operator-assignment":  ["error", "always"],                      //Требовать сокращение оператора присваивания, где это возможно
+        "space-infix-ops": "error",                                       //Требуют пробелов вокруг инфиксных операторов
+        "arrow-spacing": "error",                                         //Обеспечить постоянный интервал до и после стрелки в стрелочных функциях
+        "no-const-assign": "error",                                       //Запретить переназначение const переменных
+        "prefer-template": "error"                                        //Требуются литералы шаблонов вместо конкатенации строк
+    }
+}

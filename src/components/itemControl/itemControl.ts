@@ -1,14 +1,28 @@
 import './itemControl.less';
-import {compile} from "../../templater";
-import {itemControlTmpl} from "./itemControl.tmpl";
+import { templater } from '../../templater';
+import { itemControlTmpl } from './itemControl.tmpl';
+import Block from '../../utils/block';
+import { compile } from '../../utils/compile';
 
 type DataProps = {
-    title: string,
-    className?: string
-}
+  title: string;
+  className?: string[];
+  events?: {
+    click: () => void;
+  };
+};
 
-type ItemControlProps = (data: DataProps) => string
+export class ItemControl extends Block {
+  constructor(props: DataProps) {
+    super('button', {
+      ...props,
+      className: [...props.className, 'item-control'],
+    });
+  }
 
-export const ItemControl: ItemControlProps = ({ title, className = ''}) => {
-    return compile(itemControlTmpl, {title, className})
+  render(): DocumentFragment {
+    return compile(templater, itemControlTmpl, {
+      ...this.props,
+    });
+  }
 }

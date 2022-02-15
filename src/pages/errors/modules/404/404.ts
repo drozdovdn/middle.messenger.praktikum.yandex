@@ -1,18 +1,24 @@
 import '../error.less';
-import {compile} from "../../../../templater";
-import {errorTmpl} from "../error.tmpl";
-import {FunProps} from "../../../../models";
+import { templater } from '../../../../templater';
+import { errorTmpl } from '../error.tmpl';
+import Block from '../../../../utils/block';
+import { compile } from '../../../../utils/compile';
 
-const error404Context = {
-    title: '404',
-    desc: 'Не туда попали',
-    className: '_404',
-    link: {
+export class Error_404 extends Block {
+  constructor() {
+    super('section', { className: ['error', '_404'] });
+  }
+
+  render(): DocumentFragment {
+    const error404Context = {
+      title: '404',
+      desc: 'Не туда попали',
+      link: {
         title: 'Назад к чатам',
-        href: '/chat'
-    }
-}
+        href: '/chat',
+      },
+    };
 
-export const Error_404:FunProps = () => {
-    return compile(errorTmpl, error404Context)
+    return compile(templater, errorTmpl, error404Context);
+  }
 }

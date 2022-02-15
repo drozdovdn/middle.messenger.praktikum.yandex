@@ -1,2 +1,2 @@
-import {AddAvatarModal} from "./addAvatarModal";
+import { AddAvatarModal } from './addAvatarModal';
 export default AddAvatarModal;

@@ -1,2 +1,2 @@
-import {InputProfile} from "./inputProfile";
+import { InputProfile } from './inputProfile';
 export default InputProfile;
