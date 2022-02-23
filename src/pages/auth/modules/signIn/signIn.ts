@@ -8,6 +8,10 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import Input from '../../../../components/input';
 import { isLogin, isPassword } from '../../../../utils/validations';
+import ButtonLink from '../../../../components/buttonLink';
+import * as events from 'events';
+import { router } from '../../../../index';
+import { RoutePath } from '../../../../utils/router/route-path';
 
 export class SignIn extends Block {
   inputs: { [key: string]: string };
@@ -99,10 +103,13 @@ export class SignIn extends Block {
         },
       ],
       button: autButton,
-      link: {
-        title: 'Нет аккаунта?',
-        href: '#auth#signup',
-      },
+      link: new ButtonLink({
+        name: 'Нет аккаунта?',
+        className: ['form__link'],
+        events: {
+          click: () => router.go(RoutePath.SIGN_UP),
+        },
+      }),
     };
 
     return compile(templater, formTmpl, signInContext);

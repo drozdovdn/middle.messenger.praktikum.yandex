@@ -8,7 +8,8 @@ export const formTmpl = `
     <div class="form__button">
      {{button}}
     </div>
-    <a class="form__link" href="{{link.href}}">
-        {{link.title}}
-    </a>
+    <div class="from__wrapper-link">
+    {{link}}
+    </div>
+    
 `;

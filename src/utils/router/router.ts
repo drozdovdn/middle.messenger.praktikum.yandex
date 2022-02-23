@@ -3,7 +3,7 @@ import Route from './route';
 
 export default class Router {
   private static __instance: Router;
-  public routes: Route[] = [];
+  public routes: Route[];
   public history: History;
   private _currentRoute: Route;
   private _rootQuery: string;
@@ -39,7 +39,6 @@ export default class Router {
 
   private _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
-
     if (!route) {
       return;
     }

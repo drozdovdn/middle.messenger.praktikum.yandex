@@ -7,13 +7,13 @@ import { render } from '../render';
  */
 export default class Route {
   private _pathname: string;
-  private _blockClass: () => Block;
+  private _blockInstance: () => Block;
   private _block: null;
   private _props: unknown;
 
   constructor(pathname: string, view: () => Block, props: unknown) {
     this._pathname = pathname;
-    this._blockClass = view;
+    this._blockInstance = view;
     this._block = null;
     this._props = props;
   }
@@ -37,7 +37,7 @@ export default class Route {
 
   render() {
     if (!this._block) {
-      this._block = new this._blockClass();
+      this._block = this._blockInstance();
       render(this._props.rootQuery, this._block);
       return;
     }

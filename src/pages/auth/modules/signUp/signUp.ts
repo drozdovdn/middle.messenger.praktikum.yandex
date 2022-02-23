@@ -8,6 +8,9 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import Input from '../../../../components/input';
 import { isEmail, isLogin, isName, isPassword, isPhone } from '../../../../utils/validations';
+import ButtonLink from '../../../../components/buttonLink';
+import { router } from '../../../../index';
+import { RoutePath } from '../../../../utils/router/route-path';
 
 export class SignUp extends Block {
   inputs: Record<string, string>;
@@ -204,10 +207,13 @@ export class SignUp extends Block {
           },
         },
       }),
-      link: {
-        title: 'Войти',
-        href: '#auth#signin',
-      },
+      link: new ButtonLink({
+        name: 'Войти',
+        className: ['form__link'],
+        events: {
+          click: () => router.go(RoutePath.SIGN_IN),
+        },
+      }),
     };
 
     return compile(templater, formTmpl, signUpContext);
