@@ -6,6 +6,8 @@ import Error from './pages/errors';
 import Chat from './pages/chat';
 import Block from './utils/block';
 import { compile } from './utils/compile';
+import { render } from './utils/render';
+import Router from './utils/router/router';
 
 //Временные ссылки для демонстрации
 const linksTemplate = `
@@ -77,63 +79,56 @@ class Links extends Block {
   }
 }
 
-function render(query, block) {
-  const root = document.querySelector(query);
-  if (!root) {
-    return;
-  }
-  root.appendChild(block.getContent());
-
-  return root;
-}
-
 render('.root', new Links());
 
-render('.root', new Auth());
+const router = new Router('.root');
+router.use('/', Auth).start();
 
-//Временно вместо роутинга
-window.addEventListener('hashchange', () => {
-  const { hash } = window.location;
-  if (hash.includes('auth') || hash === '') {
-    const auth = document.querySelector('.auth');
-    const profile = document.querySelector('.profile');
-    const errors = document.querySelector('.errors');
-    const chat = document.querySelector('.chat');
-    chat?.remove();
-    profile?.remove();
-    errors?.remove();
-    if (!auth) {
-      render('.root', new Auth());
-    }
-  }
-  if (hash.includes('profile')) {
-    const auth = document.querySelector('.auth');
-    const errors = document.querySelector('.errors');
-    const chat = document.querySelector('.chat');
-    chat?.remove();
-    auth?.remove();
-    errors?.remove();
-    render('.root', new Profile());
-  }
-  if (hash.includes('chat')) {
-    const auth = document.querySelector('.auth');
-    const errors = document.querySelector('.errors');
-    const profile = document.querySelector('.profile');
-    auth?.remove();
-    errors?.remove();
-    profile?.remove();
-    render('.root', new Chat());
-  }
-  if (hash.includes('error')) {
-    const auth = document.querySelector('.auth');
-    const profile = document.querySelector('.profile');
-    const errors = document.querySelector('.errors');
-    const chat = document.querySelector('.chat');
-    chat?.remove();
-    auth?.remove();
-    profile?.remove();
-    if (!errors) {
-      render('.root', new Error());
-    }
-  }
-});
+// render('.root', new Auth());
+
+// //Временно вместо роутинга
+// window.addEventListener('hashchange', () => {
+//   const { hash } = window.location;
+//   if (hash.includes('auth') || hash === '') {
+//     const auth = document.querySelector('.auth');
+//     const profile = document.querySelector('.profile');
+//     const errors = document.querySelector('.errors');
+//     const chat = document.querySelector('.chat');
+//     chat?.remove();
+//     profile?.remove();
+//     errors?.remove();
+//     if (!auth) {
+//       render('.root', new Auth());
+//     }
+//   }
+//   if (hash.includes('profile')) {
+//     const auth = document.querySelector('.auth');
+//     const errors = document.querySelector('.errors');
+//     const chat = document.querySelector('.chat');
+//     chat?.remove();
+//     auth?.remove();
+//     errors?.remove();
+//     render('.root', new Profile());
+//   }
+//   if (hash.includes('chat')) {
+//     const auth = document.querySelector('.auth');
+//     const errors = document.querySelector('.errors');
+//     const profile = document.querySelector('.profile');
+//     auth?.remove();
+//     errors?.remove();
+//     profile?.remove();
+//     render('.root', new Chat());
+//   }
+//   if (hash.includes('error')) {
+//     const auth = document.querySelector('.auth');
+//     const profile = document.querySelector('.profile');
+//     const errors = document.querySelector('.errors');
+//     const chat = document.querySelector('.chat');
+//     chat?.remove();
+//     auth?.remove();
+//     profile?.remove();
+//     if (!errors) {
+//       render('.root', new Error());
+//     }
+//   }
+// });
