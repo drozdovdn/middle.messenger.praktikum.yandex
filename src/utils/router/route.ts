@@ -3,7 +3,7 @@ import Block from '../block';
 import { render } from '../render';
 
 /**
- * Ханит URL и соответствующий ему бло, умеет показывать скрыватьи создавать блоки
+ * Хранит URL и соответствующий ему блок, умеет показывать скрывать и создавать блоки
  */
 export default class Route {
   private _pathname: string;
