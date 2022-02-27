@@ -12,7 +12,7 @@ import Store from './store';
 import { requestLogout } from './store/actions';
 
 window.AppStore = Store;
-window.AppLogout = requestLogout();
+window.AppLogout = () => requestLogout();
 
 const signIn = new Auth({ content: new SignIn() });
 const signUp = new Auth({ content: new SignUp() });

@@ -50,7 +50,6 @@ export class HTTPTransport {
     if (options.params && Object.values(options.params).length) {
       urlRequest += queryStringify(options.params);
     }
-    console.log({ options });
     return this.request(urlRequest, { ...options, method: METHODS.POST }, options.timeout);
   };
 
@@ -80,7 +79,7 @@ export class HTTPTransport {
       xhr.withCredentials = true; //Подцепляем cookie
 
       xhr.onload = function () {
-        //ПРоисходит когда получин какой то ответ
+        //Происходит когда получин какой то ответ
         resolve(xhr);
       };
 
