@@ -28,7 +28,7 @@ export class SettingsProfile extends Block {
   }
 
   render(): DocumentFragment {
-    const { email, login, first_name, second_name, display_name, phone } = Store.inputSettings;
+    // const { email, login, first_name, second_name, display_name, phone } = Store.inputSettings;
 
     const settingsContext = {
       data: [
@@ -40,7 +40,7 @@ export class SettingsProfile extends Block {
               type: 'text',
               className: ['profile__input'],
               name: 'email',
-              value: email,
+              value: 'email',
               events: {
                 change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
@@ -66,7 +66,7 @@ export class SettingsProfile extends Block {
               type: 'text',
               className: ['profile__input'],
               name: 'login',
-              value: login,
+              value: 'login',
               events: {
                 change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
@@ -92,7 +92,7 @@ export class SettingsProfile extends Block {
               type: 'text',
               className: ['profile__input'],
               name: 'first_name',
-              value: first_name,
+              value: 'first_name',
               events: {
                 change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
@@ -118,7 +118,7 @@ export class SettingsProfile extends Block {
               type: 'text',
               className: ['profile__input'],
               name: 'second_name',
-              value: second_name,
+              value: 'second_name',
               events: {
                 change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
@@ -144,7 +144,7 @@ export class SettingsProfile extends Block {
               type: 'text',
               className: ['profile__input'],
               name: 'display_name',
-              value: display_name,
+              value: 'display_name',
               events: {
                 change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
@@ -170,7 +170,7 @@ export class SettingsProfile extends Block {
               type: 'text',
               className: ['profile__input'],
               name: 'phone',
-              value: phone,
+              value: 'phone',
               events: {
                 change: (e: Event) => {
                   const target = e.target as HTMLInputElement;

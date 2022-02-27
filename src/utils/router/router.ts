@@ -1,5 +1,9 @@
 import Block from '../block';
 import Route from './route';
+import { requestAutchUser } from '../../actions/auth';
+import { RoutePath } from './route-path';
+import { getChats } from '../../actions/chat';
+import { getUser } from '../../actions/user';
 
 export default class Router {
   private static __instance: Router;
@@ -35,6 +39,7 @@ export default class Router {
       this._onRoute(target.location.pathname);
     };
     this._onRoute(window.location.pathname);
+    requestAutchUser();
   }
 
   private _onRoute(pathname: string) {
@@ -52,6 +57,17 @@ export default class Router {
   }
 
   public go(pathname: string) {
+    switch (pathname) {
+      case RoutePath.CHAT:
+        getChats();
+        break;
+      case RoutePath.PROFILE:
+        getUser();
+        break;
+      default:
+        break;
+    }
+
     this.history.pushState({}, '', pathname);
     this._onRoute(pathname);
   }

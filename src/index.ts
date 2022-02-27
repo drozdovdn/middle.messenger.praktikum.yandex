@@ -9,7 +9,7 @@ import Error_500 from './pages/errors/modules/500';
 import Chat from './pages/chat';
 import Profile from './pages/profile';
 import Store from './store';
-import { requestLogout } from './store/actions';
+import { requestLogout } from './actions/auth';
 
 window.AppStore = Store;
 window.AppLogout = () => requestLogout();

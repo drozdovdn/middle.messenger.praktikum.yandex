@@ -9,6 +9,9 @@ export const authApi = {
   signUp: (data: Record<string, unknown>) => {
     return http.post('/signup', { data });
   },
+  user: () => {
+    return http.get('/user', {});
+  },
   logout: () => {
     return http.post('/logout', {});
   },

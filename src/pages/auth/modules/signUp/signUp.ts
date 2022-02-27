@@ -11,7 +11,7 @@ import { isEmail, isLogin, isName, isPassword, isPhone } from '../../../../utils
 import ButtonLink from '../../../../components/buttonLink';
 import { router } from '../../../../index';
 import { RoutePath } from '../../../../utils/router/route-path';
-import { getStore, requestSignUp } from '../../../../store/actions';
+import { getStore, requestSignUp } from '../../../../actions/auth';
 
 export class SignUp extends Block {
   inputs: Record<string, string>;

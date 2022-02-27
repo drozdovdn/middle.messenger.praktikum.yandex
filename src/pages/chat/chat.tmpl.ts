@@ -11,7 +11,7 @@ export const chatTmpl = `
         {{search}}
     </div>
     </div>
-        {{#with data_list}}
+        {{#with chat.data_list}}
             <div class="chat__item">
                 {{item}}
             </div>
