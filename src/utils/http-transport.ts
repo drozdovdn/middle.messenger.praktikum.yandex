@@ -1,10 +1,12 @@
-type DataProps = XMLHttpRequestBodyInit;
+import { apiSettings } from '../api/api-settings';
+
+type DataProps = Record<string, unknown>;
 type ParamsProps = Record<string, unknown>;
 
 type MethodProps = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 type OptionsProps = {
-  method: MethodProps;
+  method?: MethodProps;
   timeout?: number;
   data?: DataProps;
   params?: ParamsProps;
@@ -18,9 +20,17 @@ enum METHODS {
   DELETE = 'DELETE',
 }
 
+const { baseUrl } = apiSettings;
+
 export class HTTPTransport {
+  public url: string;
+
+  constructor(url: string) {
+    this.url = baseUrl + url;
+  }
+
   get = (url: string, options: OptionsProps) => {
-    let urlRequest = url;
+    let urlRequest = this.url + url;
     if (options.params && Object.values(options.params).length) {
       urlRequest += queryStringify(options.params);
     }
@@ -28,7 +38,7 @@ export class HTTPTransport {
   };
 
   put = (url: string, options: OptionsProps) => {
-    let urlRequest = url;
+    let urlRequest = this.url + url;
     if (options.params && Object.values(options.params).length) {
       urlRequest += queryStringify(options.params);
     }
@@ -36,27 +46,29 @@ export class HTTPTransport {
   };
 
   post = (url: string, options: OptionsProps) => {
-    let urlRequest = url;
+    let urlRequest = this.url + url;
     if (options.params && Object.values(options.params).length) {
       urlRequest += queryStringify(options.params);
     }
+    console.log({ options });
     return this.request(urlRequest, { ...options, method: METHODS.POST }, options.timeout);
   };
 
   delete = (url: string, options: OptionsProps) => {
-    return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
+    return this.request(this.url + url, { ...options, method: METHODS.DELETE }, options.timeout);
   };
 
-  // options:
-  // headers — obj
-  // data — obj
-  request = (url: string, options: OptionsProps, timeout = 5000) => {
+  request = (url: string, options: OptionsProps, timeout = 5000): Promise<XMLHttpRequest> => {
     const { method, data, headers = { 'content-type': 'application/json' } } = options;
+
+    const contentType = headers['content-type'];
+    const isJSON = contentType && contentType.includes('application/json');
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
       xhr.open(method, url);
 
+      //Добавляем заголовки
       if (Object.values(headers).lenght !== 0) {
         Object.keys(headers).forEach((item) => {
           xhr.setRequestHeader(item, headers[item]);
@@ -65,9 +77,10 @@ export class HTTPTransport {
 
       xhr.timeout = timeout;
 
-      xhr.withCredentials = true;
+      xhr.withCredentials = true; //Подцепляем cookie
 
       xhr.onload = function () {
+        //ПРоисходит когда получин какой то ответ
         resolve(xhr);
       };
 
@@ -75,10 +88,12 @@ export class HTTPTransport {
       xhr.onerror = reject;
       xhr.ontimeout = reject;
 
-      if (data) {
-        xhr.send(data);
-      } else {
+      if (method === METHODS.GET || !data) {
         xhr.send();
+      } else if (isJSON) {
+        xhr.send(JSON.stringify(data));
+      } else {
+        xhr.send(data);
       }
     });
   };

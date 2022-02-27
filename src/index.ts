@@ -8,6 +8,11 @@ import Error_404 from './pages/errors/modules/404';
 import Error_500 from './pages/errors/modules/500';
 import Chat from './pages/chat';
 import Profile from './pages/profile';
+import Store from './store';
+import { requestLogout } from './store/actions';
+
+window.AppStore = Store;
+window.AppLogout = requestLogout();
 
 const signIn = new Auth({ content: new SignIn() });
 const signUp = new Auth({ content: new SignUp() });

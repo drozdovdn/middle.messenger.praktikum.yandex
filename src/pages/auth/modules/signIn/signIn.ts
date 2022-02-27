@@ -9,9 +9,9 @@ import { compile } from '../../../../utils/compile';
 import Input from '../../../../components/input';
 import { isLogin, isPassword } from '../../../../utils/validations';
 import ButtonLink from '../../../../components/buttonLink';
-import * as events from 'events';
 import { router } from '../../../../index';
 import { RoutePath } from '../../../../utils/router/route-path';
+import { addData, getStore, requestSignIn } from '../../../../store/actions';
 
 export class SignIn extends Block {
   inputs: { [key: string]: string };
@@ -49,7 +49,8 @@ export class SignIn extends Block {
           if (Object.values(this.inputs).includes('')) {
             console.log('Поля не заполенны');
           } else {
-            console.log(this.inputs);
+            requestSignIn(this.inputs);
+            addData(this.inputs);
           }
         },
       },
@@ -107,7 +108,10 @@ export class SignIn extends Block {
         name: 'Нет аккаунта?',
         className: ['form__link'],
         events: {
-          click: () => router.go(RoutePath.SIGN_UP),
+          click: (e) => {
+            e!.preventDefault();
+            router.go(RoutePath.SIGN_UP);
+          },
         },
       }),
     };

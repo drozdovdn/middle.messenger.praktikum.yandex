@@ -11,11 +11,14 @@ import { isEmail, isLogin, isName, isPassword, isPhone } from '../../../../utils
 import ButtonLink from '../../../../components/buttonLink';
 import { router } from '../../../../index';
 import { RoutePath } from '../../../../utils/router/route-path';
+import { getStore, requestSignUp } from '../../../../store/actions';
 
 export class SignUp extends Block {
   inputs: Record<string, string>;
-  constructor() {
+  constructor(props) {
     super('form', { className: ['form', 'sign-up'] });
+
+    this.props = props;
     this.inputs = {
       email: '',
       login: '',
@@ -202,6 +205,10 @@ export class SignUp extends Block {
             if (Object.values(this.inputs).includes('')) {
               console.log('Поля не заполенны');
             } else {
+              const data = this.inputs;
+              delete data.repeat_password;
+
+              requestSignUp(data);
               console.log(this.inputs);
             }
           },
@@ -211,7 +218,10 @@ export class SignUp extends Block {
         name: 'Войти',
         className: ['form__link'],
         events: {
-          click: () => router.go(RoutePath.SIGN_IN),
+          click: (e) => {
+            e!.preventDefault();
+            router.go(RoutePath.SIGN_IN);
+          },
         },
       }),
     };

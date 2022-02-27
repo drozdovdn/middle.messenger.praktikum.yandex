@@ -1,2 +1,4 @@
 import { Auth } from './auth';
-export default Auth;
+import { connect } from '../../store/connect';
+
+export default connect(Auth, (state) => state);
