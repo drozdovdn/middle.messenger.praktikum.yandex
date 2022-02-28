@@ -170,10 +170,10 @@ export default class Block<P extends Record<string, unknown> = {}> {
     });
   }
   public show() {
-    this.getContent().style.display = 'block';
+    this.getContent()?.classList.remove('block-hidden');
   }
 
   public hide() {
-    this.getContent().style.display = 'none';
+    this.getContent()?.classList.add('block-hidden');
   }
 }

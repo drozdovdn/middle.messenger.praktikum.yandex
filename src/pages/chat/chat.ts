@@ -7,6 +7,9 @@ import { compile } from '../../utils/compile';
 import Search from './modules/search';
 import { Header } from './modules/header/header';
 import ControlChat from './modules/controlChat';
+import ButtonLink from '../../components/buttonLink';
+import { router } from '../../index';
+import { RoutePath } from '../../utils/router/route-path';
 
 export class Chat extends Block {
   constructor() {
@@ -15,13 +18,15 @@ export class Chat extends Block {
 
   render(): DocumentFragment {
     const search = new Search();
-
     const chatContext = {
       search,
-      link: {
+      link: new ButtonLink({
         name: 'Профиль',
-        href: '#profile',
-      },
+        className: ['chat__link'],
+        events: {
+          click: () => router.go(RoutePath.PROFILE),
+        },
+      }),
       chat: {
         data_list: [
           {

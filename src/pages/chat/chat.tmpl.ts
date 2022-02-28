@@ -3,9 +3,7 @@ export const chatTmpl = `
     <div class="chat__list-top">
     <div class="chat__wrapper-link">
         <img class="chat__link-icon" src="arrow_left.svg"/>
-         <a class="chat__link" href="{{link.href}}">
-            {{link.name}}
-        </a>
+         {{link}}
     </div>
     <div class="chat__search">
         {{search}}
