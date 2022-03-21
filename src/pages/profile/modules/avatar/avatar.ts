@@ -13,7 +13,23 @@ export class Avatar extends Block {
 
   openModal() {
     const profile = document.querySelector('.profile');
-    profile.appendChild(new AddAvatarModal().getContent());
+    const modal = document.querySelector('.add-avatar-modal');
+    if (modal) {
+      modal.classList.remove('hidden-modal');
+    } else {
+      const addAvatar = new AddAvatarModal({
+        events: {
+          click: (e) => {
+            if (e?.srcElement?.classList?.value === 'add-avatar-modal') {
+              e?.target?.classList?.add('hidden-modal');
+              console.log(e);
+            }
+          },
+        },
+      }).getContent();
+
+      profile.appendChild(addAvatar);
+    }
   }
 
   render(): DocumentFragment {

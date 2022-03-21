@@ -2,7 +2,7 @@ import Block from '../block';
 import Route from './route';
 import { requestAutchUser } from '../../actions/auth';
 import { RoutePath } from './route-path';
-import { getChats } from '../../actions/chat';
+import { getChatsRequest } from '../../actions/chat';
 import { getUser } from '../../actions/user';
 
 export default class Router {
@@ -37,8 +37,10 @@ export default class Router {
     window.onpopstate = (event) => {
       const target = event?.currentTarget as Window;
       this._onRoute(target.location.pathname);
+      getActions(target.location.pathname);
     };
     this._onRoute(window.location.pathname);
+    getActions(window.location.pathname);
     requestAutchUser();
   }
 
@@ -57,16 +59,7 @@ export default class Router {
   }
 
   public go(pathname: string) {
-    switch (pathname) {
-      case RoutePath.CHAT:
-        getChats();
-        break;
-      case RoutePath.PROFILE:
-        getUser();
-        break;
-      default:
-        break;
-    }
+    getActions(pathname);
 
     this.history.pushState({}, '', pathname);
     this._onRoute(pathname);
@@ -84,3 +77,16 @@ export default class Router {
     return this.routes.find((route: Route) => route.match(pathname));
   }
 }
+
+const getActions = (pathname: string) => {
+  switch (pathname) {
+    case RoutePath.CHAT:
+      getChatsRequest();
+      break;
+    case RoutePath.PROFILE:
+      getUser();
+      break;
+    default:
+      break;
+  }
+};

@@ -6,7 +6,9 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import Button from '../../../../components/button';
 import ChangePassword from '../changePassword';
-import { Store } from '../../../../store';
+import Store from '../../../../store';
+import { localData } from '../settings/settings';
+import { setUserData } from '../../../../actions/user';
 
 export class Control extends Block {
   constructor() {
@@ -24,11 +26,13 @@ export class Control extends Block {
       className: ['profile__save-button'],
       events: {
         click: (e) => {
-          const target = e.target as HTMLButtonElement;
-          if (Object.values(Store.inputSettings).includes('')) {
+          const target = e!.target as HTMLButtonElement;
+          console.log({ localData });
+          if (Object.values(localData).includes('')) {
             throw Error('Поля не валидны');
           } else {
-            console.log(Store.inputSettings);
+            setUserData(localData);
+            console.log(localData);
             controlBlock.classList.remove('hidden');
             inputSettings.forEach((item) => item.setAttribute('disabled', 'true'));
             target.classList.add('hidden');
@@ -53,7 +57,7 @@ export class Control extends Block {
       className: ['profile__save-button'],
       events: {
         click: (e) => {
-          const target = e.target as HTMLButtonElement;
+          const target = e!.target as HTMLButtonElement;
           if (Object.values(Store.changePassword).includes('')) {
             throw Error('Поля не валидны');
           } else {

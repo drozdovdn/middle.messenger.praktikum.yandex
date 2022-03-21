@@ -6,6 +6,10 @@ import { settingsApi } from '../../pages/profile/modules/settings/settings-api';
 
 const store = new Store();
 
+export const setUserData = (data: Record<string, unknown>) => {
+  store.set('user', data);
+};
+
 export const getUser = () => {
   settingsApi.postUser({ id: store.state.user.id }).then((res) => {
     if (res.status === 200) {
@@ -13,4 +17,8 @@ export const getUser = () => {
       store.set('user', response.data);
     }
   });
+};
+
+export const getUserData = () => {
+  return store?.state?.user;
 };

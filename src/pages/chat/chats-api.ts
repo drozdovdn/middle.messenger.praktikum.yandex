@@ -4,7 +4,7 @@ const http = new HTTPTransport('/chats');
 
 export const chatsApi = {
   getChats: () => {
-    return http.get('/chats', {});
+    return http.get('', {});
   },
   postChat: (data: Record<string, unknown>) => {
     return http.post('/chats', { data });

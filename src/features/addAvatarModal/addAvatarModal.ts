@@ -6,9 +6,15 @@ import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
 import Input from '../../components/input';
 
+type AddAvatarModalProps = {
+  events?: {
+    click?: (e?: Event) => void;
+  };
+};
+
 export class AddAvatarModal extends Block {
-  constructor() {
-    super('div', { className: ['add-avatar-modal'] });
+  constructor(props: AddAvatarModalProps) {
+    super('div', { ...props, className: ['add-avatar-modal'] });
   }
 
   render(): DocumentFragment {

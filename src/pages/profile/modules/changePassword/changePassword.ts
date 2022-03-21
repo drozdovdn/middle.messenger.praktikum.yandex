@@ -5,7 +5,7 @@ import { changePasswordTmpl } from './changePassword.tmpl';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import Input from '../../../../components/input';
-import { Store } from '../../../../store';
+import Store from '../../../../store';
 import { isPassword } from '../../../../utils/validations';
 
 export class ChangePassword extends Block {
