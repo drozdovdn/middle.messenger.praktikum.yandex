@@ -1,6 +1,6 @@
 import { apiSettings } from '../api/api-settings';
 
-type DataProps = Record<string, unknown>;
+type DataProps = Record<string, unknown> | FormData;
 type ParamsProps = Record<string, unknown>;
 
 type MethodProps = 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -71,9 +71,11 @@ export class HTTPTransport {
       if (Object.values(headers).lenght !== 0) {
         Object.keys(headers).forEach((item) => {
           xhr.setRequestHeader(item, headers[item]);
+          console.log('if');
         });
       }
-
+      console.log({ headers });
+      console.log({ xhr });
       xhr.timeout = timeout;
 
       xhr.withCredentials = true; //Подцепляем cookie
