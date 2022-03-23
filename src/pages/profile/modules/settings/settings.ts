@@ -9,7 +9,7 @@ import Input from '../../../../components/input';
 import { isEmail, isLogin, isName, isPhone } from '../../../../utils/validations';
 import { getUserData } from '../../../../actions/user';
 
-//Локалтные данные Settings
+//Локальные данные Settings
 export let localData = {
   email: '',
   login: '',

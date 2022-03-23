@@ -6,6 +6,7 @@ import { buttonAvatarTmpl } from './buttonAvatar.tmpl';
 
 type DataType = {
   text: string;
+  src: string;
   className?: string[];
   events?: {
     click?: (e?: Event) => void;

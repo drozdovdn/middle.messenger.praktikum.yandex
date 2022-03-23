@@ -5,6 +5,8 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import ButtonAvatar from '../buttonAvatar';
 import AddAvatarModal from '../../../../features/addAvatarModal';
+import { getUserData } from '../../../../actions/user';
+import { apiSettings } from '../../../../api/api-settings';
 
 export class Avatar extends Block {
   constructor() {
@@ -33,16 +35,23 @@ export class Avatar extends Block {
   }
 
   render(): DocumentFragment {
+    const user = getUserData();
+    let avatar = 'avatar_icon.svg';
+    if (user?.avatar) {
+      avatar = `https://ya-praktikum.tech/api/v2/resources${ user.avatar}`;
+    }
+    console.log(user?.avatar);
     const button = new ButtonAvatar({
       text: 'Поменять аватар',
       className: [],
+      src: avatar,
       events: {
         click: () => this.openModal(),
       },
     });
 
     const avatarContext = {
-      name: 'Иван',
+      name: user?.first_namel,
       button,
     };
 
