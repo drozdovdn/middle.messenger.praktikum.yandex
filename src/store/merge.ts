@@ -3,7 +3,7 @@ export type Indexed<T = unknown> = {
 };
 
 const is = {
-  object: (x: unknown) => typeof x === 'object',
+  object: (x: unknown) => typeof x === 'object' && x !== null,
   string: (x: unknown) => typeof x === 'string',
 };
 const uniq = (xs: string[]) => Array.from(new Set(xs));

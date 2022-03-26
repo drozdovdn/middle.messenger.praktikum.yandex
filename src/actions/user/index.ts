@@ -1,13 +1,15 @@
 import { Store } from '../../store/store';
-import { chatsApi } from '../../pages/chat/chats-api';
-import { router } from '../../index';
-import { RoutePath } from '../../utils/router/route-path';
 import { settingsApi } from '../../pages/profile/modules/settings/settings-api';
+import { controlApi } from '../../pages/profile/modules/control/constrol-api';
 
 const store = new Store();
 
 export const setUserData = (data: Record<string, unknown>) => {
+  console.log('set', { data });
   store.set('user', data);
+};
+export const getUserData = () => {
+  return store?.state?.user;
 };
 
 export const getUser = () => {
@@ -19,6 +21,12 @@ export const getUser = () => {
   });
 };
 
-export const getUserData = () => {
-  return store?.state?.user;
+export const changeUserData = (data: Record<string, unknown>) => {
+  controlApi.changeUserData({ data }).then((res) => {
+    if (res.status === 200) {
+      const { response } = res;
+      setUserData(JSON.parse(response));
+      console.log(response);
+    }
+  });
 };

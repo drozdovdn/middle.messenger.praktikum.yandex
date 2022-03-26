@@ -39,7 +39,7 @@ export class SettingsProfile extends Block {
 
   render(): DocumentFragment {
     const user = getUserData();
-    if (!user) {
+    if (user) {
       localData = { ...localData, ...user };
     }
     const settingsContext = {
@@ -56,13 +56,10 @@ export class SettingsProfile extends Block {
               events: {
                 change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
-                  const isValidValue = isEmail(target.value);
-                  if (isValidValue) {
-                    localData = {
-                      ...localData,
-                      [target.name]: isValidValue,
-                    };
-                  }
+                  localData = {
+                    ...localData,
+                    [target.name]: isEmail(target.value),
+                  };
                 },
                 focus: (e: Event) => this.onFocus(e),
                 blur: (e: Event) => this.onBlur(e),
@@ -82,13 +79,10 @@ export class SettingsProfile extends Block {
               events: {
                 change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
-                  const isValidValue = isLogin(target.value);
-                  if (isValidValue) {
-                    localData = {
-                      ...localData,
-                      [target.name]: isValidValue,
-                    };
-                  }
+                  localData = {
+                    ...localData,
+                    [target.name]: isLogin(target.value),
+                  };
                 },
                 focus: (e: Event) => this.onFocus(e),
                 blur: (e: Event) => this.onBlur(e),
@@ -108,13 +102,10 @@ export class SettingsProfile extends Block {
               events: {
                 change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
-                  const isValidValue = isName(target.value);
-                  if (isValidValue) {
-                    localData = {
-                      ...localData,
-                      [target.name]: isValidValue,
-                    };
-                  }
+                  localData = {
+                    ...localData,
+                    [target.name]: isName(target.value),
+                  };
                 },
                 focus: (e: Event) => this.onFocus(e),
                 blur: (e: Event) => this.onBlur(e),
@@ -134,13 +125,10 @@ export class SettingsProfile extends Block {
               events: {
                 change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
-                  const isValidValue = isName(target.value);
-                  if (isValidValue) {
-                    localData = {
-                      ...localData,
-                      [target.name]: isValidValue,
-                    };
-                  }
+                  localData = {
+                    ...localData,
+                    [target.name]: isName(target.value),
+                  };
                 },
                 focus: (e: Event) => this.onFocus(e),
                 blur: (e: Event) => this.onBlur(e),
@@ -160,13 +148,10 @@ export class SettingsProfile extends Block {
               events: {
                 change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
-                  const isValidValue = isName(target.value);
-                  if (isValidValue) {
-                    localData = {
-                      ...localData,
-                      [target.name]: isValidValue,
-                    };
-                  }
+                  localData = {
+                    ...localData,
+                    [target.name]: isName(target.value),
+                  };
                 },
                 focus: (e: Event) => this.onFocus(e),
                 blur: (e: Event) => this.onBlur(e),
@@ -186,13 +171,10 @@ export class SettingsProfile extends Block {
               events: {
                 change: (e: Event) => {
                   const target = e.target as HTMLInputElement;
-                  const isValidValue = isPhone(target.value);
-                  if (isValidValue) {
-                    localData = {
-                      ...localData,
-                      [target.name]: isValidValue,
-                    };
-                  }
+                  localData = {
+                    ...localData,
+                    [target.name]: isPhone(target.value),
+                  };
                 },
                 focus: (e: Event) => this.onFocus(e),
                 blur: (e: Event) => this.onBlur(e),

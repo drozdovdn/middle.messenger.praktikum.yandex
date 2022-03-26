@@ -38,7 +38,7 @@ export class Avatar extends Block {
     const user = getUserData();
     let avatar = 'avatar_icon.svg';
     if (user?.avatar) {
-      avatar = `https://ya-praktikum.tech/api/v2/resources${ user.avatar}`;
+      avatar = `https://ya-praktikum.tech/api/v2/resources${user.avatar}`;
     }
     console.log(user?.avatar);
     const button = new ButtonAvatar({
@@ -51,7 +51,7 @@ export class Avatar extends Block {
     });
 
     const avatarContext = {
-      name: user?.first_namel,
+      name: user?.first_name,
       button,
     };
 

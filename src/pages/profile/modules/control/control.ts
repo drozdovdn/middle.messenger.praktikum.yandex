@@ -8,7 +8,7 @@ import Button from '../../../../components/button';
 import ChangePassword from '../changePassword';
 import Store from '../../../../store';
 import { localData } from '../settings/settings';
-import { setUserData } from '../../../../actions/user';
+import { changeUserData, getUserData } from '../../../../actions/user';
 
 export class Control extends Block {
   constructor() {
@@ -19,6 +19,7 @@ export class Control extends Block {
     const controlBlock: HTMLElement = document.querySelector('.control');
     const inputSettings: NodeListOf<HTMLInputElement> = document.querySelectorAll('.profile__input');
     const profileControl: HTMLElement = document.querySelector('.profile__control');
+    const user = getUserData();
     controlBlock.classList.add('hidden');
     inputSettings.forEach((item) => item.removeAttribute('disabled'));
     const button = new Button({
@@ -27,12 +28,25 @@ export class Control extends Block {
       events: {
         click: (e) => {
           const target = e!.target as HTMLButtonElement;
-          console.log({ localData });
           if (Object.values(localData).includes('')) {
             throw Error('Поля не валидны');
           } else {
-            setUserData(localData);
-            console.log(localData);
+            const data = Object.keys(localData).reduce((acc, key) => {
+              if (localData[key]?.length) {
+                return { ...acc, [key]: localData[key] };
+              } else {
+return acc;
+}
+            }, {});
+            const userData = { ...user, ...data };
+            changeUserData({
+              first_name: userData.first_name,
+              second_name: userData.second_name,
+              display_name: userData.display_name,
+              login: userData.login,
+              email: userData.email,
+              phone: userData.phone,
+            });
             controlBlock.classList.remove('hidden');
             inputSettings.forEach((item) => item.setAttribute('disabled', 'true'));
             target.classList.add('hidden');
