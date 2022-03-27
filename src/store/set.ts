@@ -19,7 +19,6 @@ export const set = (object: Indexed | unknown, path: string, value: unknown): In
     } else {
       return { [item]: acc };
     }
-    return acc;
   }, {});
 
   // const out = merge({...result}, object)

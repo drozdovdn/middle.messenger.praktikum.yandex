@@ -7,12 +7,22 @@ const store = new Store();
 
 export const getChatsRequest = () => {
   chatsApi.getChats().then((res) => {
-    if (res.status !== 200) {
-      // router.go(RoutePath.NOT_FIND);
-      store.set('chat.data_list', []);
-    } else if (res.status === 200) {
+    if (res.status === 200) {
       const { response } = res;
-      store.set('chat.data_list', typeof response === 'string' ? [] : response);
+      store.set('chat.data_list', JSON.parse(response));
+    } else {
+      store.set('chat.data_list', []);
+    }
+  });
+};
+
+export const createNewChat = (data: Record<string, unknown>) => {
+  chatsApi.createChat(data).then((res) => {
+    if (res.status === 200) {
+      const modal = document.querySelector('.add-delete-modal');
+      modal.classList.add('hidden-modal');
+      const { response } = res;
+      console.log({ response });
     }
   });
 };

@@ -5,12 +5,11 @@ import itemChat from './subComponents/itemChat';
 import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
 import Search from './modules/search';
-import { Header } from './modules/header/header';
-import ControlChat from './modules/controlChat';
 import ButtonLink from '../../components/buttonLink';
 import { router } from '../../index';
 import { RoutePath } from '../../utils/router/route-path';
 import { getChatsData } from '../../actions/chat';
+import { createChat } from './utils';
 
 export class Chat extends Block {
   constructor() {
@@ -23,21 +22,32 @@ export class Chat extends Block {
 
     const dataList = (dataChat) => {
       if (!dataChat?.data_list) {
-return [];
-}
-      return dataChat.data_list.map((item) => ({
-        item: new itemChat({
-          src: '#',
-          name: item.title,
-          desc: item.last_message.content,
-          date: item.last_message.time,
-          counter: item.unread_count,
-          className: [],
-        }),
-      }));
+        return [];
+      }
+      if (Object.values(dataChat?.data_list).length) {
+        return Object.values(dataChat?.data_list).map((item) => ({
+          item: new itemChat({
+            src: '#',
+            name: item?.title ?? '',
+            desc: item?.last_message?.content ?? '',
+            date: item?.last_message?.time ?? '',
+            counter: item?.unread_count ?? '',
+            className: [],
+          }),
+        }));
+      } else {
+        return [];
+      }
     };
     const chatContext = {
       search,
+      createChat: new ButtonLink({
+        name: 'Создать чат',
+        className: ['chat__link'],
+        events: {
+          click: () => createChat(),
+        },
+      }),
       link: new ButtonLink({
         name: 'Профиль',
         className: ['chat__link'],
@@ -45,13 +55,16 @@ return [];
           click: () => router.go(RoutePath.PROFILE),
         },
       }),
+      messages: Object.values(dataChat?.data_list).length !== 0 ? '' : 'Чаты не созданы',
       chat: {
-        data_list: dataList(dataChat),
+        data_list: dataList(dataChat ?? []),
       },
-      header: new Header({ title: 'Иван', src: '#' }),
-      controlChat: new ControlChat(),
     };
 
     return compile(templater, chatTmpl, chatContext);
   }
 }
+// dialog: new ChatDialog({
+//   header: new Header({ title: 'Иван', src: '#' }),
+//   controlChat: new ControlChat(),
+// }),

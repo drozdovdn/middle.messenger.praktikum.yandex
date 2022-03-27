@@ -7,9 +7,12 @@ export const chatsApi = {
     return http.get('', {});
   },
   postChat: (data: Record<string, unknown>) => {
-    return http.post('/chats', { data });
+    return http.post('/', { data });
   },
   deleteChat: (data: Record<string, unknown>) => {
-    return http.post('/chats', { data });
+    return http.post('/', { data });
+  },
+  createChat: (data: Record<string, unknown>) => {
+    return http.post('/', { data });
   },
 };
