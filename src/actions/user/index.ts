@@ -30,3 +30,13 @@ export const changeUserData = (data: Record<string, unknown>) => {
     }
   });
 };
+export const changeUserPassword = (data: Record<string, unknown>) => {
+  controlApi.changeUserPassword({ data }).then((res) => {
+    if (res.status === 200) {
+      const changePassword: HTMLElement | null = document.querySelector('.change-password');
+      const changeButton: HTMLElement | null = document.querySelector('.profile__save-button');
+      changePassword?.remove();
+      changeButton?.remove();
+    }
+  });
+};

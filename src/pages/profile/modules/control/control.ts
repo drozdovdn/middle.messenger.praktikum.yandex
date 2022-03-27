@@ -6,9 +6,9 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import Button from '../../../../components/button';
 import ChangePassword from '../changePassword';
-import Store from '../../../../store';
 import { localData } from '../settings/settings';
-import { changeUserData, getUserData } from '../../../../actions/user';
+import { changeUserData, changeUserPassword, getUserData } from '../../../../actions/user';
+import { passwordLocalData } from '../changePassword/changePassword';
 
 export class Control extends Block {
   constructor() {
@@ -35,8 +35,8 @@ export class Control extends Block {
               if (localData[key]?.length) {
                 return { ...acc, [key]: localData[key] };
               } else {
-return acc;
-}
+                return acc;
+              }
             }, {});
             const userData = { ...user, ...data };
             changeUserData({
@@ -71,16 +71,13 @@ return acc;
       className: ['profile__save-button'],
       events: {
         click: (e) => {
-          const target = e!.target as HTMLButtonElement;
-          if (Object.values(Store.changePassword).includes('')) {
+          if (Object.values(passwordLocalData).includes('')) {
             throw Error('Поля не валидны');
           } else {
-            console.log(Store.changePassword);
+            console.log(passwordLocalData);
+            changeUserPassword(passwordLocalData);
             controlBlock.classList.remove('hidden');
             settingsBlock.classList.remove('hidden');
-            const changePassword: HTMLElement = document.querySelector('.change-password');
-            changePassword.remove();
-            target.classList.add('hidden');
           }
         },
       },
