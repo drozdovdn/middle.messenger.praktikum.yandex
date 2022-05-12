@@ -14,9 +14,9 @@ export const chatTmpl = `
         {{search}}
     </div>
     </div>
+    {{messages}}
     <div class="chat__list-items">
-      {{messages}}
-      {{#with chat.data_list}}
+      {{#with data_list}}
          <div class="chat__item">
             {{item}}
          </div>
@@ -24,6 +24,6 @@ export const chatTmpl = `
     </div>
     </div>
     <div class="wrapper__dialog">
-      <span>Выбериите чат чтобы отправить сообщение</span>
+      {{dialog}}
     </div>
 `;

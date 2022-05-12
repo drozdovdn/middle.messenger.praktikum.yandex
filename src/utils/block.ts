@@ -82,7 +82,7 @@ export default class Block<P extends Record<string, unknown> = {}> {
     if (!nextProps) {
       return;
     }
-    console.log({ nextProps });
+
     Object.assign(this.props, nextProps);
     this.eventBus().emit(Block.EVENTS.FLOW_CDU);
   };

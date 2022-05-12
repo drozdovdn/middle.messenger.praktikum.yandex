@@ -15,4 +15,7 @@ export const chatsApi = {
   createChat: (data: Record<string, unknown>) => {
     return http.post('/', { data });
   },
+  getChatToken: (data: Record<string, unknown>) => {
+    return http.post(`/token/${data.id}`, {});
+  },
 };

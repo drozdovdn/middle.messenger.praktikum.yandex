@@ -8,8 +8,11 @@ import Search from './modules/search';
 import ButtonLink from '../../components/buttonLink';
 import { router } from '../../index';
 import { RoutePath } from '../../utils/router/route-path';
-import { getChatsData } from '../../actions/chat';
+import { getChatsData, getToken } from '../../actions/chat';
 import { createChat } from './utils';
+import ChatDialog from './modules/chatDialog';
+import ControlChat from './modules/controlChat';
+import { Header } from './modules/header/header';
 
 export class Chat extends Block {
   constructor() {
@@ -21,24 +24,36 @@ export class Chat extends Block {
     const dataChat = getChatsData();
 
     const dataList = (dataChat) => {
+      let result = [];
       if (!dataChat?.data_list) {
-        return [];
+        result = [];
       }
+
       if (Object.values(dataChat?.data_list).length) {
-        return Object.values(dataChat?.data_list).map((item) => ({
-          item: new itemChat({
-            src: '#',
-            name: item?.title ?? '',
-            desc: item?.last_message?.content ?? '',
-            date: item?.last_message?.time ?? '',
-            counter: item?.unread_count ?? '',
-            className: [],
-          }),
-        }));
+        result = Object.values(dataChat?.data_list).map((item) => {
+          return {
+            item: new itemChat({
+              src: '#',
+              name: item?.title ?? '',
+              desc: item?.last_message?.content ?? '',
+              date: item?.last_message?.time ?? '',
+              counter: item?.unread_count ?? '',
+              className: [],
+              events: {
+                click: () => {
+                  getToken({ id: item?.id });
+                  console.log(item?.title);
+                },
+              },
+            }),
+          };
+        });
       } else {
-        return [];
+        result = [];
       }
+      return result;
     };
+
     const chatContext = {
       search,
       createChat: new ButtonLink({
@@ -56,15 +71,21 @@ export class Chat extends Block {
         },
       }),
       messages: Object.values(dataChat?.data_list).length !== 0 ? '' : 'Чаты не созданы',
-      chat: {
-        data_list: dataList(dataChat ?? []),
-      },
+      data_list: dataList(dataChat ?? []),
+      dialog: dialogWindows(dataChat),
     };
 
     return compile(templater, chatTmpl, chatContext);
   }
 }
-// dialog: new ChatDialog({
-//   header: new Header({ title: 'Иван', src: '#' }),
-//   controlChat: new ControlChat(),
-// }),
+
+function dialogWindows(dataChat: any) {
+  if (dataChat?.data_socket) {
+    return new ChatDialog({
+      header: new Header({ title: 'Иван', src: '#' }),
+      controlChat: new ControlChat(),
+    });
+  } else {
+    return '<span>Выбериите чат чтобы отправить сообщение</span>';
+  }
+}

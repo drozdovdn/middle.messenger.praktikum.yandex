@@ -11,6 +11,9 @@ type DataProps = {
   date: string;
   counter?: number;
   className?: string[];
+  events?: {
+    click?: (e?: Event) => void;
+  };
 };
 
 export class ItemChat extends Block {
