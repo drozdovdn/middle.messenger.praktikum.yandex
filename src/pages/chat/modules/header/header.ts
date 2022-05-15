@@ -9,47 +9,56 @@ import ModalSettings from '../../subComponents/modalSettings';
 import ItemButtonSettings from '../../subComponents/itemButtonSettins';
 
 const showModalSettings = () => {
-  const contentModal = new Modal({
-    content: new ModalSettings({
-      data: [
-        {
-          item: new ItemButtonSettings({
-            title: 'Довить пользователя',
-            src: './add_user.svg',
-            events: {
-              click: () => console.log('Добавить пользователя'),
-            },
-          }),
+  const modal = document.querySelector('.modal');
+  if (modal) {
+    modal.classList.remove('hidden-modal');
+  } else {
+    const contentModal = new Modal({
+      content: new ModalSettings({
+        data: [
+          {
+            item: new ItemButtonSettings({
+              title: 'Довить пользователя',
+              src: './add_user.svg',
+              events: {
+                click: () => console.log('Добавить пользователя'),
+              },
+            }),
+          },
+          {
+            item: new ItemButtonSettings({
+              title: 'Удалить пользователя',
+              src: './add_user.svg',
+              events: {
+                click: () => console.log('Удалить пользователя'),
+              },
+            }),
+          },
+          {
+            item: new ItemButtonSettings({
+              title: 'Удалить чат',
+              src: './delete_chat.svg',
+              events: {
+                click: () => console.log('Удалить чат'),
+              },
+            }),
+          },
+        ],
+      }),
+      events: {
+        click: (e) => {
+          if (e?.srcElement?.classList?.value === 'modal') {
+            e?.target?.classList?.add('hidden-modal');
+            console.log(e);
+          }
         },
-        {
-          item: new ItemButtonSettings({
-            title: 'Удалить пользователя',
-            src: './add_user.svg',
-            events: {
-              click: () => console.log('Удалить пользователя'),
-            },
-          }),
-        },
-        {
-          item: new ItemButtonSettings({
-            title: 'Удалить чат',
-            src: './delete_chat.svg',
-            events: {
-              click: () => console.log('Удалить чат'),
-            },
-          }),
-        },
-      ],
-    }),
-    events: {
-      click: () => console.log('Click modal'),
-    },
-  });
-  const root: HTMLDivElement | null = document.querySelector('.root');
-  if (root) {
-    root.appendChild(contentModal.getContent());
+      },
+    });
+    const root: HTMLDivElement | null = document.querySelector('.root');
+    if (root) {
+      root.appendChild(contentModal.getContent());
+    }
   }
-  // console.log('Show modal settings');
 };
 
 export class Header extends Block {
