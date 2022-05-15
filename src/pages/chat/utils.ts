@@ -49,6 +49,4 @@ export const createChat = () => {
       root.appendChild(modalCreateChat.getContent());
     }
   }
-
-  console.log('creagte');
 };

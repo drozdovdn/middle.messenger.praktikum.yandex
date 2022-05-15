@@ -1,7 +1,5 @@
 import { Store } from '../../store/store';
 import { chatsApi } from '../../pages/chat/chats-api';
-import { router } from '../../index';
-import { RoutePath } from '../../utils/router/route-path';
 
 const store = new Store();
 
@@ -21,7 +19,7 @@ export const createNewChat = (data: Record<string, unknown>) => {
     if (res.status === 200) {
       getChatsRequest();
       const modal = document.querySelector('.add-delete-modal');
-      modal.classList.add('hidden-modal');
+      modal?.classList.add('hidden-modal');
       const { response } = res;
       console.log({ response });
     }
@@ -32,8 +30,9 @@ export const getToken = (data: Record<string, unknown>) => {
     if (res.status === 200) {
       const { response } = res;
       store.set('chat.data_socket.id', data.id);
+      store.set('chat.data_socket.avatar', data.avatar);
+      store.set('chat.data_socket.title', data.title);
       store.set('chat.data_socket.token', JSON.parse(response).token);
-      console.log(JSON.parse(response));
     }
   });
 };

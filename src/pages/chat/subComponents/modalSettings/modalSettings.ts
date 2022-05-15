@@ -2,7 +2,7 @@ import './modalSettings.less';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import { templater } from '../../../../templater';
-import { addAvatarModalTmpl } from '../../../../features/addAvatarModal/addAvatarModal.tmpl';
+import { modalSettingsTmpl } from './modalSettings.tmpl';
 
 export class ModalSettings extends Block {
   constructor(props) {
@@ -10,6 +10,6 @@ export class ModalSettings extends Block {
   }
 
   render(): DocumentFragment {
-    return compile(templater, addAvatarModalTmpl, { ...this.props });
+    return compile(templater, modalSettingsTmpl, { ...this.props });
   }
 }

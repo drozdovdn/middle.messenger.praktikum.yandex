@@ -41,7 +41,7 @@ export class Chat extends Block {
               className: [],
               events: {
                 click: () => {
-                  getToken({ id: item?.id });
+                  getToken(item);
                   console.log(item?.title);
                 },
               },
@@ -81,8 +81,10 @@ export class Chat extends Block {
 
 function dialogWindows(dataChat: any) {
   if (dataChat?.data_socket) {
+    const dataChat = getChatsData();
+    const { data_socket } = dataChat;
     return new ChatDialog({
-      header: new Header({ title: 'Иван', src: '#' }),
+      header: new Header({ title: data_socket.title, src: data_socket.avatar }),
       controlChat: new ControlChat(),
     });
   } else {
