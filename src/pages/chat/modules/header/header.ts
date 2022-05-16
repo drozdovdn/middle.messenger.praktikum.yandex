@@ -9,12 +9,14 @@ import ModalSettings from '../../subComponents/modalSettings';
 import ItemButtonSettings from '../../subComponents/itemButtonSettins';
 
 const showModalSettings = () => {
-  const modal = document.querySelector('.modal');
+  const modal = document.querySelector('.modal-top');
   if (modal) {
     modal.classList.remove('hidden-modal');
   } else {
     const contentModal = new Modal({
+      className: ['modal-top'],
       content: new ModalSettings({
+        className: ['modal-settings__top'],
         data: [
           {
             item: new ItemButtonSettings({
@@ -47,9 +49,8 @@ const showModalSettings = () => {
       }),
       events: {
         click: (e) => {
-          if (e?.srcElement?.classList?.value === 'modal') {
+          if (e?.srcElement?.classList?.value === 'modal-top') {
             e?.target?.classList?.add('hidden-modal');
-            console.log(e);
           }
         },
       },

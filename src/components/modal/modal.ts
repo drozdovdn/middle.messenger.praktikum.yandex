@@ -6,7 +6,7 @@ import { templater } from '../../templater';
 
 type DataProps = {
   content: DocumentFragment;
-  className?: string[];
+  className: string[];
   events?: {
     click: () => void;
   };
@@ -16,7 +16,7 @@ export class Modal extends Block {
   constructor(props: DataProps) {
     super('div', {
       ...props,
-      className: ['modal'],
+      className: props.className,
     });
   }
 

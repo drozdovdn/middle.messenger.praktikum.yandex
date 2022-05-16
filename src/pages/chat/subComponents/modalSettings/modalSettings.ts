@@ -6,7 +6,7 @@ import { modalSettingsTmpl } from './modalSettings.tmpl';
 
 export class ModalSettings extends Block {
   constructor(props) {
-    super('div', { ...props, className: ['modal-settings'] });
+    super('div', { ...props, className: ['modal-settings', ...props.className] });
   }
 
   render(): DocumentFragment {
