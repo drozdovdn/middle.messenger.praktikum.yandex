@@ -9,6 +9,7 @@ import ChangePassword from '../changePassword';
 import { localData } from '../settings/settings';
 import { changeUserData, changeUserPassword, getUserData } from '../../../../actions/user';
 import { passwordLocalData } from '../changePassword/changePassword';
+import { logoutUser } from '../../../../actions/auth';
 
 export class Control extends Block {
   constructor() {
@@ -111,6 +112,11 @@ export class Control extends Block {
           item: new ItemControl({
             title: 'Выйти',
             className: ['item-control_red'],
+            events: {
+              click: () => {
+                logoutUser();
+              },
+            },
           }),
         },
       ],

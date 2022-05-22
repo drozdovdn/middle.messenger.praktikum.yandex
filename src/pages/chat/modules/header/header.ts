@@ -7,6 +7,79 @@ import ButtonSettings from '../../subComponents/buttonSettings';
 import Modal from '../../../../components/modal';
 import ModalSettings from '../../subComponents/modalSettings';
 import ItemButtonSettings from '../../subComponents/itemButtonSettins';
+import { AddDelete } from '../addDelete/addDelete';
+import Input from '../../../../components/input';
+import InputForm from '../../../../components/inputForm';
+import Button from '../../../../components/button';
+import { isLogin } from '../../../../utils/validations';
+import { addUserInChat } from '../../../../actions/chat';
+
+const showModalAddUser = () => {
+  const modal = document.querySelector('.add-delete-modal');
+  if (modal) {
+    modal.classList.remove('hidden-modal');
+  } else {
+    let login = '';
+
+    const onFocus = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      if (target.classList.contains('input-error')) {
+        target.classList.remove('input-error');
+      }
+    };
+
+    const onBlur = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      if (login === '') {
+        target.classList.add('input-error');
+      }
+    };
+
+    const addModalUser = new AddDelete({
+      title: 'Добавить пользователя',
+      input: new InputForm({
+        label: 'Логин',
+        input: new Input({
+          type: 'text',
+          name: 'login',
+          events: {
+            change: (e) => {
+              const target = e!.target as HTMLInputElement;
+              login = isLogin(target.value);
+            },
+            focus: (e) => onFocus(e),
+            blur: (e) => onBlur(e),
+          },
+        }),
+      }),
+      button: new Button({
+        name: 'Добавить',
+        className: [],
+        events: {
+          click: (e) => {
+            if (e?.srcElement?.classList?.value === 'modal-top') {
+              e?.target?.classList?.add('hidden-modal');
+            }
+            addUserInChat({ login });
+            console.log({ login });
+            console.log({ e });
+          },
+        },
+      }),
+      events: {
+        click: (e) => {
+          if (e?.srcElement?.classList?.value === 'add-delete-modal') {
+            e?.target?.classList?.add('hidden-modal');
+          }
+        },
+      },
+    });
+    const root: HTMLDivElement | null = document.querySelector('.root');
+    if (root) {
+      root.appendChild(addModalUser.getContent());
+    }
+  }
+};
 
 const showModalSettings = () => {
   const modal = document.querySelector('.modal-top');
@@ -23,7 +96,14 @@ const showModalSettings = () => {
               title: 'Довить пользователя',
               src: './add_user.svg',
               events: {
-                click: () => console.log('Добавить пользователя'),
+                click: (e) => {
+                  showModalAddUser();
+                  const modal = document.querySelector('.modal-top');
+                  if (modal) {
+                    modal.classList.add('hidden-modal');
+                  }
+                  console.log('Добавить пользователя', e);
+                },
               },
             }),
           },

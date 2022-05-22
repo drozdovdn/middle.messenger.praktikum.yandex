@@ -1,6 +1,7 @@
 import { HTTPTransport } from '../../utils/http-transport';
 
 const http = new HTTPTransport('/chats');
+const httpUser = new HTTPTransport('/user');
 
 export const chatsApi = {
   getChats: () => {
@@ -17,5 +18,8 @@ export const chatsApi = {
   },
   getChatToken: (data: Record<string, unknown>) => {
     return http.post(`/token/${data.id}`, {});
+  },
+  searchUser: (data: { login: string }) => {
+    return httpUser.post('/search', { data });
   },
 };

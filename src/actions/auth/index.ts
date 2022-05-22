@@ -29,9 +29,12 @@ export const requestAutchUser = () => {
       const { response } = res;
       store.set('user', JSON.parse(response));
       if ([RoutePath.SIGN_IN, RoutePath.SIGN_UP].includes(window.location.pathname)) {
-router.go(RoutePath.CHAT);
-}
+        router.go(RoutePath.CHAT);
+      }
     } else {
+      //редиректим на авторизацию
+      router.go(RoutePath.SIGN_IN);
+      console.log('#', res);
       store.set('user', {});
     }
   });
@@ -45,6 +48,17 @@ export const requestLogout = () => {
 
 export const addData = (data: Record<string, unknown>) => {
   store.set('inputs', data);
+};
+
+export const logoutUser = () => {
+  authApi.logout().then((res) => {
+    console.log({ res });
+    console.log('LOGOUT');
+    if (res.status === 200) {
+      localStorage.clear();
+      router.go(RoutePath.SIGN_IN);
+    }
+  });
 };
 
 export const getStore = () => {

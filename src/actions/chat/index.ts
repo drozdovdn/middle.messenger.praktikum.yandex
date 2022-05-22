@@ -37,6 +37,15 @@ export const getToken = (data: Record<string, unknown>) => {
   });
 };
 
+export const addUserInChat = (data: { login: string }) => {
+  chatsApi.searchUser(data).then((res) => {
+    if (res.status === 200) {
+      console.log(JSON.parse(res));
+      console.log('200', { res });
+    }
+  });
+};
+
 export const getChatsData = () => {
   return store?.state?.chat;
 };
