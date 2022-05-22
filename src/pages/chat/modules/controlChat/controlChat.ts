@@ -9,6 +9,8 @@ import Input from '../../../../components/input';
 import Modal from '../../../../components/modal';
 import ModalSettings from '../../subComponents/modalSettings';
 import ItemButtonSettings from '../../subComponents/itemButtonSettins';
+import { createSocketCanal } from '../../../../api/api-settings';
+import { getStore } from '../../../../actions/auth';
 
 const showModalSettings = () => {
   const modal = document.querySelector('.modal-bottom');
@@ -66,12 +68,26 @@ const showModalSettings = () => {
 
 export class ControlChat extends Block {
   message: string;
+  store: any;
   constructor() {
     super('div', { className: ['control-chat'] });
     this.message = '';
+    this.store = getStore();
   }
 
   render(): DocumentFragment {
+    console.log('this.store = getStore();', getStore());
+    console.log(this.store);
+
+    const socket = createSocketCanal(
+      `${this.store?.state?.user?.id}/${this.store?.state?.chat?.data_socket?.id}/${this.store?.state?.chat?.data_socket?.token}`
+    );
+
+    socket?.addEventListener('open', () => {
+      console.log('Соединение установлено!');
+      // this.socket.send(JSON.stringify({ content: 'Мое первое сообщение', type: 'message' }));
+    });
+
     const input = new Input({
       className: ['input--message'],
       placeholder: 'Сообщение',

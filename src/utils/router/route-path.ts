@@ -1,8 +1,8 @@
 export enum RoutePath {
   SIGN_IN = '/',
-  SIGN_UP = '/signup',
-  CHAT = '/chat',
-  PROFILE = '/profile',
+  SIGN_UP = '/sign-up',
+  CHAT = '/messenger',
+  PROFILE = '/settings',
   NOT_FIND = '/not_find',
   ERROR = '/error',
 }

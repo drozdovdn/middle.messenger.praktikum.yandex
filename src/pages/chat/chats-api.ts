@@ -22,4 +22,7 @@ export const chatsApi = {
   searchUser: (data: { login: string }) => {
     return httpUser.post('/search', { data });
   },
+  addUsersToChat: (data: { users: number[]; chatId: number }) => {
+    return http.put('/users', { data });
+  },
 };

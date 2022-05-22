@@ -40,8 +40,22 @@ export const getToken = (data: Record<string, unknown>) => {
 export const addUserInChat = (data: { login: string }) => {
   chatsApi.searchUser(data).then((res) => {
     if (res.status === 200) {
-      console.log(JSON.parse(res));
-      console.log('200', { res });
+      const { response } = res;
+      const data = JSON.parse(response);
+      if (data[0].id) {
+        const dataRequest = {
+          users: [data[0].id],
+          chatId: store?.state?.chat?.data_socket.id,
+        };
+        chatsApi.addUsersToChat(dataRequest);
+        const modal = document.querySelector('.add-delete-modal');
+        modal?.classList.add('hidden-modal');
+        console.log('Пользователь найден', { dataRequest });
+      } else {
+        console.log('Пользователь не найден');
+      }
+
+      // console.log('200', { res });
     }
   });
 };

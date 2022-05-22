@@ -13,6 +13,7 @@ import { createChat } from './utils';
 import ChatDialog from './modules/chatDialog';
 import ControlChat from './modules/controlChat';
 import { Header } from './modules/header/header';
+import Chats from './modules/chats';
 
 export class Chat extends Block {
   constructor() {
@@ -20,9 +21,9 @@ export class Chat extends Block {
   }
 
   render(): DocumentFragment {
+    console.log('@@@@@@@@@');
     const search = new Search();
     const dataChat = getChatsData();
-
     const dataList = (dataChat) => {
       let result = [];
       if (!dataChat?.data_list) {
@@ -71,7 +72,9 @@ export class Chat extends Block {
         },
       }),
       messages: Object.values(dataChat?.data_list).length !== 0 ? '' : 'Чаты не созданы',
-      data_list: dataList(dataChat ?? []),
+      chats: new Chats({
+        dataList: dataList(dataChat ?? []),
+      }),
       dialog: dialogWindows(dataChat),
     };
 
