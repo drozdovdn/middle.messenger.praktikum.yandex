@@ -68,25 +68,24 @@ const showModalSettings = () => {
 
 export class ControlChat extends Block {
   message: string;
-  store: any;
   constructor() {
     super('div', { className: ['control-chat'] });
     this.message = '';
-    this.store = getStore();
   }
 
   render(): DocumentFragment {
     console.log('this.store = getStore();', getStore());
-    console.log(this.store);
 
-    const socket = createSocketCanal(
-      `${this.store?.state?.user?.id}/${this.store?.state?.chat?.data_socket?.id}/${this.store?.state?.chat?.data_socket?.token}`
-    );
-
-    socket?.addEventListener('open', () => {
-      console.log('Соединение установлено!');
-      // this.socket.send(JSON.stringify({ content: 'Мое первое сообщение', type: 'message' }));
-    });
+    // const store = getStore();
+    //
+    // if (store?.state?.chat?.data_socket?.token) {
+    //   const socket = createSocketCanal(`${store?.state?.user?.id}/${store?.state?.chat?.data_socket?.id}/${store?.state?.chat?.data_socket?.token}`);
+    //
+    //   socket?.addEventListener('open', () => {
+    //     console.log('Соединение установлено!');
+    //     // this.socket.send(JSON.stringify({ content: 'Мое первое сообщение', type: 'message' }));
+    //   });
+    // }
 
     const input = new Input({
       className: ['input--message'],

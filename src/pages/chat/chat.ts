@@ -13,24 +13,28 @@ import { createChat } from './utils';
 import ChatDialog from './modules/chatDialog';
 import ControlChat from './modules/controlChat';
 import { Header } from './modules/header/header';
-import Chats from './modules/chats';
+
+type Props = {
+  data_list: Record<string, any>;
+};
 
 export class Chat extends Block {
-  constructor() {
-    super('section', { className: ['chat'] });
+  constructor(props?: Props) {
+    super('section', { ...props, className: ['chat'] });
   }
 
   render(): DocumentFragment {
-    console.log('@@@@@@@@@');
     const search = new Search();
     const dataChat = getChatsData();
-    const dataList = (dataChat) => {
-      let result = [];
+    console.log(this.props);
+
+    const dataList = (dataChat: any) => {
+      let result: any[] = [];
       if (!dataChat?.data_list) {
         result = [];
       }
 
-      if (Object.values(dataChat?.data_list).length) {
+      if (dataChat && dataChat?.data_list && Object.values(dataChat?.data_list).length) {
         result = Object.values(dataChat?.data_list).map((item) => {
           return {
             item: new itemChat({
@@ -71,11 +75,9 @@ export class Chat extends Block {
           click: () => router.go(RoutePath.PROFILE),
         },
       }),
-      messages: Object.values(dataChat?.data_list).length !== 0 ? '' : 'Чаты не созданы',
-      chats: new Chats({
-        dataList: dataList(dataChat ?? []),
-      }),
-      dialog: dialogWindows(dataChat),
+      messages: this.props.data_list && Object.values(this.props?.data_list).length !== 0 ? '' : 'Чаты не созданы',
+      data_list: dataList(this.props.data_list ?? []),
+      dialog: '<span>Выбериите чат чтобы отправить сообщение</span>',
     };
 
     return compile(templater, chatTmpl, chatContext);

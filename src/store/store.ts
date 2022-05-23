@@ -14,8 +14,8 @@ export class Store extends EventBus {
     if (Store._instance) {
       return Store._instance;
     }
-    const savedState = localStorage.getItem(Store.STORE_NAME);
-    this.state = savedState ? JSON.parse(savedState) ?? {} : {};
+    // const savedState = localStorage.getItem(Store.STORE_NAME);
+    // this.state = savedState ? JSON.parse(savedState) ?? {} : {};
     Store._instance = this;
   }
 
@@ -30,7 +30,7 @@ export class Store extends EventBus {
 
   public set(path: string, value: unknown) {
     this.state = set(this.state, path, value);
-    localStorage.setItem(Store.STORE_NAME, JSON.stringify(this.state));
+    // localStorage.setItem(Store.STORE_NAME, JSON.stringify(this.state));
     // метод EventBus
     this.emit(Store.EVENT_UPDATE);
     return this;
