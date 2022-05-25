@@ -40,8 +40,8 @@ export default class Router {
       getActions(target.location.pathname);
     };
     this._onRoute(window.location.pathname);
-    // getActions(window.location.pathname);
-    // requestAutchUser();
+    getActions(window.location.pathname);
+    requestAutchUser();
   }
 
   private _onRoute(pathname: string) {

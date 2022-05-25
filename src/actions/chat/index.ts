@@ -1,4 +1,4 @@
-import { Store } from '../../store/store';
+import { EVENT_UPDATE, Store } from '../../store/store';
 import { chatsApi } from '../../pages/chat/chats-api';
 
 const store = new Store();
@@ -7,7 +7,7 @@ export const getChatsRequest = () => {
   chatsApi.getChats().then((res) => {
     if (res.status === 200) {
       const { response } = res;
-      store.set('chat.data_list', JSON.parse(response));
+      store.set('chat.data_list', JSON.parse(response), EVENT_UPDATE.CHAT);
     } else {
       store.set('chat.data_list', []);
     }

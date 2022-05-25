@@ -1,4 +1,4 @@
-import { Store } from '../../store/store';
+import { EVENT_UPDATE, Store } from '../../store/store';
 import { authApi } from '../../pages/auth/auth-api';
 import { router } from '../../index';
 import { RoutePath } from '../../utils/router/route-path';
@@ -35,7 +35,7 @@ export const requestAutchUser = () => {
       //редиректим на авторизацию
       router.go(RoutePath.SIGN_IN);
       console.log('#', res);
-      store.set('user', {});
+      store.set('user', {}, EVENT_UPDATE.DATA_USER);
     }
   });
 };
