@@ -24,6 +24,7 @@ export class Chat extends Block {
   }
 
   render(): DocumentFragment {
+    console.log('@@@@@@@@@');
     const search = new Search();
     const dataChat = getChatsData();
     console.log(this.props);
@@ -75,9 +76,9 @@ export class Chat extends Block {
           click: () => router.go(RoutePath.PROFILE),
         },
       }),
-      messages: this.props.data_list && Object.values(this.props?.data_list).length !== 0 ? '' : 'Чаты не созданы',
-      data_list: dataList(this.props.data_list ?? []),
-      dialog: '<span>Выбериите чат чтобы отправить сообщение</span>',
+      messages: Object.values(dataChat?.data_list).length !== 0 ? '' : 'Чаты не созданы',
+      data_list: this.props.data_list ? dataList(this.props) : [],
+      dialog: dialogWindows(dataChat),
     };
 
     return compile(templater, chatTmpl, chatContext);
