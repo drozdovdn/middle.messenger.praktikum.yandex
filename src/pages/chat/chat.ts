@@ -16,12 +16,12 @@ import { Header } from './modules/header/header';
 import Chats from './modules/chats';
 
 export class Chat extends Block {
-  constructor() {
+  constructor(props: any) {
     super('section', { className: ['chat'] });
   }
 
   render(): DocumentFragment {
-    console.log('@@@@@@@@@');
+    console.log('@@@@@@@@@ PROPS', this.props);
     const search = new Search();
     const dataChat = getChatsData();
     const dataList = (dataChat) => {
@@ -72,9 +72,7 @@ export class Chat extends Block {
         },
       }),
       messages: Object.values(dataChat?.data_list).length !== 0 ? '' : 'Чаты не созданы',
-      chats: new Chats({
-        dataList: dataList(dataChat ?? []),
-      }),
+      data_list: this.props.data_list ? dataList(this.props) : [],
       dialog: dialogWindows(dataChat),
     };
 
