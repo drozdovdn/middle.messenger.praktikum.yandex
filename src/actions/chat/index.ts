@@ -1,5 +1,5 @@
-import { EVENT_UPDATE, Store } from '../../store/store';
-import { chatsApi } from '../../pages/chat/chats-api';
+import {EVENT_UPDATE, Store} from '../../store/store';
+import {chatsApi} from '../../pages/chat/chats-api';
 
 const store = new Store();
 
@@ -7,7 +7,7 @@ export const getChatsRequest = () => {
   chatsApi.getChats().then((res) => {
     if (res.status === 200) {
       const { response } = res;
-      store.set('chat.data_list', JSON.parse(response), EVENT_UPDATE.CHAT);
+      store.set('chat.data_list', JSON.parse(response), EVENT_UPDATE.LIST_CHAT);
     } else {
       store.set('chat.data_list', []);
     }
@@ -29,10 +29,13 @@ export const getToken = (data: Record<string, unknown>) => {
   chatsApi.getChatToken(data).then((res) => {
     if (res.status === 200) {
       const { response } = res;
-      store.set('chat.data_socket.id', data.id);
-      store.set('chat.data_socket.avatar', data.avatar);
-      store.set('chat.data_socket.title', data.title);
-      store.set('chat.data_socket.token', JSON.parse(response).token);
+      const data_socket = {
+        id: data.id,
+        avatar: data.avatar,
+        title: data.title,
+        token: JSON.parse(response).token
+      }
+      store.set('chat.data_socket', data_socket, EVENT_UPDATE.CONTROL_CHAT)
     }
   });
 };

@@ -5,8 +5,7 @@ import { EVENT_UPDATE } from '../../store/store';
 export default connect(
   Chat,
   (state) => {
-    console.log('state', state);
-    return { data_list: state?.chat };
+    return { data_list: state.chat.data_list };
   },
   EVENT_UPDATE.CHAT
 );

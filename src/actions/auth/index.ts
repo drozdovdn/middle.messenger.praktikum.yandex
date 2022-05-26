@@ -46,13 +46,8 @@ export const requestLogout = () => {
   });
 };
 
-export const addData = (data: Record<string, unknown>) => {
-  store.set('inputs', data);
-};
-
 export const logoutUser = () => {
   authApi.logout().then((res) => {
-    console.log({ res });
     console.log('LOGOUT');
     if (res.status === 200) {
       localStorage.clear();

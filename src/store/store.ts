@@ -1,6 +1,6 @@
 import EventBus from '../utils/event-bus';
-import { Indexed } from './merge';
 import set from './set';
+import {StoreProps} from "./models";
 
 //События обновления компонентов
 export enum EVENT_UPDATE {
@@ -14,7 +14,7 @@ export enum EVENT_UPDATE {
 export class Store extends EventBus {
   static _instance: Store;
   static STORE_NAME = 'myAppStore';
-  private state: Indexed = {};
+  private state: StoreProps = {};
 
   constructor() {
     super();

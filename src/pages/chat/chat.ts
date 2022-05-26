@@ -13,9 +13,11 @@ import { createChat } from './utils';
 import ChatDialog from './modules/chatDialog';
 import ControlChat from './modules/controlChat';
 import { Header } from './modules/header/header';
+import ChatList from "./modules/chats";
+import {ChatProps} from "../../store/models";
 
 type Props = {
-  data_list: Record<string, any>;
+  data_list: Record<string, ChatProps>;
 };
 
 export class Chat extends Block {
@@ -24,7 +26,6 @@ export class Chat extends Block {
   }
 
   render(): DocumentFragment {
-    // console.log('@@@@@@@@@');
     const search = new Search();
     const dataChat = getChatsData();
     console.log(this.props);
@@ -37,13 +38,14 @@ export class Chat extends Block {
 
       if (this.props.data_list) {
         result = Object.values(this.props.data_list).map((item) => {
+          console.log(item)
           return {
             item: new itemChat({
               src: '#',
-              name: item?.title ?? '',
-              desc: item?.last_message?.content ?? '',
-              date: item?.last_message?.time ?? '',
-              counter: item?.unread_count ?? '',
+              name: item.title ?? '',
+              desc: item.unread_count ?? '',
+              date: item.created_by ?? '',
+              counter: item.unread_count ?? '',
               className: [],
               events: {
                 click: () => {
@@ -77,7 +79,7 @@ export class Chat extends Block {
         },
       }),
       messages: this.props.data_list !== 0 ? '' : 'Чаты не созданы',
-      data_list: this.props?.data_list ? dataList(this.props) : [],
+      chat_list: new ChatList(),
       dialog: dialogWindows(dataChat),
     };
 

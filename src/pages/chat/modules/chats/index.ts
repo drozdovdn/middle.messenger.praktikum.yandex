@@ -1,4 +1,7 @@
-import { Chats } from './chats';
-// import { connect } from '../../../../store/connect';
-export default Chats;
-// export default connect(Chats, (state) => state?.chat?.data_list);
+import {ChatList} from './chatList';
+import {connect} from '../../../../store/connect';
+import {EVENT_UPDATE} from "../../../../store/store";
+
+export default connect(ChatList, (state) => {
+  return {data_list: state?.chat?.data_list}
+}, EVENT_UPDATE.LIST_CHAT);

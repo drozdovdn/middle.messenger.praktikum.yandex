@@ -4,7 +4,7 @@ import { itemChatTmpl } from './itemChat.tmpl';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 
-type DataProps = {
+export type DataPropsItemChats = {
   src: string;
   name: string;
   desc: string;
@@ -17,7 +17,7 @@ type DataProps = {
 };
 
 export class ItemChat extends Block {
-  constructor(props: DataProps) {
+  constructor(props: DataPropsItemChats) {
     super('div', { ...props, className: [...props.className, 'item-chat'] });
   }
   render(): DocumentFragment {

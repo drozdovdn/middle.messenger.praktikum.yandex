@@ -11,7 +11,7 @@ import { isLogin, isPassword } from '../../../../utils/validations';
 import ButtonLink from '../../../../components/buttonLink';
 import { router } from '../../../../index';
 import { RoutePath } from '../../../../utils/router/route-path';
-import { addData, requestSignIn } from '../../../../actions/auth';
+import { requestSignIn } from '../../../../actions/auth';
 
 export class SignIn extends Block {
   inputs: { [key: string]: string };
@@ -50,7 +50,6 @@ export class SignIn extends Block {
             console.log('Поля не заполенны');
           } else {
             requestSignIn(this.inputs);
-            addData(this.inputs);
           }
         },
       },

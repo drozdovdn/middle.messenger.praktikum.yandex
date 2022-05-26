@@ -16,11 +16,7 @@ export const chatTmpl = `
     </div>
     {{messages}}
     <div class="chat__list-items">
-      {{#with data_list}}
-         <div class="chat__item">
-            {{item}}
-         </div>
-        {{/with}}  
+    {{chat_list}} 
     </div>
     </div>
     <div class="wrapper__dialog">
