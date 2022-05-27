@@ -13,6 +13,7 @@ export class ChatList extends Block {
     super('div', { ...props, className: ['chat__list-items'] });
   }
   render(): DocumentFragment {
+    console.log('CHAT')
     const dataList = (data: Record<string, ChatProps>) => {
       let result: { item: DataPropsItemChats }[] = [];
       if (Object.values(data).length) {

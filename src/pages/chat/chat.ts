@@ -12,7 +12,7 @@ import { getChatsData, getToken } from '../../actions/chat';
 import { createChat } from './utils';
 import ChatList from './modules/chatList';
 import { ChatProps } from '../../store/models';
-import DialogWindow from './modules/dialogWindow';
+import WrapperComponent from "../../features/wrapperComponent";
 
 type Props = {
   data_list: Record<string, ChatProps>;
@@ -78,7 +78,7 @@ export class Chat extends Block {
       }),
       messages: this.props.data_list !== 0 ? '' : 'Чаты не созданы',
       chat_list: new ChatList(),
-      dialog: new DialogWindow(),
+      dialog: new WrapperComponent(),
     };
 
     return compile(templater, chatTmpl, chatContext);

@@ -35,7 +35,7 @@ export const getToken = (data: Record<string, unknown>) => {
         title: data.title,
         token: JSON.parse(response).token,
       };
-      store.set('chat.data_socket', data_socket, EVENT_UPDATE.DIALOG_WINDOW);
+      store.set('chat.data_socket', {...data_socket}, EVENT_UPDATE.DIALOG_WINDOW);
     }
   });
 };
