@@ -1,10 +1,11 @@
 import EventBus from '../utils/event-bus';
 import set from './set';
-import {StoreProps} from "./models";
+import { StoreProps } from './models';
 
 //События обновления компонентов
 export enum EVENT_UPDATE {
   STORE = 'update_store',
+  DIALOG_WINDOW = 'update_dialog_window',
   LIST_CHAT = 'update_list_chat',
   CHAT = 'update_chat',
   CONTROL_CHAT = 'update_control_chat',

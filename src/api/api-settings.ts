@@ -3,7 +3,7 @@ export const apiSettings = {
   wssUrl: 'wss://ya-praktikum.tech/ws',
 };
 /**
- * BaseUrlWss/chats/USER_ID/CHAT_ID/TOKEN_VALUE
+ * BaseUrlWss/chatList/USER_ID/CHAT_ID/TOKEN_VALUE
  * @param url -> USER_ID/CHAT_ID/TOKEN_VALUE
  */
 export const createSocketCanal = (url: string) => {

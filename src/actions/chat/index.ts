@@ -1,5 +1,5 @@
-import {EVENT_UPDATE, Store} from '../../store/store';
-import {chatsApi} from '../../pages/chat/chats-api';
+import { EVENT_UPDATE, Store } from '../../store/store';
+import { chatsApi } from '../../pages/chat/chats-api';
 
 const store = new Store();
 
@@ -33,9 +33,9 @@ export const getToken = (data: Record<string, unknown>) => {
         id: data.id,
         avatar: data.avatar,
         title: data.title,
-        token: JSON.parse(response).token
-      }
-      store.set('chat.data_socket', data_socket, EVENT_UPDATE.CONTROL_CHAT)
+        token: JSON.parse(response).token,
+      };
+      store.set('chat.data_socket', data_socket, EVENT_UPDATE.DIALOG_WINDOW);
     }
   });
 };

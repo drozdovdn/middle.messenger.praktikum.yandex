@@ -11,7 +11,7 @@ import ModalSettings from '../../subComponents/modalSettings';
 import ItemButtonSettings from '../../subComponents/itemButtonSettins';
 import { createSocketCanal } from '../../../../api/api-settings';
 import { getStore } from '../../../../actions/auth';
-import {DataSocketProps} from "../../../../store/models";
+import { DataSocketProps, UserProps } from '../../../../store/models';
 
 const showModalSettings = () => {
   const modal = document.querySelector('.modal-bottom');
@@ -67,25 +67,20 @@ const showModalSettings = () => {
   }
 };
 
+type PropsData = {
+  data_socket: DataSocketProps;
+  user: UserProps;
+};
+
 export class ControlChat extends Block {
   message: string;
-  constructor(props?: DataSocketProps) {
+  constructor(props?: PropsData) {
     super('div', { className: ['control-chat'] });
     this.message = '';
   }
 
   render(): DocumentFragment {
-    console.log('this.store = getStore();', getStore());
-
-
-    if (this.props?.token) {
-      const socket = createSocketCanal(`${this.props?.id}/${this.props?.id}/${this.props?.token}`);
-
-      socket?.addEventListener('open', () => {
-        console.log('Соединение установлено!');
-        // this.socket.send(JSON.stringify({ content: 'Мое первое сообщение', type: 'message' }));
-      });
-    }
+    console.log('this.props', this.props);
 
     const input = new Input({
       className: ['input--message'],

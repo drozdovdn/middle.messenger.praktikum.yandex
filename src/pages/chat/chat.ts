@@ -10,11 +10,9 @@ import { router } from '../../index';
 import { RoutePath } from '../../utils/router/route-path';
 import { getChatsData, getToken } from '../../actions/chat';
 import { createChat } from './utils';
-import ChatDialog from './modules/chatDialog';
-import ControlChat from './modules/controlChat';
-import { Header } from './modules/header/header';
-import ChatList from "./modules/chats";
-import {ChatProps} from "../../store/models";
+import ChatList from './modules/chatList';
+import { ChatProps } from '../../store/models';
+import DialogWindow from './modules/dialogWindow';
 
 type Props = {
   data_list: Record<string, ChatProps>;
@@ -28,7 +26,7 @@ export class Chat extends Block {
   render(): DocumentFragment {
     const search = new Search();
     const dataChat = getChatsData();
-    console.log(this.props);
+    console.log('Chat', this.props);
 
     const dataList = (dataChat: any) => {
       let result: any[] = [];
@@ -38,7 +36,7 @@ export class Chat extends Block {
 
       if (this.props.data_list) {
         result = Object.values(this.props.data_list).map((item) => {
-          console.log(item)
+          console.log(item);
           return {
             item: new itemChat({
               src: '#',
@@ -80,22 +78,9 @@ export class Chat extends Block {
       }),
       messages: this.props.data_list !== 0 ? '' : 'Чаты не созданы',
       chat_list: new ChatList(),
-      dialog: dialogWindows(dataChat),
+      dialog: new DialogWindow(),
     };
 
     return compile(templater, chatTmpl, chatContext);
-  }
-}
-
-function dialogWindows(dataChat: any) {
-  if (dataChat?.data_socket) {
-    const dataChat = getChatsData();
-    const { data_socket } = dataChat;
-    return new ChatDialog({
-      header: new Header({ title: data_socket.title, src: data_socket.avatar }),
-      controlChat: new ControlChat(),
-    });
-  } else {
-    return '<span>Выбериите чат чтобы отправить сообщение</span>';
   }
 }
