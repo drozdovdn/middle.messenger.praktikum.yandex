@@ -2,6 +2,7 @@ import { EVENT_UPDATE, Store } from '../../store/store';
 import { authApi } from '../../pages/auth/auth-api';
 import { router } from '../../index';
 import { RoutePath } from '../../utils/router/route-path';
+import { getChatsRequest } from '../chat';
 
 const store = new Store();
 export const requestSignIn = (data: Record<string, unknown>) => {
@@ -27,15 +28,19 @@ export const requestAutchUser = () => {
   authApi.user().then((res) => {
     if (res?.status === 200) {
       const { response } = res;
+
       store.set('user', JSON.parse(response));
-      if ([RoutePath.SIGN_IN, RoutePath.SIGN_UP].includes(window.location.pathname)) {
+
+      if (store.chat.data_list && [RoutePath.SIGN_IN, RoutePath.SIGN_UP].includes(window.location.pathname)) {
         router.go(RoutePath.CHAT);
+      } else {
+        getChatsRequest();
       }
     } else {
       //редиректим на авторизацию
       router.go(RoutePath.SIGN_IN);
-      console.log('#', res);
-      store.set('user', {}, EVENT_UPDATE.DATA_USER);
+
+      store.set('user', {});
     }
   });
 };

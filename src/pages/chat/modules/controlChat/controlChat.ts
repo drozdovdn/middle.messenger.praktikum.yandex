@@ -74,13 +74,50 @@ type PropsData = {
 
 export class ControlChat extends Block {
   message: string;
+  soket: any;
+  token: string | null;
   constructor(props?: PropsData) {
-    super('div', { className: ['control-chat'] });
+    super('div', { ...props, className: ['control-chat'] });
     this.message = '';
+    this.soket = null;
+    this.token = null;
   }
 
   render(): DocumentFragment {
-    console.log('this.props', this.props);
+    console.log('this.props control', this.props);
+
+    if (this.props?.data_socket?.token) {
+      const { data_socket, user } = this.props;
+      console.log('SOCKET');
+      if (data_socket?.token && this.token !== data_socket?.token) {
+        if (this.soket) {
+          console.log('CLOSE', this.soket);
+          this.soket.close();
+          console.log('###', this.soket);
+        }
+        console.log('&&&&&&&&&&&', this.soket);
+        this.soket?.addEventListener('close', () => {
+          console.log('Соединение закрыто');
+          this.soket = null;
+          this.soket = createSocketCanal(`${user?.id}/${data_socket?.id}/${data_socket?.token}`);
+        });
+
+        this.token = data_socket?.token;
+        if (!this.soket) {
+          this.soket = createSocketCanal(`${user?.id}/${data_socket?.id}/${data_socket?.token}`);
+        }
+
+        this.soket?.addEventListener('open', () => {
+          console.log('Соединение установлено!');
+          this.soket.send(JSON.stringify({ content: 'Мое первое сообщение', type: 'message' }));
+        });
+      } else {
+        // if(this.soket) {
+        //   this.soket.close()
+        //   this.soket = null
+        // }
+      }
+    }
 
     const input = new Input({
       className: ['input--message'],

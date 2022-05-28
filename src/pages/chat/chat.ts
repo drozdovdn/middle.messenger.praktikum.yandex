@@ -12,7 +12,8 @@ import { getChatsData, getToken } from '../../actions/chat';
 import { createChat } from './utils';
 import ChatList from './modules/chatList';
 import { ChatProps } from '../../store/models';
-import WrapperComponent from "../../features/wrapperComponent";
+import WrapperComponent from '../../features/wrapperComponent';
+import DialogWindow from './modules/dialogWindow';
 
 type Props = {
   data_list: Record<string, ChatProps>;
@@ -25,8 +26,6 @@ export class Chat extends Block {
 
   render(): DocumentFragment {
     const search = new Search();
-    const dataChat = getChatsData();
-    console.log('Chat', this.props);
 
     const dataList = (dataChat: any) => {
       let result: any[] = [];
@@ -78,7 +77,7 @@ export class Chat extends Block {
       }),
       messages: this.props.data_list !== 0 ? '' : 'Чаты не созданы',
       chat_list: new ChatList(),
-      dialog: new WrapperComponent(),
+      dialog: new DialogWindow(),
     };
 
     return compile(templater, chatTmpl, chatContext);

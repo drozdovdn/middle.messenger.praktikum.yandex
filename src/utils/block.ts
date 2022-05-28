@@ -1,5 +1,6 @@
 import EventBus from './event-bus';
 import { nanoid } from 'nanoid';
+import { isEqualObj } from './isEqualObj';
 
 export default class Block<P extends Record<string, unknown> = {}> {
   static EVENTS = {
@@ -75,7 +76,7 @@ export default class Block<P extends Record<string, unknown> = {}> {
   }
 
   public componentDidUpdate(oldProps: P, newProps: P) {
-    return true;
+    return !(oldProps && newProps && isEqualObj(oldProps, newProps));
   }
 
   public setProps = (nextProps: P) => {

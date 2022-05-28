@@ -1,5 +1,7 @@
 import { EVENT_UPDATE, Store } from '../../store/store';
 import { chatsApi } from '../../pages/chat/chats-api';
+import { RoutePath } from '../../utils/router/route-path';
+import { router } from '../../index';
 
 const store = new Store();
 
@@ -8,6 +10,9 @@ export const getChatsRequest = () => {
     if (res.status === 200) {
       const { response } = res;
       store.set('chat.data_list', JSON.parse(response), EVENT_UPDATE.LIST_CHAT);
+      if ([RoutePath.SIGN_IN, RoutePath.SIGN_UP].includes(window.location.pathname)) {
+        router.go(RoutePath.CHAT);
+      }
     } else {
       store.set('chat.data_list', []);
     }
@@ -35,7 +40,7 @@ export const getToken = (data: Record<string, unknown>) => {
         title: data.title,
         token: JSON.parse(response).token,
       };
-      store.set('chat.data_socket', {...data_socket}, EVENT_UPDATE.DIALOG_WINDOW);
+      store.set('chat.data_socket', { ...data_socket }, EVENT_UPDATE.DIALOG_WINDOW);
     }
   });
 };
