@@ -71,11 +71,9 @@ export class HTTPTransport {
       if (Object.values(headers).lenght !== 0) {
         Object.keys(headers).forEach((item) => {
           xhr.setRequestHeader(item, headers[item]);
-          console.log('if');
         });
       }
-      console.log({ headers });
-      console.log({ xhr });
+
       xhr.timeout = timeout;
 
       xhr.withCredentials = true; //Подцепляем cookie

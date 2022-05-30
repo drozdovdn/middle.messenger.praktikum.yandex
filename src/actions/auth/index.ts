@@ -31,7 +31,7 @@ export const requestAutchUser = () => {
 
       store.set('user', JSON.parse(response));
 
-      if (store.chat.data_list && [RoutePath.SIGN_IN, RoutePath.SIGN_UP].includes(window.location.pathname)) {
+      if (store?.chat?.data_list && [RoutePath.SIGN_IN, RoutePath.SIGN_UP].includes(window.location.pathname)) {
         router.go(RoutePath.CHAT);
       } else {
         getChatsRequest();
