@@ -10,6 +10,7 @@ export enum EVENT_UPDATE {
   CHAT = 'update_chat',
   CONTROL_CHAT = 'update_control_chat',
   DATA_USER = 'update_data_user',
+  MESSAGES = 'update_messages',
 }
 
 export class Store extends EventBus {

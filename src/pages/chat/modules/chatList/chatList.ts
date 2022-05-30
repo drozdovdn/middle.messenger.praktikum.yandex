@@ -20,7 +20,7 @@ export class ChatList extends Block {
             item: new itemChat({
               src: '#',
               name: item?.title ?? '',
-              desc: item?.last_message ?? '',
+              desc: item?.last_message?.content ?? '',
               date: '',
               counter: item?.unread_count ?? '',
               className: [],

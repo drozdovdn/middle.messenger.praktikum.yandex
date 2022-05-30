@@ -1,0 +1,21 @@
+.dialog {
+  height: 100%;
+  overflow-y: auto;
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  flex-direction: column;
+}
+
+.dialog_messages {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  max-width: 50%;
+}
+
+.dialog_messages:not(:first-child) {
+  margin-top: 10px;
+}

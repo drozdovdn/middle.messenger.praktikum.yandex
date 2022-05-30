@@ -1,9 +1,25 @@
-import { EVENT_UPDATE, Store } from '../../store/store';
-import { chatsApi } from '../../pages/chat/chats-api';
-import { RoutePath } from '../../utils/router/route-path';
-import { router } from '../../index';
+import {EVENT_UPDATE, Store} from '../../store/store';
+import {chatsApi} from '../../pages/chat/chats-api';
+import {RoutePath} from '../../utils/router/route-path';
+import {router} from '../../index';
 
 const store = new Store();
+
+
+export const clearMessage = () => {
+  store.set('chat.messages', {})
+}
+
+export const setMessage = (data: any) => {
+  let _data = []
+  if(store?.state?.chat?.messages) {
+    _data = [ ...Object.values(store.state.chat.messages), data]
+  } else {
+    _data = [..._data, data]
+  }
+
+  store.set('chat.messages', _data, EVENT_UPDATE.MESSAGES)
+}
 
 export const getChatsRequest = () => {
   chatsApi.getChats().then((res) => {

@@ -9,6 +9,7 @@ export default connect(
     return {
       data_socket: s.chat?.data_socket,
       user: s.user,
+      data_message: s.chat?.messages
     };
   },
   EVENT_UPDATE.DIALOG_WINDOW

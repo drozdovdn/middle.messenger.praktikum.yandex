@@ -6,6 +6,11 @@ import ChatDialog from '../chatDialog';
 import ControlChat from '../controlChat';
 import Block from '../../../../utils/block';
 import { createSocketCanal } from '../../../../api/api-settings';
+import DialogMessage from "../dialogMessage";
+import Message from "../message";
+import {clearMessage, getToken, setMessage} from "../../../../actions/chat";
+import {DataPropsItemChats} from "../../subComponents/itemChat/itemChat";
+import itemChat from "../../subComponents/itemChat";
 
 export class DialogWindow extends Block {
   soket: any;
@@ -25,7 +30,8 @@ export class DialogWindow extends Block {
       console.log('soket соедтнение открыто', soket);
       this.soket = soket;
       this.soket.addEventListener('message', (event) => {
-        console.log('Получены данные', event.data);
+        setMessage(JSON.parse(event.data))
+        console.log('Получены данные', JSON.parse(event.data));
       });
     };
 
@@ -34,6 +40,7 @@ export class DialogWindow extends Block {
 
       if (data_socket?.token && this.token !== data_socket?.token) {
         if (this.soket) {
+          clearMessage()
           this.soket.close();
         }
 
@@ -64,9 +71,11 @@ function dialogWindows(data: any) {
     const { data_socket } = data;
     return new ChatDialog({
       header: new Header({ title: data_socket.title, src: data_socket.avatar }),
+      body: new DialogMessage({data_message: data.data_message}),
       controlChat: new ControlChat(data),
     });
   } else {
     return '<span>Выбериите чат чтобы отправить сообщение</span>';
   }
 }
+
