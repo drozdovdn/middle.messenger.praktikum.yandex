@@ -42,6 +42,7 @@ export class DialogWindow extends Block {
         if (this.soket) {
           clearMessage()
           this.soket.close();
+          this.soket = null
         }
 
         this.soket?.addEventListener('close', () => {
@@ -51,9 +52,9 @@ export class DialogWindow extends Block {
         });
 
         this.token = data_socket?.token;
-        console.log('AAAA', this.soket);
+        // console.log('AAAA', this.soket);
         if (!this.soket) {
-          console.log('open 1');
+          // console.log('open 1');
           this.soket = createSocketCanal(`${user?.id}/${data_socket?.id}/${data_socket?.token}`);
           this.soket.addEventListener('open', openSoket(this.soket));
         }

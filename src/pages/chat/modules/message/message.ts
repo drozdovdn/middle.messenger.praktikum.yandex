@@ -10,7 +10,6 @@ export class Message extends Block {
   }
 
   render(): DocumentFragment {
-    console.log('$$', this.props)
     return compile(templater, messageTmpl, { ...this.props });
   }
 }
