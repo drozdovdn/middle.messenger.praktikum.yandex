@@ -1,4 +1,4 @@
-import { EVENT_UPDATE, Store } from '../../store/store';
+import { Store } from '../../store/store';
 import { authApi } from '../../pages/auth/auth-api';
 import { router } from '../../index';
 import { RoutePath } from '../../utils/router/route-path';
@@ -8,6 +8,7 @@ const store = new Store();
 export const requestSignIn = (data: Record<string, unknown>) => {
   authApi.signIn(data).then((res) => {
     if (res?.status === 200) {
+      requestAutchUser()
       store.set('auth', true);
       router.go(RoutePath.CHAT);
     }
@@ -18,6 +19,7 @@ export const requestSignUp = (data: Record<string, unknown>) => {
   authApi.signUp(data).then((res) => {
     if (res?.status === 200) {
       const { response } = res;
+      requestAutchUser()
       store.set('auth', true);
       router.go(RoutePath.CHAT);
       console.log(JSON.parse(response));

@@ -14,6 +14,15 @@ export class DialogMessage extends Block {
 
   render(): DocumentFragment {
 
+    const dialog = document.querySelector('.dialog')
+    console.log({dialog})
+    if(dialog) {
+      dialog.scrollIntoView({
+        behavior: 'auto',
+        block: 'end',
+      });
+    }
+
     function dataMessages (data: any) {
       let result: { item: DataPropsItemChats }[] = [];
       if (Object.values(data).length) {
@@ -30,6 +39,6 @@ export class DialogMessage extends Block {
       }
       return result;
     }
-    return compile(templater, DialogMessageTpml, {...this.props, data_message: this.props?.data_message ? dataMessages(this.props?.data_message) : ''});
+    return compile(templater, DialogMessageTpml, {...this.props, data_message: this.props?.data_message ? dataMessages(this.props?.data_message) : []});
   }
 }
