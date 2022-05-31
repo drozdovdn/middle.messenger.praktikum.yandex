@@ -18,14 +18,14 @@ export const setOldMessages = (data: any) => {
 export const setMessage = (data: any) => {
   let _data = []
   if(Array.isArray(data)) {
-    if(store?.state?.chat?.messages) {
-      _data = [ ...Object.values(store.state.chat.messages), ...data]
+    if(store?.state?.messages) {
+      _data = [ ...Object.values(store.state.messages), ...data]
     } else {
       _data = [..._data, ...data]
     }
   } else {
-    if(store?.state?.chat?.messages) {
-      _data = [ ...Object.values(store.state.chat.messages), data]
+    if(store?.state?.messages) {
+      _data = [ ...Object.values(store.state.messages), data]
     } else {
       _data = [..._data, data]
     }
