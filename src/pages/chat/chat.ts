@@ -12,7 +12,6 @@ import { getChatsData, getToken } from '../../actions/chat';
 import { createChat } from './utils';
 import ChatList from './modules/chatList';
 import { ChatProps } from '../../store/models';
-import WrapperComponent from '../../features/wrapperComponent';
 import DialogWindow from './modules/dialogWindow';
 
 type Props = {
@@ -20,8 +19,12 @@ type Props = {
 };
 
 export class Chat extends Block {
+  soket: any;
+  token: string | null;
   constructor(props?: Props) {
     super('section', { ...props, className: ['chat'] });
+    this.soket = null;
+    this.token = null;
   }
 
   render(): DocumentFragment {
@@ -77,7 +80,7 @@ export class Chat extends Block {
       }),
       messages: this.props.data_list !== 0 ? '' : 'Чаты не созданы',
       chat_list: new ChatList(),
-      dialog: new DialogWindow(),
+      dialog: new DialogWindow({_soket: this.soket, _token: this.token}),
     };
 
     return compile(templater, chatTmpl, chatContext);

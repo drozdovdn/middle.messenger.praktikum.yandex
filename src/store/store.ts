@@ -33,10 +33,12 @@ export class Store extends EventBus {
     return this.state;
   }
 
-  public removeState() {
-    this.state = {};
-    this.emit(EVENT_UPDATE.STORE);
+  public removeState(path?: string, event: EVENT_UPDATE = EVENT_UPDATE.STORE) {
+    delete this.state[path]
+    this.emit(event);
   }
+
+
 
   public set(path: string, value: unknown, event: EVENT_UPDATE = EVENT_UPDATE.STORE) {
     this.state = set(this.state, path, value);

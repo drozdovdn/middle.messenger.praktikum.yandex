@@ -7,18 +7,31 @@ const store = new Store();
 
 
 export const clearMessage = () => {
-  store.set('chat.messages', {})
+  store.removeState('messages', EVENT_UPDATE.MESSAGES)
 }
+
+export const setOldMessages = (data: any) => {
+  console.log('=>', {data})
+}
+
 
 export const setMessage = (data: any) => {
   let _data = []
-  if(store?.state?.chat?.messages) {
-    _data = [ ...Object.values(store.state.chat.messages), data]
+  if(Array.isArray(data)) {
+    if(store?.state?.chat?.messages) {
+      _data = [ ...Object.values(store.state.chat.messages), ...data]
+    } else {
+      _data = [..._data, ...data]
+    }
   } else {
-    _data = [..._data, data]
+    if(store?.state?.chat?.messages) {
+      _data = [ ...Object.values(store.state.chat.messages), data]
+    } else {
+      _data = [..._data, data]
+    }
   }
 
-  store.set('chat.messages', _data, EVENT_UPDATE.MESSAGES)
+  store.set('messages', _data, EVENT_UPDATE.MESSAGES)
 }
 
 export const getChatsRequest = () => {

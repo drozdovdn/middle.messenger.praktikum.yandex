@@ -7,29 +7,31 @@ import ControlChat from '../controlChat';
 import Block from '../../../../utils/block';
 import { createSocketCanal } from '../../../../api/api-settings';
 import DialogMessage from "../dialogMessage";
-import Message from "../message";
-import {clearMessage, getToken, setMessage} from "../../../../actions/chat";
-import {DataPropsItemChats} from "../../subComponents/itemChat/itemChat";
-import itemChat from "../../subComponents/itemChat";
+import {clearMessage, setMessage} from "../../../../actions/chat";
 
 export class DialogWindow extends Block {
-  soket: any;
-  token: string | null;
+
   constructor(props: any) {
     super('div', { ...props, className: ['dialog_window'] });
-    this.soket = null;
-    this.token = null;
+
   }
 
   render(): DocumentFragment {
+    console.log('DIALOD', this.props)
     window.addEventListener('unload', () => {
-      this.soket.close();
+      this.props._soket.close();
     });
 
     const openSoket = (soket: any) => () => {
+      soket.send(JSON.stringify({
+        content: '0',
+        type: 'get old'
+      }))
+
       console.log('soket соедтнение открыто', soket);
-      this.soket = soket;
-      this.soket.addEventListener('message', (event) => {
+      this.props._soket = soket;
+      this.props._soket.addEventListener('message', (event) => {
+        console.log('event.data', event.data)
         setMessage(JSON.parse(event.data))
         console.log('Получены данные', JSON.parse(event.data));
       });
@@ -38,31 +40,34 @@ export class DialogWindow extends Block {
     if (this.props?.data_socket?.token) {
       const { data_socket, user } = this.props;
 
-      if (data_socket?.token && this.token !== data_socket?.token) {
-        if (this.soket) {
-          clearMessage()
-          this.soket.close();
-          this.soket = null
+      if (data_socket?.token && this.props._token !== data_socket?.token) {
+        if (this.props._soket) {
+          console.log(this.props._soket)
+          this.props._soket.close();
+
         }
 
-        this.soket?.addEventListener('close', () => {
-          console.log('Соединение закрыто readyState', this.soket.readyState);
-          this.soket = createSocketCanal(`${user?.id}/${data_socket?.id}/${data_socket?.token}`);
-          this.soket.addEventListener('open', openSoket(this.soket));
+        this.props._soket?.addEventListener('close', () => {
+          console.log('Соединение закрыто readyState');
+          this.props._soket = null
+          clearMessage()
+          this.props._soket = createSocketCanal(`${user?.id}/${data_socket?.id}/${data_socket?.token}`);
+          this.props._soket.addEventListener('open', openSoket(this.props._soket));
         });
 
-        this.token = data_socket?.token;
+        this.props._token = data_socket?.token;
         // console.log('AAAA', this.soket);
-        if (!this.soket) {
+        if (!this.props._soket) {
           // console.log('open 1');
-          this.soket = createSocketCanal(`${user?.id}/${data_socket?.id}/${data_socket?.token}`);
-          this.soket.addEventListener('open', openSoket(this.soket));
+          console.log('OPEN', this.props._soket )
+          this.props._soket = createSocketCanal(`${user?.id}/${data_socket?.id}/${data_socket?.token}`);
+          this.props._soket.addEventListener('open', openSoket(this.props._soket));
         }
       }
     }
 
     return compile(templater, dialogWindowTmpl, {
-      dialog: this.props?.data_socket?.token ? dialogWindows({ ...this.props, activeSoket: this.soket }) : '',
+      dialog: this.props?.data_socket?.token ? dialogWindows({ ...this.props, activeSoket: this.props._soket }) : '',
     });
   }
 }
