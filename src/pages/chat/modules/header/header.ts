@@ -12,10 +12,10 @@ import Input from '../../../../components/input';
 import InputForm from '../../../../components/inputForm';
 import Button from '../../../../components/button';
 import { isLogin } from '../../../../utils/validations';
-import { addUserInChat } from '../../../../actions/chat';
+import { addUserInChat, deleteUserInChat } from '../../../../actions/chat';
 
 const showModalAddUser = () => {
-  const modal = document.querySelector('.add-delete-modal');
+  const modal = document.querySelector('.add-user');
   if (modal) {
     modal.classList.remove('hidden-modal');
   } else {
@@ -37,6 +37,7 @@ const showModalAddUser = () => {
 
     const addModalUser = new AddDelete({
       title: 'Добавить пользователя',
+      className: ['add-user'],
       input: new InputForm({
         label: 'Логин',
         input: new Input({
@@ -68,7 +69,73 @@ const showModalAddUser = () => {
       }),
       events: {
         click: (e) => {
-          if (e?.srcElement?.classList?.value === 'add-delete-modal') {
+          if (e?.srcElement?.classList?.value === 'add-user') {
+            e?.target?.classList?.add('hidden-modal');
+          }
+        },
+      },
+    });
+    const root: HTMLDivElement | null = document.querySelector('.root');
+    if (root) {
+      root.appendChild(addModalUser.getContent());
+    }
+  }
+};
+
+const showModalDeleteUser = () => {
+  const modal = document.querySelector('.delete-user');
+  if (modal) {
+    modal.classList.remove('hidden-modal');
+  } else {
+    let login = '';
+
+    const onFocus = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      if (target.classList.contains('input-error')) {
+        target.classList.remove('input-error');
+      }
+    };
+
+    const onBlur = (e: Event) => {
+      const target = e.target as HTMLInputElement;
+      if (login === '') {
+        target.classList.add('input-error');
+      }
+    };
+
+    const addModalUser = new AddDelete({
+      title: 'Удалить пользователя',
+      className: ['delete-user'],
+      input: new InputForm({
+        label: 'Логин',
+        input: new Input({
+          type: 'text',
+          name: 'login',
+          events: {
+            change: (e) => {
+              const target = e!.target as HTMLInputElement;
+              login = isLogin(target.value);
+            },
+            focus: (e) => onFocus(e),
+            blur: (e) => onBlur(e),
+          },
+        }),
+      }),
+      button: new Button({
+        name: 'Удалить',
+        className: [],
+        events: {
+          click: (e) => {
+            if (e?.srcElement?.classList?.value === 'modal-top') {
+              e?.target?.classList?.add('hidden-modal');
+            }
+            deleteUserInChat({ login });
+          },
+        },
+      }),
+      events: {
+        click: (e) => {
+          if (e?.srcElement?.classList?.value === 'delete-user') {
             e?.target?.classList?.add('hidden-modal');
           }
         },
@@ -112,7 +179,13 @@ const showModalSettings = () => {
               title: 'Удалить пользователя',
               src: './add_user.svg',
               events: {
-                click: () => console.log('Удалить пользователя'),
+                click: () => {
+                  showModalDeleteUser();
+                  const modal = document.querySelector('.modal-top');
+                  if (modal) {
+                    modal.classList.add('hidden-modal');
+                  }
+                },
               },
             }),
           },

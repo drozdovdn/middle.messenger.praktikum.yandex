@@ -9,6 +9,7 @@ import Button from '../../../../components/button';
 type DataProps = {
   title: string;
   input: Input;
+  className: string[];
   button: Button;
   events?: {
     click?: (e?: Event) => void;
@@ -17,7 +18,7 @@ type DataProps = {
 
 export class AddDelete extends Block {
   constructor(props: DataProps) {
-    super('div', { ...props, className: ['add-delete-modal'] });
+    super('div', { ...props, className: props.className });
   }
 
   render(): DocumentFragment {

@@ -25,4 +25,7 @@ export const chatsApi = {
   addUsersToChat: (data: { users: number[]; chatId: number }) => {
     return http.put('/users', { data });
   },
+  deleteUsersToChat: (data: { users: number[]; chatId: number }) => {
+    return http.delete('/users', { data });
+  },
 };

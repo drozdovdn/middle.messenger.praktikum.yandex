@@ -1,38 +1,36 @@
-import {EVENT_UPDATE, Store} from '../../store/store';
-import {chatsApi} from '../../pages/chat/chats-api';
-import {RoutePath} from '../../utils/router/route-path';
-import {router} from '../../index';
+import { EVENT_UPDATE, Store } from '../../store/store';
+import { chatsApi } from '../../pages/chat/chats-api';
+import { RoutePath } from '../../utils/router/route-path';
+import { router } from '../../index';
 
 const store = new Store();
 
-
 export const clearMessage = () => {
-  store.removeState('messages', EVENT_UPDATE.MESSAGES)
-}
+  store.removeState('messages', EVENT_UPDATE.MESSAGES);
+};
 
 export const setOldMessages = (data: any) => {
-  console.log('=>', {data})
-}
-
+  console.log('=>', { data });
+};
 
 export const setMessage = (data: any) => {
-  let _data = []
-  if(Array.isArray(data)) {
-    if(store?.state?.messages) {
-      _data = [ ...Object.values(store.state.messages), ...data]
+  let _data = [];
+  if (Array.isArray(data)) {
+    if (store?.state?.messages) {
+      _data = [...Object.values(store.state.messages), ...data];
     } else {
-      _data = [..._data, ...data]
+      _data = [..._data, ...data];
     }
   } else {
-    if(store?.state?.messages) {
-      _data = [ ...Object.values(store.state.messages), data]
+    if (store?.state?.messages) {
+      _data = [...Object.values(store.state.messages), data];
     } else {
-      _data = [..._data, data]
+      _data = [..._data, data];
     }
   }
 
-  store.set('messages', _data, EVENT_UPDATE.MESSAGES)
-}
+  store.set('messages', _data, EVENT_UPDATE.MESSAGES);
+};
 
 export const getChatsRequest = () => {
   chatsApi.getChats().then((res) => {
@@ -52,7 +50,7 @@ export const createNewChat = (data: Record<string, unknown>) => {
   chatsApi.createChat(data).then((res) => {
     if (res.status === 200) {
       getChatsRequest();
-      const modal = document.querySelector('.add-delete-modal');
+      const modal = document.querySelector('.add-chat');
       modal?.classList.add('hidden-modal');
       const { response } = res;
       console.log({ response });
@@ -85,7 +83,30 @@ export const addUserInChat = (data: { login: string }) => {
           chatId: store?.state?.chat?.data_socket.id,
         };
         chatsApi.addUsersToChat(dataRequest);
-        const modal = document.querySelector('.add-delete-modal');
+        const modal = document.querySelector('.add-user');
+        modal?.classList.add('hidden-modal');
+        console.log('Пользователь найден', { dataRequest });
+      } else {
+        console.log('Пользователь не найден');
+      }
+
+      // console.log('200', { res });
+    }
+  });
+};
+
+export const deleteUserInChat = (data: { login: string }) => {
+  chatsApi.searchUser(data).then((res) => {
+    if (res.status === 200) {
+      const { response } = res;
+      const data = JSON.parse(response);
+      if (data[0].id) {
+        const dataRequest = {
+          users: [data[0].id],
+          chatId: store?.state?.chat?.data_socket.id,
+        };
+        chatsApi.deleteUsersToChat(dataRequest);
+        const modal = document.querySelector('.delete-user');
         modal?.classList.add('hidden-modal');
         console.log('Пользователь найден', { dataRequest });
       } else {

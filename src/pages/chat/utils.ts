@@ -5,13 +5,14 @@ import Button from '../../components/button';
 import { createNewChat } from '../../actions/chat';
 
 export const createChat = () => {
-  const modal = document.querySelector('.add-delete-modal');
+  const modal = document.querySelector('.add-chat');
   let title = '';
   if (modal) {
     modal.classList.remove('hidden-modal');
   } else {
     const modalCreateChat = new AddDelete({
       title: 'Создать чат',
+      className: ['add-chat'],
       input: new InputForm({
         label: 'Название чата',
         input: new Input({
@@ -37,7 +38,7 @@ export const createChat = () => {
       }),
       events: {
         click: (e) => {
-          if (e?.srcElement?.classList?.value === 'add-delete-modal') {
+          if (e?.srcElement?.classList?.value === 'add-chat') {
             e?.target?.classList?.add('hidden-modal');
             console.log(e);
           }
