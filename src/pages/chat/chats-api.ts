@@ -5,7 +5,7 @@ const httpUser = new HTTPTransport('/user');
 
 export const chatsApi = {
   getChats: () => {
-    return http.get('', {});
+    return http.get('?limit=30', {});
   },
   postChat: (data: Record<string, unknown>) => {
     return http.post('/', { data });
