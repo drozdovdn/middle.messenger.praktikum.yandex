@@ -14,7 +14,7 @@ export const setOldMessages = (data: any) => {
 };
 
 export const setMessage = (data: any) => {
-  let _data = [];
+  let _data: Record<string, any>[] = [];
   if (Array.isArray(data)) {
     if (store?.state?.messages) {
       _data = [...Object.values(store.state.messages), ...data];
@@ -37,7 +37,7 @@ export const getChatsRequest = () => {
     if (res.status === 200) {
       const { response } = res;
       store.set('chat.data_list', JSON.parse(response), EVENT_UPDATE.LIST_CHAT);
-      if ([RoutePath.SIGN_IN, RoutePath.SIGN_UP].includes(window.location.pathname)) {
+      if ([RoutePath.SIGN_IN, RoutePath.SIGN_UP].includes(window.location.pathname as RoutePath)) {
         router.go(RoutePath.CHAT);
       }
     } else {
@@ -79,8 +79,8 @@ export const addUserInChat = (data: { login: string }) => {
       const data = JSON.parse(response);
       if (data[0].id) {
         const dataRequest = {
-          users: [data[0].id],
-          chatId: store?.state?.chat?.data_socket.id,
+          users: [Number(data[0].id)],
+          chatId: Number(store?.state?.chat?.data_socket.id),
         };
         chatsApi.addUsersToChat(dataRequest);
         const modal = document.querySelector('.add-user');
@@ -89,8 +89,6 @@ export const addUserInChat = (data: { login: string }) => {
       } else {
         console.log('Пользователь не найден');
       }
-
-      // console.log('200', { res });
     }
   });
 };
@@ -102,8 +100,8 @@ export const deleteUserInChat = (data: { login: string }) => {
       const data = JSON.parse(response);
       if (data[0].id) {
         const dataRequest = {
-          users: [data[0].id],
-          chatId: store?.state?.chat?.data_socket.id,
+          users: [Number(data[0].id)],
+          chatId: Number(store?.state?.chat?.data_socket.id),
         };
         chatsApi.deleteUsersToChat(dataRequest);
         const modal = document.querySelector('.delete-user');
@@ -112,8 +110,6 @@ export const deleteUserInChat = (data: { login: string }) => {
       } else {
         console.log('Пользователь не найден');
       }
-
-      // console.log('200', { res });
     }
   });
 };

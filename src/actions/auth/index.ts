@@ -8,7 +8,7 @@ const store = new Store();
 export const requestSignIn = (data: Record<string, unknown>) => {
   authApi.signIn(data).then((res) => {
     if (res?.status === 200) {
-      requestAutchUser()
+      requestAutchUser();
       store.set('auth', true);
       router.go(RoutePath.CHAT);
     }
@@ -19,7 +19,7 @@ export const requestSignUp = (data: Record<string, unknown>) => {
   authApi.signUp(data).then((res) => {
     if (res?.status === 200) {
       const { response } = res;
-      requestAutchUser()
+      requestAutchUser();
       store.set('auth', true);
       router.go(RoutePath.CHAT);
       console.log(JSON.parse(response));
@@ -33,7 +33,7 @@ export const requestAutchUser = () => {
 
       store.set('user', JSON.parse(response));
 
-      if (store?.chat?.data_list && [RoutePath.SIGN_IN, RoutePath.SIGN_UP].includes(window.location.pathname)) {
+      if (store?.state?.chat?.data_list && [RoutePath.SIGN_IN, RoutePath.SIGN_UP].includes(window.location.pathname as RoutePath)) {
         router.go(RoutePath.CHAT);
       } else {
         getChatsRequest();

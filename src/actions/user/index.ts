@@ -5,7 +5,6 @@ import { controlApi } from '../../pages/profile/modules/control/constrol-api';
 const store = new Store();
 
 export const setUserData = (data: Record<string, unknown>) => {
-  console.log('set', { data });
   store.set('user', data);
 };
 export const getUserData = () => {
@@ -13,7 +12,7 @@ export const getUserData = () => {
 };
 
 export const getUser = () => {
-  settingsApi.postUser({ id: store.state.user.id }).then((res) => {
+  settingsApi.postUser({ id: store.state?.user?.id }).then((res) => {
     if (res.status === 200) {
       const { response } = res;
       store.set('user', response.data);

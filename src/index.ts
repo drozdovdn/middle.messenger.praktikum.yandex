@@ -9,10 +9,13 @@ import Error_500 from './pages/errors/modules/500';
 import Chat from './pages/chat';
 import Profile from './pages/profile';
 import Store from './store';
-import { requestLogout } from './actions/auth';
 
+declare global {
+  interface Window {
+    AppStore: Record<string, any>;
+  }
+}
 window.AppStore = Store;
-window.AppLogout = () => requestLogout();
 
 const signIn = new Auth({ content: new SignIn() });
 const signUp = new Auth({ content: new SignUp() });

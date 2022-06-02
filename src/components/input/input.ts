@@ -17,29 +17,32 @@ type DataProps = {
   };
 };
 export class Input extends Block {
+  el: HTMLInputElement;
   constructor(props: DataProps) {
     super('input', { ...props, className: [props.className, 'input'] });
-    if (!this.element) {
+    this.el = this.element as HTMLInputElement;
+
+    if (!this.el) {
       return;
     }
 
     if (props.name) {
-      this.element.setAttribute('name', props.name);
+      this.el.setAttribute('name', props.name);
     }
     if (props.type) {
-      this.element.setAttribute('type', props.type);
+      this.el.setAttribute('type', props.type);
     }
     if (props.placeholder) {
-      this.element.setAttribute('placeholder', props.placeholder);
+      this.el.setAttribute('placeholder', props.placeholder);
     }
     if (props.value) {
-      this.element.value = props.value;
+      this.el.value = props.value;
     }
     if (props.disabled) {
-      this.element.disabled = props.disabled;
+      this.el.disabled = props.disabled;
     } else {
-      this.element.disabled = false;
+      this.el.disabled = false;
     }
-    this.element.setAttribute('required', 'required');
+    this.el.setAttribute('required', 'required');
   }
 }

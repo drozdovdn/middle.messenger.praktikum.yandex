@@ -10,3 +10,5 @@ app.use(express.static('dist'));
 app.listen(port, () => {
   console.log(`Сервер запущен на  http://localhost:${port}`);
 });
+
+export {};

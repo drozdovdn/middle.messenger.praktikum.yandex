@@ -55,7 +55,7 @@ export default class Router {
     }
 
     this._currentRoute = route;
-    route.render(route, pathname);
+    route.render();
   }
 
   public go(pathname: string) {

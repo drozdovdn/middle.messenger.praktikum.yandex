@@ -4,7 +4,8 @@
   "description": "",
   "scripts": {
     "start": "npm run build && node index.ts",
-    "test": "mocha --require ts-node/register src/**/*.test.ts",
+    "check": "tsc --noEmit",
+    "test": "mocha --require ts-node/register src/**/**/*.test.ts",
     "build": "parcel build static/index.html",
     "dev": "parcel  static/index.html --port=3000 --open",
     "lint": "eslint --fix ./ --ext .ts",
@@ -33,9 +34,11 @@
   "devDependencies": {
     "@parcel/config-default": "^2.2.0",
     "@parcel/transformer-less": "^2.2.0",
+    "@parcel/transformer-typescript-tsc": "^2.6.0",
+    "@parcel/validator-typescript": "^2.6.0",
     "@types/chai": "^4.3.1",
     "@types/mocha": "^9.1.1",
-    "@types/node": "^17.0.35",
+    "@types/node": "^17.0.38",
     "@types/sinon": "^10.0.11",
     "@typescript-eslint/eslint-plugin": "^5.10.0",
     "@typescript-eslint/parser": "^5.10.0",
