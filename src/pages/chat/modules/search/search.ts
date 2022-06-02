@@ -6,7 +6,7 @@ import { searchTmpl } from './search.tmpl';
 
 export class Search extends Block {
   constructor() {
-    super('label', { className: ['search__label'] });
+    super({ tagName: 'label', data: { className: ['search__label'] } });
   }
 
   render(): DocumentFragment {

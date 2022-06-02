@@ -14,9 +14,12 @@ type DataProps = {
 
 export class Modal extends Block {
   constructor(props: DataProps) {
-    super('div', {
-      ...props,
-      className: props.className,
+    super({
+      tabName: 'div',
+      data: {
+        ...props,
+        className: props.className,
+      },
     });
   }
 

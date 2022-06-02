@@ -13,7 +13,7 @@ import { logoutUser } from '../../../../actions/auth';
 
 export class Control extends Block {
   constructor() {
-    super('section', { className: ['control'] });
+    super({ tagName: 'section', data: { className: ['control'] } });
   }
 
   changeData() {

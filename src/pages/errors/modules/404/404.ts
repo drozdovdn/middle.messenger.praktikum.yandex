@@ -6,7 +6,7 @@ import { compile } from '../../../../utils/compile';
 
 export class Error_404 extends Block {
   constructor() {
-    super('section', { className: ['error', '_404'] });
+    super({ tagName: 'section', data: { className: ['error', '_404'] } });
   }
 
   render(): DocumentFragment {

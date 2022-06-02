@@ -16,14 +16,12 @@ declare global {
   }
 }
 window.AppStore = Store;
-const signIn = new Auth({ content: new SignIn() });
-const signUp = new Auth({ content: new SignUp() });
 
 export const router = new Router('.root');
 
 router
-  .use(RoutePath.SIGN_IN, () => signIn)
-  .use(RoutePath.SIGN_UP, () => signUp)
+  .use(RoutePath.SIGN_IN, () => new Auth({ content: new SignIn() }))
+  .use(RoutePath.SIGN_UP, () => new Auth({ content: new SignUp() }))
   .use(RoutePath.CHAT, () => new Chat())
   .use(RoutePath.PROFILE, () => new Profile())
   .use(RoutePath.NOT_FIND, () => new Error_404())

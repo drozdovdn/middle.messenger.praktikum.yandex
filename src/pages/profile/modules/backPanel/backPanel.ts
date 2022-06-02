@@ -9,7 +9,7 @@ import { RoutePath } from '../../../../utils/router/route-path';
 
 export class BackPanel extends Block {
   constructor() {
-    super('div', { className: ['back-panel'] });
+    super({ tagName: 'div', data: { className: ['back-panel'] } });
   }
 
   render(): DocumentFragment {

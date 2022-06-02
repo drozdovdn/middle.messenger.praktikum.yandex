@@ -17,7 +17,7 @@ export class SignIn extends Block {
   inputs: { [key: string]: string };
 
   constructor() {
-    super('form', { className: ['form', 'sign-in'] });
+    super({ tagName: 'form', data: { className: ['form', 'sign-in'] } });
     this.inputs = {
       login: '',
       password: '',

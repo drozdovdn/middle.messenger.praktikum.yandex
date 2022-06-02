@@ -9,7 +9,6 @@ import Input from '../../../../components/input';
 import Modal from '../../../../components/modal';
 import ModalSettings from '../../subComponents/modalSettings';
 import ItemButtonSettings from '../../subComponents/itemButtonSettins';
-import { createSocketCanal } from '../../../../api/api-settings';
 import { DataSocketProps, UserProps } from '../../../../store/models';
 
 const showModalSettings = () => {
@@ -76,7 +75,7 @@ export class ControlChat extends Block {
   soket: any;
   token: string | null;
   constructor(props?: PropsData) {
-    super('div', { ...props, className: ['control-chat'] });
+    super({ tagName: 'div', data: { ...props, className: ['control-chat'] } });
     this.message = '';
     this.soket = null;
     this.token = null;
@@ -93,7 +92,7 @@ export class ControlChat extends Block {
       type: 'text',
       events: {
         change: (e) => {
-          const target = e.target as HTMLInputElement;
+          const target = e?.target as HTMLInputElement;
           this.message = target.value;
         },
       },
@@ -115,7 +114,6 @@ export class ControlChat extends Block {
               throw Error('Поле не заполненно');
             } else {
               // console.log(this.message);
-
 
               this.props.activeSoket.send(JSON.stringify({ content: this.message, type: 'message' }));
               const input: HTMLInputElement = document.querySelector('.input--message');

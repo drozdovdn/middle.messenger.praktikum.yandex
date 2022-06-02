@@ -18,7 +18,7 @@ export type DataPropsItemChats = {
 
 export class ItemChat extends Block {
   constructor(props: DataPropsItemChats) {
-    super('div', { ...props, className: [...props.className, 'item-chat'] });
+    super({ tagName: 'div', data: { ...props, className: props.className ? [...props.className, 'item-chat'] : ['item-chat'] } });
   }
   render(): DocumentFragment {
     return compile(templater, itemChatTmpl, { ...this.props });

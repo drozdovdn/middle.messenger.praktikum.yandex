@@ -13,7 +13,7 @@ type DataProps = {
 
 export class ButtonSettings extends Block {
   constructor(props: DataProps) {
-    super('div', { ...props, className: ['button__settings'] });
+    super({ tagName: 'div', data: { ...props, className: ['button__settings'] } });
   }
 
   render(): DocumentFragment {

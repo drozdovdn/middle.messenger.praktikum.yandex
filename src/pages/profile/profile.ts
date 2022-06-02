@@ -10,7 +10,7 @@ import { compile } from '../../utils/compile';
 
 export class Profile extends Block {
   constructor() {
-    super('div', { className: ['profile'] });
+    super({ tagName: 'div', data: { className: ['profile'] } });
   }
 
   render(): DocumentFragment {

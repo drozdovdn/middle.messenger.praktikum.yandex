@@ -8,7 +8,7 @@ import { compile } from '../../utils/compile';
 
 export class Errors extends Block {
   constructor() {
-    super('section', { className: ['errors'] });
+    super({ tagName: 'section', data: { className: ['errors'] } });
   }
 
   render(): DocumentFragment {

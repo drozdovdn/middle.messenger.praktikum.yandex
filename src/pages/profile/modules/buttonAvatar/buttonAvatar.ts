@@ -15,7 +15,7 @@ type DataType = {
 
 export class ButtonAvatar extends Block {
   constructor(props: DataType) {
-    super('button', { ...props, className: ['avatar__button'] });
+    super({ tagName: 'button', data: { ...props, className: ['avatar__button'] } });
   }
 
   render(): DocumentFragment {

@@ -16,7 +16,7 @@ type AddAvatarModalProps = {
 export class AddAvatarModal extends Block {
   file: File | null;
   constructor(props: AddAvatarModalProps) {
-    super('div', { ...props, className: ['add-avatar-modal'] });
+    super({ tagName: 'div', data: { ...props, className: ['add-avatar-modal'] } });
     this.file = null;
   }
 

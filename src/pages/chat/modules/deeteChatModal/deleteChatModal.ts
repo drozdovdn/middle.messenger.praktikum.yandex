@@ -7,7 +7,7 @@ import Button from '../../../../components/button';
 
 export class DeleteChatModal extends Block {
   constructor() {
-    super('div', { className: ['delete-chat-modal'] });
+    super({ tagName: 'div', data: { className: ['delete-chat-modal'] } });
   }
 
   render(): DocumentFragment {

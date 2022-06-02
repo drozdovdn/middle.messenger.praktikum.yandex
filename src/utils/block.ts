@@ -2,7 +2,11 @@ import EventBus from './event-bus';
 import { nanoid } from 'nanoid';
 import { isEqualObj } from './isEqualObj';
 
-export default class Block<P extends Record<string, unknown> = {}> {
+export default class Block<
+  P extends Record<string, unknown> = {
+    data_list?: {};
+  }
+> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -12,22 +16,22 @@ export default class Block<P extends Record<string, unknown> = {}> {
 
   private _element: HTMLElement | undefined;
   private _meta: {
-    tagName: string;
-    props: P;
+    tagName?: string;
+    props?: P;
   } | null = null;
 
   public id = nanoid(6);
   public eventBus: () => EventBus;
   protected props: P;
 
-  public constructor(tagName = 'div', props = {}) {
+  public constructor(props: Record<string, any> = { tagName: 'div', data: {} }) {
     const eventBus = new EventBus();
     this._meta = {
-      tagName,
-      props,
+      tagName: props.tagName,
+      props: props.data,
     };
 
-    this.props = this._makePropsProxy(props);
+    this.props = this._makePropsProxy(props.data);
 
     this.eventBus = () => eventBus;
 

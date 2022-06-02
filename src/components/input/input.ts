@@ -19,7 +19,7 @@ type DataProps = {
 export class Input extends Block {
   el: HTMLInputElement;
   constructor(props: DataProps) {
-    super('input', { ...props, className: [props.className, 'input'] });
+    super({ tagName: 'input', data: { ...props, className: [props.className, 'input'] } });
     this.el = this.element as HTMLInputElement;
 
     if (!this.el) {

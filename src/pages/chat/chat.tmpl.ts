@@ -14,7 +14,6 @@ export const chatTmpl = `
         {{search}}
     </div>
     </div>
-    {{messages}}
     <div class="chat__list-items">
     {{chat_list}} 
     </div>

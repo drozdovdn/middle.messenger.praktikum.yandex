@@ -6,7 +6,7 @@ import { compile } from '../../../../utils/compile';
 
 export class Error_500 extends Block {
   constructor() {
-    super('div', { className: ['error', '_500'] });
+    super({ tagName: 'div', data: { className: ['error', '_500'] } });
   }
 
   render(): DocumentFragment {

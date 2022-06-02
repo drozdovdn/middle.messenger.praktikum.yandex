@@ -6,7 +6,7 @@ import { messageTmpl } from './message.tmpl';
 
 export class Message extends Block {
   constructor(props) {
-    super('div', { ...props, className: ['message'] });
+    super({ tagName: 'div', data: { ...props, className: ['message'] } });
   }
 
   render(): DocumentFragment {

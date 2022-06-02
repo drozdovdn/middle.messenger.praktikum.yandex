@@ -6,7 +6,7 @@ import { chatDialogTmpl } from './chatDialog.tmpl';
 
 export class ChatDialog extends Block {
   constructor(props: Record<string, unknown>) {
-    super('div', { ...props, className: ['chat__dialog'] });
+    super({ tagName: 'div', data: { ...props, className: ['chat__dialog'] } });
   }
 
   render(): DocumentFragment {

@@ -16,7 +16,7 @@ export let passwordLocalData = {
 
 export class ChangePassword extends Block {
   constructor() {
-    super('section', { className: ['change-password'] });
+    super({ tagName: 'section', data: { className: ['change-password'] } });
   }
 
   onFocus(e: Event) {

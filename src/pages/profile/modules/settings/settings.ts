@@ -20,7 +20,7 @@ export let localData = {
 };
 export class SettingsProfile extends Block {
   constructor() {
-    super('section', { className: ['settings'] });
+    super({ tagName: 'section', data: { className: ['settings'] } });
   }
 
   onFocus(e: Event) {

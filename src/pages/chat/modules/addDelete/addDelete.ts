@@ -18,7 +18,7 @@ type DataProps = {
 
 export class AddDelete extends Block {
   constructor(props: DataProps) {
-    super('div', { ...props, className: props.className });
+    super({ tagName: 'div', data: { ...props, className: props.className } });
   }
 
   render(): DocumentFragment {

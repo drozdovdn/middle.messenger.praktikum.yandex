@@ -6,7 +6,7 @@ import Block from '../../utils/block';
 
 export class Auth extends Block {
   constructor(props: Record<string, unknown>) {
-    super('div', props);
+    super({ tagName: 'div', data: props });
   }
   render(): DocumentFragment {
     return compile(templater, authTmpl, { ...this.props });

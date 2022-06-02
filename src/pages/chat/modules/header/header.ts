@@ -217,7 +217,7 @@ const showModalSettings = () => {
 
 export class Header extends Block {
   constructor(props) {
-    super('div', { ...props, className: ['header'] });
+    super({ tagName: 'div', data: { ...props, className: ['header'] } });
   }
 
   render(): DocumentFragment {

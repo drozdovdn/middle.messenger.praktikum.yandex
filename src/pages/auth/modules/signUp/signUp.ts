@@ -16,7 +16,7 @@ import { requestSignUp } from '../../../../actions/auth';
 export class SignUp extends Block {
   inputs: Record<string, string>;
   constructor() {
-    super('form', { className: ['form', 'sign-up'] });
+    super({ tagName: 'form', data: { className: ['form', 'sign-up'] } });
 
     this.inputs = {
       email: '',

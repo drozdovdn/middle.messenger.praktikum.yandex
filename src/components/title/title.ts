@@ -11,7 +11,7 @@ type DataProps = {
 
 export class Title extends Block {
   constructor(props: DataProps) {
-    super('h1', { ...props, className: props.className ? [...props.className, 'modal__title'] : ['modal__title'] });
+    super({ tagName: 'h1', data: { ...props, className: props.className ? [...props.className, 'modal__title'] : ['modal__title'] } });
   }
   render(): DocumentFragment {
     return compile(templater, titleTmpl, { ...this.props });

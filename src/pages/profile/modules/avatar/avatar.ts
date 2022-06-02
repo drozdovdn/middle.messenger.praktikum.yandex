@@ -6,11 +6,10 @@ import { compile } from '../../../../utils/compile';
 import ButtonAvatar from '../buttonAvatar';
 import AddAvatarModal from '../../../../features/addAvatarModal';
 import { getUserData } from '../../../../actions/user';
-import { apiSettings } from '../../../../api/api-settings';
 
 export class Avatar extends Block {
   constructor() {
-    super('div', { className: ['avatar'] });
+    super({ tagName: 'div', data: { className: ['avatar'] } });
   }
 
   openModal() {
