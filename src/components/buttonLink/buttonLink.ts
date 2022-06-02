@@ -14,7 +14,7 @@ type DataProps = {
 
 export class ButtonLink extends Block {
   constructor(props: DataProps) {
-    super('button', { ...props, className: [...props.className, 'button-link'] });
+    super('button', { ...props, className: props.className ? [...props.className, 'button-link'] : ['button-link'] });
   }
 
   render(): DocumentFragment {

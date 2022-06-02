@@ -41,7 +41,7 @@ export class AddAvatarModal extends Block {
       className: ['add-avatar-modal__input'],
       events: {
         change: (e) => {
-          const target = e.target as HTMLInputElement;
+          const target = e?.target as HTMLInputElement;
           const nameLabel = document.querySelector('.add-avatar-modal__name');
           const files = target.files;
           if (files && nameLabel) {

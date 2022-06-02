@@ -16,7 +16,6 @@ declare global {
   }
 }
 window.AppStore = Store;
-
 const signIn = new Auth({ content: new SignIn() });
 const signUp = new Auth({ content: new SignUp() });
 

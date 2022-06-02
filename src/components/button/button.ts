@@ -14,7 +14,7 @@ type DataType = {
 
 export class Button extends Block {
   constructor(props: DataType) {
-    super('button', { ...props, className: [...props.className, 'button'] });
+    super('button', { ...props, className: props.className ? [...props.className, 'button'] : ['button'] });
   }
 
   render(): DocumentFragment {
