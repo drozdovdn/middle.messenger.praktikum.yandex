@@ -5,10 +5,11 @@ import { templater } from '../../../../templater';
 import { addDeleteTmpl } from './addDelete.tmpl';
 import Input from '../../../../components/input';
 import Button from '../../../../components/button';
+import InputForm from '../../../../components/inputForm';
 
 type DataProps = {
   title: string;
-  input: Input;
+  input: Input | InputForm;
   className: string[];
   button: Button;
   events?: {

@@ -17,7 +17,7 @@ export class DialogWindow extends Block {
   render(): DocumentFragment {
     console.log('DIALOD', this.props);
     window.addEventListener('unload', () => {
-      this.props._soket.close();
+      this.props._soket?.close();
     });
 
     const openSoket = (soket: any) => () => {
@@ -30,7 +30,7 @@ export class DialogWindow extends Block {
 
       console.log('soket соедтнение открыто', soket);
       this.props._soket = soket;
-      this.props._soket.addEventListener('message', (event) => {
+      this.props._soket?.addEventListener('message', (event: any) => {
         console.log('event.data', event.data);
         setMessage(JSON.parse(event.data));
         console.log('Получены данные', JSON.parse(event.data));

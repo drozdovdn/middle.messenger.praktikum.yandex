@@ -3,12 +3,13 @@ import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
 import { ModalTmpl } from './modal.tmpl';
 import { templater } from '../../templater';
+import ModalSettings from '../../pages/chat/subComponents/modalSettings';
 
 type DataProps = {
-  content: DocumentFragment;
+  content: ModalSettings;
   className: string[];
   events?: {
-    click: () => void;
+    click: (e: Event) => void;
   };
 };
 

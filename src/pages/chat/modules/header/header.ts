@@ -21,14 +21,14 @@ const showModalAddUser = () => {
   } else {
     let login = '';
 
-    const onFocus = (e: Event) => {
+    const onFocus = (e: any) => {
       const target = e.target as HTMLInputElement;
       if (target.classList.contains('input-error')) {
         target.classList.remove('input-error');
       }
     };
 
-    const onBlur = (e: Event) => {
+    const onBlur = (e: any) => {
       const target = e.target as HTMLInputElement;
       if (login === '') {
         target.classList.add('input-error');
@@ -57,7 +57,7 @@ const showModalAddUser = () => {
         name: 'Добавить',
         className: [],
         events: {
-          click: (e) => {
+          click: (e: any) => {
             if (e?.srcElement?.classList?.value === 'modal-top') {
               e?.target?.classList?.add('hidden-modal');
             }
@@ -68,7 +68,7 @@ const showModalAddUser = () => {
         },
       }),
       events: {
-        click: (e) => {
+        click: (e: any) => {
           if (e?.srcElement?.classList?.value === 'add-user') {
             e?.target?.classList?.add('hidden-modal');
           }
@@ -77,7 +77,7 @@ const showModalAddUser = () => {
     });
     const root: HTMLDivElement | null = document.querySelector('.root');
     if (root) {
-      root.appendChild(addModalUser.getContent());
+      root.appendChild(addModalUser.getContent() as Node);
     }
   }
 };
@@ -89,14 +89,14 @@ const showModalDeleteUser = () => {
   } else {
     let login = '';
 
-    const onFocus = (e: Event) => {
+    const onFocus = (e: any) => {
       const target = e.target as HTMLInputElement;
       if (target.classList.contains('input-error')) {
         target.classList.remove('input-error');
       }
     };
 
-    const onBlur = (e: Event) => {
+    const onBlur = (e: any) => {
       const target = e.target as HTMLInputElement;
       if (login === '') {
         target.classList.add('input-error');
@@ -125,7 +125,7 @@ const showModalDeleteUser = () => {
         name: 'Удалить',
         className: [],
         events: {
-          click: (e) => {
+          click: (e: any) => {
             if (e?.srcElement?.classList?.value === 'modal-top') {
               e?.target?.classList?.add('hidden-modal');
             }
@@ -134,7 +134,7 @@ const showModalDeleteUser = () => {
         },
       }),
       events: {
-        click: (e) => {
+        click: (e: any) => {
           if (e?.srcElement?.classList?.value === 'delete-user') {
             e?.target?.classList?.add('hidden-modal');
           }
@@ -143,7 +143,7 @@ const showModalDeleteUser = () => {
     });
     const root: HTMLDivElement | null = document.querySelector('.root');
     if (root) {
-      root.appendChild(addModalUser.getContent());
+      root.appendChild(addModalUser.getContent() as Node);
     }
   }
 };
@@ -201,7 +201,7 @@ const showModalSettings = () => {
         ],
       }),
       events: {
-        click: (e) => {
+        click: (e: any) => {
           if (e?.srcElement?.classList?.value === 'modal-top') {
             e?.target?.classList?.add('hidden-modal');
           }
@@ -210,13 +210,13 @@ const showModalSettings = () => {
     });
     const root: HTMLDivElement | null = document.querySelector('.root');
     if (root) {
-      root.appendChild(contentModal.getContent());
+      root.appendChild(contentModal.getContent() as Node);
     }
   }
 };
 
 export class Header extends Block {
-  constructor(props) {
+  constructor(props: Record<string, any>) {
     super({ tagName: 'div', data: { ...props, className: ['header'] } });
   }
 

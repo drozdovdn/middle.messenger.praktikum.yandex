@@ -10,6 +10,7 @@ export class ChatList extends Block {
   constructor(props: Record<string, ChatProps>) {
     super({ tagName: 'div', data: { ...props, className: ['chat__list-items'] } });
   }
+
   render(): DocumentFragment {
     console.log('222', this.props);
     const dataList = (data: Record<string, ChatProps>) => {
@@ -37,9 +38,10 @@ export class ChatList extends Block {
       }
       return result;
     };
+
     return compile(templater, ChatListTmpl, {
       ...this.props,
-      messages: this.props?.data_list !== 0 ? '' : 'Чаты не созданы',
+      messages: this.props?.data_list === 0 ? 'Чаты не созданы' : '',
       data_list: this.props?.data_list ? dataList(this.props?.data_list) : [],
     });
   }

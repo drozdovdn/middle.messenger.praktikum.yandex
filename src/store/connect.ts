@@ -2,7 +2,7 @@ import Block from '../utils/block';
 import { EVENT_UPDATE, Store } from './store';
 import { StoreProps } from './models';
 
-export const connect = (Component: typeof Block, mapStateToProps: (state: StoreProps) => StoreProps, event: EVENT_UPDATE = EVENT_UPDATE.STORE) => {
+export const connect = (Component: typeof Block, mapStateToProps: (state: StoreProps) => any, event: EVENT_UPDATE = EVENT_UPDATE.STORE) => {
   return class extends Component {
     constructor(props: Record<string, any> = {}) {
       const store = new Store();

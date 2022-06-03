@@ -3,7 +3,6 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import { templater } from '../../../../templater';
 import { DialogMessageTpml } from './dialogMessage.tpml';
-import { DataPropsItemChats } from '../../subComponents/itemChat/itemChat';
 import Message from '../message';
 
 export class DialogMessage extends Block {
@@ -22,7 +21,7 @@ export class DialogMessage extends Block {
     }
 
     function dataMessages(data: any) {
-      let result: { item: DataPropsItemChats }[] = [];
+      let result: { item: Message }[] = [];
       if (Object.values(data).length) {
         result = Object.values(data).map((item: any) => {
           return {

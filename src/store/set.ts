@@ -2,7 +2,7 @@ import { Indexed, merge } from './merge';
 
 const isIndexed = (x: any): x is Indexed => typeof x === 'object';
 
-export const set = (object: Indexed | unknown, path: string, value: unknown): Indexed | unknown => {
+export const set = (object: Indexed | unknown, path: string, value: unknown): Indexed | any => {
   // Код
   if (typeof path !== 'string') {
     throw Error('path must be string');

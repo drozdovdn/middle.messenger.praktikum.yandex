@@ -5,7 +5,7 @@ import { templater } from '../../../../templater';
 import { modalSettingsTmpl } from './modalSettings.tmpl';
 
 export class ModalSettings extends Block {
-  constructor(props) {
+  constructor(props: Record<string, any>) {
     super({ tagName: 'div', data: { ...props, className: ['modal-settings', ...props.className] } });
   }
 

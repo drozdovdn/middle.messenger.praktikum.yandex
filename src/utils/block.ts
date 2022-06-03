@@ -2,9 +2,30 @@ import EventBus from './event-bus';
 import { nanoid } from 'nanoid';
 import { isEqualObj } from './isEqualObj';
 
+type BlockProps = {
+  data_list?: Record<string, unknown>;
+  data_message?: Record<string, unknown>;
+  data_socket?: Record<string, unknown>;
+  user?: Record<string, unknown>;
+  activeSoket?: any;
+  _soket?: any;
+  _token?: string;
+};
+
 export default class Block<
-  P extends Record<string, unknown> = {
+  P extends Record<string, unknown> | BlockProps = {
+    user?: {
+      id: number;
+    };
     data_list?: {};
+    data_message?: {};
+    data_socket?: {
+      id: number;
+      token: '';
+    };
+    activeSoket?: WebSocket | null;
+    _token?: '';
+    _soket?: WebSocket | null;
   }
 > {
   static EVENTS = {

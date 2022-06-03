@@ -17,11 +17,11 @@ export class Control extends Block {
   }
 
   changeData() {
-    const controlBlock: HTMLElement = document.querySelector('.control');
+    const controlBlock: HTMLElement | null = document.querySelector('.control');
     const inputSettings: NodeListOf<HTMLInputElement> = document.querySelectorAll('.profile__input');
-    const profileControl: HTMLElement = document.querySelector('.profile__control');
+    const profileControl: HTMLElement | null = document.querySelector('.profile__control');
     const user = getUserData();
-    controlBlock.classList.add('hidden');
+    controlBlock?.classList.add('hidden');
     inputSettings.forEach((item) => item.removeAttribute('disabled'));
     const button = new Button({
       name: 'Сохранить',
@@ -48,43 +48,43 @@ export class Control extends Block {
               email: userData.email,
               phone: userData.phone,
             });
-            controlBlock.classList.remove('hidden');
+            controlBlock?.classList.remove('hidden');
             inputSettings.forEach((item) => item.setAttribute('disabled', 'true'));
             target.classList.add('hidden');
           }
         },
       },
     });
-    profileControl.appendChild(button.getContent());
+    profileControl?.appendChild(button.getContent() as Node);
   }
 
   changePassword() {
-    const controlBlock: HTMLElement = document.querySelector('.control');
-    const settingsBlock: HTMLElement = document.querySelector('.settings');
-    const profileControl: HTMLElement = document.querySelector('.profile__control');
-    const profileSettings: HTMLElement = document.querySelector('.profile__settings');
+    const controlBlock: HTMLElement | null = document.querySelector('.control');
+    const settingsBlock: HTMLElement | null = document.querySelector('.settings');
+    const profileControl: HTMLElement | null = document.querySelector('.profile__control');
+    const profileSettings: HTMLElement | null = document.querySelector('.profile__settings');
 
-    controlBlock.classList.add('hidden');
-    settingsBlock.classList.add('hidden');
+    controlBlock?.classList.add('hidden');
+    settingsBlock?.classList.add('hidden');
     const changePanel = new ChangePassword();
     const button = new Button({
       name: 'Сохранить',
       className: ['profile__save-button'],
       events: {
-        click: (e) => {
+        click: () => {
           if (Object.values(passwordLocalData).includes('')) {
             throw Error('Поля не валидны');
           } else {
             console.log(passwordLocalData);
             changeUserPassword(passwordLocalData);
-            controlBlock.classList.remove('hidden');
-            settingsBlock.classList.remove('hidden');
+            controlBlock?.classList.remove('hidden');
+            settingsBlock?.classList.remove('hidden');
           }
         },
       },
     });
-    profileSettings.appendChild(changePanel.getContent());
-    profileControl.appendChild(button.getContent());
+    profileSettings?.appendChild(changePanel.getContent() as Node);
+    profileControl?.appendChild(button.getContent() as Node);
   }
 
   render(): DocumentFragment {

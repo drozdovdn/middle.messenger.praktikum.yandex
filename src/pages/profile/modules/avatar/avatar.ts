@@ -20,7 +20,7 @@ export class Avatar extends Block {
     } else {
       const addAvatar = new AddAvatarModal({
         events: {
-          click: (e) => {
+          click: (e: any) => {
             if (e?.srcElement?.classList?.value === 'add-avatar-modal') {
               e?.target?.classList?.add('hidden-modal');
               console.log(e);
@@ -29,7 +29,7 @@ export class Avatar extends Block {
         },
       }).getContent();
 
-      profile.appendChild(addAvatar);
+      profile?.appendChild(addAvatar as Node);
     }
   }
 

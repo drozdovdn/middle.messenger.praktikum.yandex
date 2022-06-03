@@ -4,13 +4,12 @@ import { templater } from '../../../../templater';
 import { settingsTmpl } from './settings.tmpl';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
-import { Store } from '../../../../store';
 import Input from '../../../../components/input';
 import { isEmail, isLogin, isName, isPhone } from '../../../../utils/validations';
 import { getUserData } from '../../../../actions/user';
 
 //Локальные данные Settings
-export let localData = {
+export let localData: Record<string, any> = {
   email: '',
   login: '',
   first_name: '',
@@ -23,15 +22,15 @@ export class SettingsProfile extends Block {
     super({ tagName: 'section', data: { className: ['settings'] } });
   }
 
-  onFocus(e: Event) {
-    const target = e.target as HTMLInputElement;
+  onFocus(e?: Event) {
+    const target = e?.target as HTMLInputElement;
     if (target.classList.contains('input-error-settings')) {
       target.classList.remove('input-error-settings');
     }
   }
 
-  onBlur(e: Event) {
-    const target = e.target as HTMLInputElement;
+  onBlur(e?: Event) {
+    const target = e?.target as HTMLInputElement;
     if (localData[target.name] === '') {
       target.classList.add('input-error-settings');
     }
@@ -54,15 +53,15 @@ export class SettingsProfile extends Block {
               name: 'email',
               value: user?.email,
               events: {
-                change: (e: Event) => {
-                  const target = e.target as HTMLInputElement;
+                change: (e?: Event) => {
+                  const target = e?.target as HTMLInputElement;
                   localData = {
                     ...localData,
                     [target.name]: isEmail(target.value),
                   };
                 },
-                focus: (e: Event) => this.onFocus(e),
-                blur: (e: Event) => this.onBlur(e),
+                focus: (e?: Event) => this.onFocus(e),
+                blur: (e?: Event) => this.onBlur(e),
               },
             }),
           }),
@@ -77,15 +76,15 @@ export class SettingsProfile extends Block {
               name: 'login',
               value: user?.login,
               events: {
-                change: (e: Event) => {
-                  const target = e.target as HTMLInputElement;
+                change: (e?: Event) => {
+                  const target = e?.target as HTMLInputElement;
                   localData = {
                     ...localData,
                     [target.name]: isLogin(target.value),
                   };
                 },
-                focus: (e: Event) => this.onFocus(e),
-                blur: (e: Event) => this.onBlur(e),
+                focus: (e?: Event) => this.onFocus(e),
+                blur: (e?: Event) => this.onBlur(e),
               },
             }),
           }),
@@ -100,15 +99,15 @@ export class SettingsProfile extends Block {
               name: 'first_name',
               value: user?.first_name,
               events: {
-                change: (e: Event) => {
-                  const target = e.target as HTMLInputElement;
+                change: (e?: Event) => {
+                  const target = e?.target as HTMLInputElement;
                   localData = {
                     ...localData,
                     [target.name]: isName(target.value),
                   };
                 },
-                focus: (e: Event) => this.onFocus(e),
-                blur: (e: Event) => this.onBlur(e),
+                focus: (e?: Event) => this.onFocus(e),
+                blur: (e?: Event) => this.onBlur(e),
               },
             }),
           }),
@@ -123,15 +122,15 @@ export class SettingsProfile extends Block {
               name: 'second_name',
               value: user?.second_name,
               events: {
-                change: (e: Event) => {
-                  const target = e.target as HTMLInputElement;
+                change: (e?: Event) => {
+                  const target = e?.target as HTMLInputElement;
                   localData = {
                     ...localData,
                     [target.name]: isName(target.value),
                   };
                 },
-                focus: (e: Event) => this.onFocus(e),
-                blur: (e: Event) => this.onBlur(e),
+                focus: (e?: Event) => this.onFocus(e),
+                blur: (e?: Event) => this.onBlur(e),
               },
             }),
           }),
@@ -146,15 +145,15 @@ export class SettingsProfile extends Block {
               name: 'display_name',
               value: user?.display_name,
               events: {
-                change: (e: Event) => {
-                  const target = e.target as HTMLInputElement;
+                change: (e?: Event) => {
+                  const target = e?.target as HTMLInputElement;
                   localData = {
                     ...localData,
                     [target.name]: isName(target.value),
                   };
                 },
-                focus: (e: Event) => this.onFocus(e),
-                blur: (e: Event) => this.onBlur(e),
+                focus: (e?: Event) => this.onFocus(e),
+                blur: (e?: Event) => this.onBlur(e),
               },
             }),
           }),
@@ -169,15 +168,15 @@ export class SettingsProfile extends Block {
               name: 'phone',
               value: user?.phone,
               events: {
-                change: (e: Event) => {
-                  const target = e.target as HTMLInputElement;
+                change: (e?: Event) => {
+                  const target = e?.target as HTMLInputElement;
                   localData = {
                     ...localData,
                     [target.name]: isPhone(target.value),
                   };
                 },
-                focus: (e: Event) => this.onFocus(e),
-                blur: (e: Event) => this.onBlur(e),
+                focus: (e?: Event) => this.onFocus(e),
+                blur: (e?: Event) => this.onBlur(e),
               },
             }),
           }),

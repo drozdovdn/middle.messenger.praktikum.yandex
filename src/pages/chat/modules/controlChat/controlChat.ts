@@ -51,7 +51,7 @@ const showModalSettings = () => {
         ],
       }),
       events: {
-        click: (e) => {
+        click: (e: any) => {
           if (e?.srcElement?.classList?.value === 'modal-bottom') {
             e?.target?.classList?.add('hidden-modal');
           }
@@ -60,7 +60,7 @@ const showModalSettings = () => {
     });
     const root: HTMLDivElement | null = document.querySelector('.root');
     if (root) {
-      root.appendChild(contentModal.getContent());
+      root.appendChild(contentModal.getContent() as Node);
     }
   }
 };
@@ -115,11 +115,13 @@ export class ControlChat extends Block {
             } else {
               // console.log(this.message);
 
-              this.props.activeSoket.send(JSON.stringify({ content: this.message, type: 'message' }));
-              const input: HTMLInputElement = document.querySelector('.input--message');
-              input.value = '';
-              this.message = '';
-              input && console.log(input.value);
+              this.props?.activeSoket?.send(JSON.stringify({ content: this.message, type: 'message' }));
+              const input: HTMLInputElement | null = document.querySelector('.input--message');
+              if (input) {
+                input.value = '';
+                this.message = '';
+                input && console.log(input.value);
+              }
             }
           },
         },

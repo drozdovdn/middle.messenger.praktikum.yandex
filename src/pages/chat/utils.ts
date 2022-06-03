@@ -20,7 +20,7 @@ export const createChat = () => {
           type: 'text',
           value: title,
           events: {
-            change: (e) => {
+            change: (e: any) => {
               title = e?.target?.value;
             },
           },
@@ -37,7 +37,7 @@ export const createChat = () => {
         },
       }),
       events: {
-        click: (e) => {
+        click: (e: any) => {
           if (e?.srcElement?.classList?.value === 'add-chat') {
             e?.target?.classList?.add('hidden-modal');
             console.log(e);
@@ -47,7 +47,7 @@ export const createChat = () => {
     });
     const root: HTMLDivElement | null = document.querySelector('.root');
     if (root) {
-      root.appendChild(modalCreateChat.getContent());
+      root.appendChild(modalCreateChat.getContent() as Node);
     }
   }
 };

@@ -21,7 +21,7 @@ import { processingWith } from './processWith';
  * @param template
  * @param context
  */
-export const templater = (template, context) => {
+export const templater = (template: string, context: Record<string, any>) => {
   const _context = { ...context };
   let _template = `${template}`;
   const TEMPLATE_REGEXP = /\{\{(.*?)\}\}/gi;
@@ -32,11 +32,11 @@ export const templater = (template, context) => {
     key = TEMPLATE_REGEXP_KEY.exec(_template);
     //Выдергиваю по одному значения
 
-    const keyWithBrackets = key[0];
-    const keyWithoutBrackets = key[1];
+    const keyWithBrackets: any = key?.[0];
+    const keyWithoutBrackets = key?.[1];
 
     if (keyWithoutBrackets) {
-      const tmplValue = keyWithoutBrackets.trim();
+      const tmplValue: any = keyWithoutBrackets.trim();
       if (tmplValue.startsWith('#with')) {
         //Если это цикл
         //Передаю в функцию по обработке циклов шаблон и ключ начала цикла
@@ -46,10 +46,7 @@ export const templater = (template, context) => {
       //Если это функция
       if (typeof data === 'function') {
         window[tmplValue] = data;
-        _template = _template.replace(
-          new RegExp(keyWithBrackets, 'gi'),
-          `window.${keyWithoutBrackets.trim()}(this)`
-        );
+        _template = _template.replace(new RegExp(keyWithBrackets, 'gi'), `window.${keyWithoutBrackets.trim()}(this)`);
         continue;
       }
 

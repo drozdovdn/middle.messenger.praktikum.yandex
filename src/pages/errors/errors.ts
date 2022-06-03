@@ -27,7 +27,7 @@ export class Errors extends Block {
           _500?.remove();
         }
         if (!_404) {
-          errors.appendChild(new Error_404().getContent());
+          errors?.appendChild(new Error_404().getContent() as Node);
         }
       }
       if (hash.includes('_500_')) {
@@ -38,7 +38,7 @@ export class Errors extends Block {
           _404?.remove();
         }
         if (!_500) {
-          errors.appendChild(new Error_500().getContent());
+          errors?.appendChild(new Error_500().getContent() as Node);
         }
       }
     });

@@ -34,7 +34,8 @@ export class Store extends EventBus {
   }
 
   public removeState(path: string, event: EVENT_UPDATE = EVENT_UPDATE.STORE) {
-    this.state[path] && delete this.state[path];
+    // @ts-ignore
+    delete this.state[path];
     this.emit(event);
   }
 
