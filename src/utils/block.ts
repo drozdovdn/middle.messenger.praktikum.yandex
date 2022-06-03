@@ -8,12 +8,13 @@ type BlockProps = {
   data_socket?: Record<string, unknown>;
   user?: Record<string, unknown>;
   activeSoket?: any;
+  className?: string;
   _soket?: any;
   _token?: string;
 };
 
 export default class Block<
-  P extends Record<string, unknown> | BlockProps = {
+  P extends Record<string, any> | BlockProps = {
     user?: {
       id: number;
     };
@@ -68,9 +69,9 @@ export default class Block<
   }
 
   private _createResources() {
-    const { tagName } = this._meta;
-    const { className } = this.props;
-    this._element = this._createDocumentElement(tagName);
+    const tagName = this._meta?.tagName;
+    const className = this.props?.className;
+    this._element = tagName ? this._createDocumentElement(tagName) : document.createElement('div');
 
     if (className?.length) {
       className.forEach((item: string) => {
@@ -89,6 +90,7 @@ export default class Block<
   }
 
   public componentDidMount(oldProps: P) {
+    console.log(oldProps);
     //
   }
 
@@ -180,7 +182,7 @@ export default class Block<
     }
 
     Object.entries(events).forEach(([event, listener]) => {
-      this._element.removeEventListener(event, listener);
+      this._element?.removeEventListener(event, listener);
     });
   }
 
@@ -192,7 +194,7 @@ export default class Block<
     }
 
     Object.entries(events).forEach(([event, listener]) => {
-      this._element.addEventListener(event, listener);
+      this._element?.addEventListener(event, listener);
     });
   }
   public show() {

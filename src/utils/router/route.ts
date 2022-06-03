@@ -8,8 +8,8 @@ import { render } from '../render';
 export default class Route {
   private _pathname: string;
   private _blockInstance: () => Block;
-  private _block: null;
-  private _props: unknown;
+  private _block: Block | null;
+  private _props: any;
 
   constructor(pathname: string, view: () => Block, props: unknown) {
     this._pathname = pathname;
@@ -27,6 +27,7 @@ export default class Route {
 
   public leave() {
     if (this._block) {
+      // @ts-ignore
       this._block.hide();
     }
   }

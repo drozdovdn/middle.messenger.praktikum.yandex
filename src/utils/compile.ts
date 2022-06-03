@@ -37,7 +37,7 @@ export const compile = (templater: (tmpl: string, p: any) => string, tmpl: strin
     if (!stub) {
       return;
     }
-    stub.replaceWith(component.getContent());
+    stub.replaceWith(component.getContent() as Node);
   });
 
   return fragment.content;

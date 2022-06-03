@@ -7,21 +7,16 @@ import { getUser } from '../../actions/user';
 
 export default class Router {
   private static __instance: Router;
-  public routes: Route[];
-  public history: History;
-  private _currentRoute: Route;
-  private _rootQuery: string;
+  public routes: Route[] = [];
+  public history: History = window.history;
+  private _currentRoute: Route | null = null;
+  private _rootQuery = '';
 
   constructor(rootQuery: string) {
     if (Router.__instance) {
       return Router.__instance;
     }
-
-    this.routes = [];
-    this.history = window.history;
-    this._currentRoute = null;
     this._rootQuery = rootQuery;
-
     Router.__instance = this;
   }
 

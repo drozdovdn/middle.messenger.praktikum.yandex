@@ -3,6 +3,7 @@ export const get = <T>(obj: object, path: string, defaultValue?: T): any => {
 
   let result = obj;
   for (const key of keys) {
+    // @ts-ignore
     result = result[key];
 
     if (result === undefined) {

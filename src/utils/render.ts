@@ -5,7 +5,7 @@ export const render = (query: string, block: Block) => {
   if (!root) {
     return;
   }
-  root.appendChild(block.getContent());
+  root.appendChild(block.getContent() as Node);
 
   return root;
 };

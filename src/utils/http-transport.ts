@@ -1,6 +1,5 @@
 import { apiSettings } from '../api/api-settings';
 
-type DataProps = Record<string, unknown> | FormData;
 type ParamsProps = Record<string, unknown>;
 
 type MethodProps = 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -8,7 +7,7 @@ type MethodProps = 'GET' | 'POST' | 'PUT' | 'DELETE';
 type OptionsProps = {
   method?: MethodProps;
   timeout?: number;
-  data?: DataProps;
+  data?: Record<string, any>;
   params?: ParamsProps;
   headers?: Record<string, string>;
 };
@@ -65,10 +64,10 @@ export class HTTPTransport {
 
     return new Promise((resolve, reject) => {
       const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
+      method && xhr.open(method, url);
 
       //Добавляем заголовки
-      if (Object.values(headers).lenght !== 0) {
+      if (Object.values(headers).length !== 0) {
         Object.keys(headers).forEach((item) => {
           xhr.setRequestHeader(item, headers[item]);
         });
@@ -92,7 +91,7 @@ export class HTTPTransport {
       } else if (isJSON) {
         xhr.send(JSON.stringify(data));
       } else {
-        xhr.send(data);
+        xhr.send(data as XMLHttpRequestBodyInit);
       }
     });
   };
