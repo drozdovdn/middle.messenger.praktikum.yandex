@@ -16,14 +16,15 @@ declare global {
   }
 }
 window.AppStore = Store;
+document.addEventListener('DOMContentLoaded', () => {
+  const router = new Router('.root');
 
-export const router = new Router('.root');
-
-router
-  .use(RoutePath.SIGN_IN, () => new Auth({ content: new SignIn() }))
-  .use(RoutePath.SIGN_UP, () => new Auth({ content: new SignUp() }))
-  .use(RoutePath.CHAT, () => new Chat())
-  .use(RoutePath.PROFILE, () => new Profile())
-  .use(RoutePath.NOT_FIND, () => new Error_404())
-  .use(RoutePath.ERROR, () => new Error_500())
-  .start();
+  router
+    .use(RoutePath.SIGN_IN, () => new Auth({ content: new SignIn() }))
+    .use(RoutePath.SIGN_UP, () => new Auth({ content: new SignUp() }))
+    .use(RoutePath.CHAT, () => new Chat())
+    .use(RoutePath.PROFILE, () => new Profile())
+    .use(RoutePath.NOT_FIND, () => new Error_404())
+    .use(RoutePath.ERROR, () => new Error_500())
+    .start();
+});

@@ -10,7 +10,7 @@ export default class Router {
   public routes: Route[] = [];
   public history: History = window.history;
   private _currentRoute: Route | null = null;
-  private _rootQuery = '';
+  private _rootQuery = '.root';
 
   constructor(rootQuery: string) {
     if (Router.__instance) {

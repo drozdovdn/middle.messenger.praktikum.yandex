@@ -9,9 +9,9 @@ import { compile } from '../../../../utils/compile';
 import Input from '../../../../components/input';
 import { isLogin, isPassword } from '../../../../utils/validations';
 import ButtonLink from '../../../../components/buttonLink';
-import { router } from '../../../../index';
 import { RoutePath } from '../../../../utils/router/route-path';
 import { requestSignIn } from '../../../../actions/auth';
+import Router from '../../../../utils/router/router';
 
 export class SignIn extends Block {
   inputs: { [key: string]: string };
@@ -109,6 +109,7 @@ export class SignIn extends Block {
         events: {
           click: (e) => {
             e!.preventDefault();
+            const router = new Router('.root');
             router.go(RoutePath.SIGN_UP);
           },
         },

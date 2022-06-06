@@ -5,7 +5,7 @@
   "scripts": {
     "start": "npm run build && node index.ts",
     "check": "tsc --noEmit",
-    "test": "mocha --require ts-node/register src/**/**/*.test.ts",
+    "test": "mocha --require ignore-styles",
     "build": "parcel build static/index.html",
     "dev": "parcel  static/index.html --port=3000 --open",
     "lint": "eslint --fix ./ --ext .ts",
@@ -33,6 +33,9 @@
     "nanoid": "^3.2.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-typescript": "^7.17.12",
+    "@babel/register": "^7.17.7",
     "@parcel/config-default": "^2.2.0",
     "@parcel/transformer-less": "^2.2.0",
     "@parcel/transformer-typescript-tsc": "^2.6.0",
@@ -54,6 +57,8 @@
     "eslint-plugin-prettier": "^4.0.0",
     "events": "^3.3.0",
     "husky": "^7.0.4",
+    "ignore-styles": "^5.0.1",
+    "jsdom": "^19.0.0",
     "lint-staged": "^12.2.1",
     "mocha": "^10.0.0",
     "parcel": "^2.5.0",

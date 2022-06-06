@@ -1,8 +1,8 @@
 import { Store } from '../../store/store';
 import { authApi } from '../../pages/auth/auth-api';
-import { router } from '../../index';
 import { RoutePath } from '../../utils/router/route-path';
 import { getChatsRequest } from '../chat';
+import Router from '../../utils/router/router';
 
 const store = new Store();
 export const requestSignIn = (data: Record<string, unknown>) => {
@@ -10,6 +10,7 @@ export const requestSignIn = (data: Record<string, unknown>) => {
     if (res?.status === 200) {
       requestAutchUser();
       store.set('auth', true);
+      const router = new Router('.root');
       router.go(RoutePath.CHAT);
     }
   });
@@ -21,6 +22,7 @@ export const requestSignUp = (data: Record<string, unknown>) => {
       const { response } = res;
       requestAutchUser();
       store.set('auth', true);
+      const router = new Router('.root');
       router.go(RoutePath.CHAT);
       console.log(JSON.parse(response));
     }
@@ -30,7 +32,7 @@ export const requestAutchUser = () => {
   authApi.user().then((res) => {
     if (res?.status === 200) {
       const { response } = res;
-
+      const router = new Router('.root');
       store.set('user', JSON.parse(response));
 
       if (store?.state?.chat?.data_list && [RoutePath.SIGN_IN, RoutePath.SIGN_UP].includes(window.location.pathname as RoutePath)) {
@@ -39,6 +41,7 @@ export const requestAutchUser = () => {
         getChatsRequest();
       }
     } else {
+      const router = new Router('.root');
       //редиректим на авторизацию
       router.go(RoutePath.SIGN_IN);
 
@@ -58,6 +61,7 @@ export const logoutUser = () => {
     console.log('LOGOUT');
     if (res.status === 200) {
       localStorage.clear();
+      const router = new Router('.root');
       router.go(RoutePath.SIGN_IN);
     }
   });

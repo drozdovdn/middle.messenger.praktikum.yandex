@@ -1,7 +1,7 @@
 import { EVENT_UPDATE, Store } from '../../store/store';
 import { chatsApi } from '../../pages/chat/chats-api';
 import { RoutePath } from '../../utils/router/route-path';
-import { router } from '../../index';
+import Router from '../../utils/router/router';
 
 const store = new Store();
 
@@ -38,6 +38,7 @@ export const getChatsRequest = () => {
       const { response } = res;
       store.set('chat.data_list', JSON.parse(response), EVENT_UPDATE.LIST_CHAT);
       if ([RoutePath.SIGN_IN, RoutePath.SIGN_UP].includes(window.location.pathname as RoutePath)) {
+        const router = new Router('.root');
         router.go(RoutePath.CHAT);
       }
     } else {

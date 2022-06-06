@@ -4,8 +4,8 @@ import { backPanelTmpl } from './backPanel.tmpl';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import ButtonLink from '../../../../components/buttonLink';
-import { router } from '../../../../index';
 import { RoutePath } from '../../../../utils/router/route-path';
+import Router from '../../../../utils/router/router';
 
 export class BackPanel extends Block {
   constructor() {
@@ -18,7 +18,10 @@ export class BackPanel extends Block {
         name: 'Назад',
         className: ['back-panel__link'],
         events: {
-          click: () => router.go(RoutePath.CHAT),
+          click: () => {
+            const router = new Router('.root');
+            router.go(RoutePath.CHAT);
+          },
         },
       }),
     };

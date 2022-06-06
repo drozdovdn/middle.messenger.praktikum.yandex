@@ -5,7 +5,7 @@ import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
 import Search from './modules/search';
 import ButtonLink from '../../components/buttonLink';
-import { router } from '../../index';
+import Router from '../../utils/router/router';
 import { RoutePath } from '../../utils/router/route-path';
 import { createChat } from './utils';
 import ChatList from './modules/chatList';
@@ -41,7 +41,10 @@ export class Chat extends Block {
         name: 'Профиль',
         className: ['chat__link'],
         events: {
-          click: () => router.go(RoutePath.PROFILE),
+          click: () => {
+            const router = new Router('.root');
+            router.go(RoutePath.PROFILE);
+          },
         },
       }),
       chat_list: new ChatList(),

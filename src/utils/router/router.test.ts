@@ -1,18 +1,22 @@
 import Router from './router';
-import { expect } from 'chai';
+import { assert } from 'chai';
 
 describe('Router', () => {
-  beforeEach(() => {
-    (global as any).window = {};
-  });
-  describe('.use', () => {
-    it('return instans Router', () => {
+  describe('Router test', () => {
+    it('Router must be exists', function () {
       const router = new Router('.root');
-      expect(router.use('/', class {} as any)).to.eq(router);
+      assert.exists(router);
     });
+    it('routes must be empty', function () {
+      const router = new Router('.root');
+      assert.lengthOf(router.routes, 0);
+    });
+    // it("Router register pages", function () {
+    //   const router = new Router("#app");
+    //   router
+    //     .use("/sign-up", `<div>Sign-up page</div>`)
+    //     .use("/sign-in", `<div>Sign-in page</div>`);
+    //   assert.lengthOf(router.routes, 2);
+    // });
   });
-  // describe('.start', () => {});
-  // describe('.go', () => {});
-  // describe('.back', () => {});
-  // describe('.forward', () => {});
 });

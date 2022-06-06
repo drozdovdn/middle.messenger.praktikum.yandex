@@ -9,9 +9,9 @@ import { compile } from '../../../../utils/compile';
 import Input from '../../../../components/input';
 import { isEmail, isLogin, isName, isPassword, isPhone } from '../../../../utils/validations';
 import ButtonLink from '../../../../components/buttonLink';
-import { router } from '../../../../index';
 import { RoutePath } from '../../../../utils/router/route-path';
 import { requestSignUp } from '../../../../actions/auth';
+import Router from '../../../../utils/router/router';
 
 export class SignUp extends Block {
   inputs: Record<string, string>;
@@ -219,6 +219,7 @@ export class SignUp extends Block {
         events: {
           click: (e) => {
             e!.preventDefault();
+            const router = new Router('.root');
             router.go(RoutePath.SIGN_IN);
           },
         },
