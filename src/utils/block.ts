@@ -15,6 +15,7 @@ type BlockProps = {
 
 export default class Block<
   P extends Record<string, any> | BlockProps = {
+    auth?: boolean;
     user?: {
       id: number;
     };

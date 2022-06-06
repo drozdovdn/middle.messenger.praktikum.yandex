@@ -44,6 +44,12 @@ export class SignUp extends Block {
   }
 
   render(): DocumentFragment {
+    if (this.props?.auth) {
+      const auth = document.querySelector('.auth');
+      auth && auth.classList.add('hidden');
+      const router = new Router('.root');
+      router.go(RoutePath.CHAT);
+    }
     const signUpContext = {
       title: new Title({ title: 'Регистрация', className: [] }),
       data: [
