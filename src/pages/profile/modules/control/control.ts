@@ -75,7 +75,6 @@ export class Control extends Block {
           if (Object.values(passwordLocalData).includes('')) {
             throw Error('Поля не валидны');
           } else {
-            console.log(passwordLocalData);
             changeUserPassword(passwordLocalData);
             controlBlock?.classList.remove('hidden');
             settingsBlock?.classList.remove('hidden');

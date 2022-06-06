@@ -82,9 +82,6 @@ export class ControlChat extends Block {
   }
 
   render(): DocumentFragment {
-    console.log('this.props control', this.props);
-
-    // console.log(' this.props.activeSoket.',  this.props.activeSoket)
     const input = new Input({
       className: ['input--message'],
       placeholder: 'Сообщение',
@@ -113,8 +110,6 @@ export class ControlChat extends Block {
             if (this.message === '') {
               throw Error('Поле не заполненно');
             } else {
-              // console.log(this.message);
-
               this.props?.activeSoket?.send(JSON.stringify({ content: this.message, type: 'message' }));
               const input: HTMLInputElement | null = document.querySelector('.input--message');
               if (input) {

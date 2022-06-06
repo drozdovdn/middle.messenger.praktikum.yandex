@@ -8,7 +8,7 @@ export default connect(
   DialogWindow as typeof Block,
   (s) => {
     return {
-      data_socket: s.chat?.data_socket,
+      data_socket: s.data_socket,
       user: s.user,
       data_message: s?.messages,
     };

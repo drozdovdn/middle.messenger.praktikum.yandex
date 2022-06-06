@@ -208,7 +208,6 @@ export class SignUp extends Block {
               delete data.repeat_password;
 
               requestSignUp(data);
-              console.log(this.inputs);
             }
           },
         },

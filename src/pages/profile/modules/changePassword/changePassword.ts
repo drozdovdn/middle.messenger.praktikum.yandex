@@ -31,7 +31,6 @@ export class ChangePassword extends Block {
     if (passwordLocalData[target.name] === '') {
       target.classList.add('input-error-settings');
     }
-    console.log({ passwordLocalData });
   }
 
   render(): DocumentFragment {

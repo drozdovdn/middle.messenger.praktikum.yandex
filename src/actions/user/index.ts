@@ -25,7 +25,6 @@ export const changeUserData = (data: Record<string, unknown>) => {
     if (res.status === 200) {
       const { response } = res;
       setUserData(JSON.parse(response));
-      console.log(response);
     }
   });
 };

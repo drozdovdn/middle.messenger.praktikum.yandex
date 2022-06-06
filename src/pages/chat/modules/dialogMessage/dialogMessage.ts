@@ -12,7 +12,7 @@ export class DialogMessage extends Block {
 
   render(): DocumentFragment {
     const dialog = document.querySelector('.dialog');
-    console.log({ dialog });
+
     if (dialog) {
       dialog.scrollIntoView({
         behavior: 'auto',

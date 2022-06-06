@@ -2,7 +2,7 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import { templater } from '../../../../templater';
 import { ChatListTmpl } from './chatList.tmpl';
-import { getToken } from '../../../../actions/chat';
+import { clearDataSocket, getToken } from '../../../../actions/chat';
 import itemChat from '../../subComponents/itemChat';
 import { ChatProps } from '../../../../store/models';
 
@@ -12,7 +12,6 @@ export class ChatList extends Block {
   }
 
   render(): DocumentFragment {
-    console.log('222', this.props);
     const dataList = (data: Record<string, ChatProps>) => {
       let result: { item: itemChat }[] = [];
       if (Object.values(data).length) {
@@ -27,6 +26,7 @@ export class ChatList extends Block {
               className: [],
               events: {
                 click: () => {
+                  clearDataSocket();
                   getToken(item);
                 },
               },

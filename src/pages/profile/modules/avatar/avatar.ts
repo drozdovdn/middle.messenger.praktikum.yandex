@@ -39,7 +39,7 @@ export class Avatar extends Block {
     if (user?.avatar) {
       avatar = `https://ya-praktikum.tech/api/v2/resources${user.avatar}`;
     }
-    console.log(user?.avatar);
+
     const button = new ButtonAvatar({
       text: 'Поменять аватар',
       className: [],

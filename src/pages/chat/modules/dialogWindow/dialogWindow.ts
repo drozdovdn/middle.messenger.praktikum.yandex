@@ -15,7 +15,6 @@ export class DialogWindow extends Block {
   }
 
   render(): DocumentFragment {
-    console.log('DIALOD', this.props);
     window.addEventListener('unload', () => {
       this.props._soket?.close();
     });
@@ -28,12 +27,9 @@ export class DialogWindow extends Block {
         })
       );
 
-      console.log('soket соедтнение открыто', soket);
       this.props._soket = soket;
       this.props._soket?.addEventListener('message', (event: any) => {
-        console.log('event.data', event.data);
         setMessage(JSON.parse(event.data));
-        console.log('Получены данные', JSON.parse(event.data));
       });
     };
 
@@ -42,12 +38,10 @@ export class DialogWindow extends Block {
 
       if (data_socket?.token && this.props._token !== data_socket?.token) {
         if (this.props._soket) {
-          console.log(this.props._soket);
           this.props._soket.close();
         }
 
         this.props._soket?.addEventListener('close', () => {
-          console.log('Соединение закрыто readyState');
           this.props._soket = null;
           clearMessage();
           this.props._soket = createSocketCanal(`${user?.id}/${data_socket?.id}/${data_socket?.token}`);
@@ -55,10 +49,7 @@ export class DialogWindow extends Block {
         });
 
         this.props._token = data_socket?.token;
-        // console.log('AAAA', this.soket);
         if (!this.props._soket) {
-          // console.log('open 1');
-          console.log('OPEN', this.props._soket);
           this.props._soket = createSocketCanal(`${user?.id}/${data_socket?.id}/${data_socket?.token}`);
           this.props._soket.addEventListener('open', openSoket(this.props._soket));
         }

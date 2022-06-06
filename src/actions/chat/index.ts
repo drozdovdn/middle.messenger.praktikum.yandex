@@ -8,9 +8,8 @@ const store = new Store();
 export const clearMessage = () => {
   store.removeState('messages', EVENT_UPDATE.MESSAGES);
 };
-
-export const setOldMessages = (data: any) => {
-  console.log('=>', { data });
+export const clearDataSocket = () => {
+  store.removeState('data_socket', EVENT_UPDATE.MESSAGES);
 };
 
 export const setMessage = (data: any) => {
@@ -53,8 +52,6 @@ export const createNewChat = (data: Record<string, unknown>) => {
       getChatsRequest();
       const modal = document.querySelector('.add-chat');
       modal?.classList.add('hidden-modal');
-      const { response } = res;
-      console.log({ response });
     }
   });
 };
@@ -68,7 +65,7 @@ export const getToken = (data: Record<string, unknown>) => {
         title: data.title,
         token: JSON.parse(response).token,
       };
-      store.set('chat.data_socket', { ...data_socket }, EVENT_UPDATE.DIALOG_WINDOW);
+      store.set('data_socket', { ...data_socket }, EVENT_UPDATE.DIALOG_WINDOW);
     }
   });
 };
@@ -81,7 +78,7 @@ export const addUserInChat = (data: { login: string }) => {
       if (data[0].id) {
         const dataRequest = {
           users: [Number(data[0].id)],
-          chatId: Number(store?.state?.chat?.data_socket.id),
+          chatId: Number(store?.state?.data_socket?.id),
         };
         chatsApi.addUsersToChat(dataRequest);
         const modal = document.querySelector('.add-user');
@@ -102,7 +99,7 @@ export const deleteUserInChat = (data: { login: string }) => {
       if (data[0].id) {
         const dataRequest = {
           users: [Number(data[0].id)],
-          chatId: Number(store?.state?.chat?.data_socket.id),
+          chatId: Number(store?.state?.data_socket?.id),
         };
         chatsApi.deleteUsersToChat(dataRequest);
         const modal = document.querySelector('.delete-user');

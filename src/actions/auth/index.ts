@@ -19,12 +19,10 @@ export const requestSignIn = (data: Record<string, unknown>) => {
 export const requestSignUp = (data: Record<string, unknown>) => {
   authApi.signUp(data).then((res) => {
     if (res?.status === 200) {
-      const { response } = res;
       requestAutchUser();
       store.set('auth', true);
       const router = new Router('.root');
       router.go(RoutePath.CHAT);
-      console.log(JSON.parse(response));
     }
   });
 };
@@ -50,15 +48,13 @@ export const requestAutchUser = () => {
   });
 };
 export const requestLogout = () => {
-  authApi.logout().then((res) => {
-    console.log(res.status);
+  authApi.logout().then(() => {
     store.set('auth', false);
   });
 };
 
 export const logoutUser = () => {
   authApi.logout().then((res) => {
-    console.log('LOGOUT');
     if (res.status === 200) {
       localStorage.clear();
       const router = new Router('.root');

@@ -42,8 +42,8 @@ export type StoreProps = {
   auth?: boolean;
   chat?: {
     data_list: Record<string, ChatProps>;
-    data_socket: DataSocketProps;
   };
+  data_socket?: DataSocketProps;
   user?: UserProps;
   messages?: [];
 };

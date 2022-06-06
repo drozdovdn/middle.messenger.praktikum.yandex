@@ -62,8 +62,6 @@ const showModalAddUser = () => {
               e?.target?.classList?.add('hidden-modal');
             }
             addUserInChat({ login });
-            console.log({ login });
-            console.log({ e });
           },
         },
       }),

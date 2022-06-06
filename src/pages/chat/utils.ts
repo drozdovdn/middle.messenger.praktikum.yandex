@@ -32,7 +32,6 @@ export const createChat = () => {
         events: {
           click: () => {
             createNewChat({ title });
-            console.log({ title });
           },
         },
       }),
