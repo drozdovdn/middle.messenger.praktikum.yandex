@@ -27,6 +27,9 @@ export const requestSignUp = (data: Record<string, unknown>) => {
   });
 };
 export const requestAutchUser = () => {
+  if (store.state.auth) {
+return;
+}
   authApi.user().then((res) => {
     if (res?.status === 200) {
       const { response } = res;
@@ -42,7 +45,6 @@ export const requestAutchUser = () => {
       const router = new Router('.root');
       //редиректим на авторизацию
       router.go(RoutePath.SIGN_IN);
-
       store.set('user', {});
     }
   });
@@ -56,7 +58,7 @@ export const requestLogout = () => {
 export const logoutUser = () => {
   authApi.logout().then((res) => {
     if (res.status === 200) {
-      localStorage.clear();
+      store.removeAll();
       const router = new Router('.root');
       router.go(RoutePath.SIGN_IN);
     }

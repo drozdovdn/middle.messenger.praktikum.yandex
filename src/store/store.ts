@@ -11,6 +11,7 @@ export enum EVENT_UPDATE {
   CONTROL_CHAT = 'update_control_chat',
   DATA_USER = 'update_data_user',
   MESSAGES = 'update_messages',
+  SETTINGS = 'update_settings',
 }
 
 export class Store extends EventBus {
@@ -33,10 +34,16 @@ export class Store extends EventBus {
     return this.state;
   }
 
+  public removeAll() {
+    this.state = {};
+    localStorage.setItem(Store.STORE_NAME, JSON.stringify(this.state));
+  }
+
   public removeState(path: string, event: EVENT_UPDATE = EVENT_UPDATE.STORE) {
     // @ts-ignore
     delete this.state[path];
     this.emit(event);
+    localStorage.setItem(Store.STORE_NAME, JSON.stringify(this.state));
   }
 
   public set(path: string, value: unknown, event: EVENT_UPDATE = EVENT_UPDATE.STORE) {

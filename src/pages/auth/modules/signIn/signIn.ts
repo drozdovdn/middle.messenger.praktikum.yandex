@@ -10,7 +10,7 @@ import Input from '../../../../components/input';
 import { isLogin, isPassword } from '../../../../utils/validations';
 import ButtonLink from '../../../../components/buttonLink';
 import { RoutePath } from '../../../../utils/router/route-path';
-import { requestSignIn } from '../../../../actions/auth';
+import { getStore, requestSignIn } from '../../../../actions/auth';
 import Router from '../../../../utils/router/router';
 
 export class SignIn extends Block {
@@ -39,9 +39,9 @@ export class SignIn extends Block {
   }
 
   render(): DocumentFragment {
-    if (this.props?.auth) {
-      const auth = document.querySelector('.auth');
-      auth && auth.classList.add('hidden');
+    const store = getStore();
+    if (store?.state?.auth) {
+      this.hide();
       const router = new Router('.root');
       router.go(RoutePath.CHAT);
     }

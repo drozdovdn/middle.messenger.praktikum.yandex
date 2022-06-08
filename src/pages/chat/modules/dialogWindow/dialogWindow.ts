@@ -17,6 +17,7 @@ export class DialogWindow extends Block {
   render(): DocumentFragment {
     window.addEventListener('unload', () => {
       this.props._soket?.close();
+      clearMessage();
     });
 
     const openSoket = (soket: any) => () => {
@@ -31,6 +32,8 @@ export class DialogWindow extends Block {
       this.props._soket?.addEventListener('message', (event: any) => {
         setMessage(JSON.parse(event.data));
       });
+
+      this.componentDidUpdate(this.props, { ...this.props, _soket: soket, activeSoket: soket });
     };
 
     if (this.props?.data_socket?.token) {
@@ -57,7 +60,9 @@ export class DialogWindow extends Block {
     }
 
     return compile(templater, dialogWindowTmpl, {
-      dialog: this.props?.data_socket?.token ? dialogWindows({ ...this.props, activeSoket: this.props._soket }) : '',
+      dialog: this.props?.data_socket?.token
+        ? dialogWindows({ ...this.props, activeSoket: this.props._soket })
+        : '<span>Выбериите чат чтобы отправить сообщение</span>',
     });
   }
 }

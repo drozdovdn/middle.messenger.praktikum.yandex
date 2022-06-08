@@ -10,7 +10,7 @@ import Input from '../../../../components/input';
 import { isEmail, isLogin, isName, isPassword, isPhone } from '../../../../utils/validations';
 import ButtonLink from '../../../../components/buttonLink';
 import { RoutePath } from '../../../../utils/router/route-path';
-import { requestSignUp } from '../../../../actions/auth';
+import { getStore, requestSignUp } from '../../../../actions/auth';
 import Router from '../../../../utils/router/router';
 
 export class SignUp extends Block {
@@ -44,9 +44,9 @@ export class SignUp extends Block {
   }
 
   render(): DocumentFragment {
-    if (this.props?.auth) {
-      const auth = document.querySelector('.auth');
-      auth && auth.classList.add('hidden');
+    const store = getStore();
+    if (store?.state?.auth) {
+      this.hide();
       const router = new Router('.root');
       router.go(RoutePath.CHAT);
     }

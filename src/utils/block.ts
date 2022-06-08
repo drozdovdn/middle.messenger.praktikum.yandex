@@ -96,7 +96,7 @@ export default class Block<
   }
 
   private _componentDidUpdate(oldProps: P, newProps: P) {
-    const response = this.componentDidUpdate(oldProps, newProps);
+    const response = !(oldProps && newProps && isEqualObj(oldProps, newProps));
     if (!response) {
       return;
     }
@@ -104,7 +104,11 @@ export default class Block<
   }
 
   public componentDidUpdate(oldProps: P, newProps: P) {
-    return !(oldProps && newProps && isEqualObj(oldProps, newProps));
+    const response = !(oldProps && newProps && isEqualObj(oldProps, newProps));
+    if (!response) {
+      return;
+    }
+    this._render();
   }
 
   public setProps = (nextProps: P) => {

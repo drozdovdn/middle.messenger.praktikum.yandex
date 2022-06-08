@@ -72,13 +72,9 @@ type PropsData = {
 
 export class ControlChat extends Block {
   message: string;
-  soket: any;
-  token: string | null;
   constructor(props?: PropsData) {
     super({ tagName: 'div', data: { ...props, className: ['control-chat'] } });
     this.message = '';
-    this.soket = null;
-    this.token = null;
   }
 
   render(): DocumentFragment {
@@ -115,7 +111,6 @@ export class ControlChat extends Block {
               if (input) {
                 input.value = '';
                 this.message = '';
-                input && console.log(input.value);
               }
             }
           },
