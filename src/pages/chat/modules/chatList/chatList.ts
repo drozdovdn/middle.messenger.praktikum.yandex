@@ -2,7 +2,7 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import { templater } from '../../../../templater';
 import { ChatListTmpl } from './chatList.tmpl';
-import { clearDataSocket, getToken } from '../../../../actions/chat';
+import { getToken } from '../../../../actions/chat';
 import itemChat from '../../subComponents/itemChat';
 import { ChatProps } from '../../../../store/models';
 
@@ -26,7 +26,6 @@ export class ChatList extends Block {
               className: [],
               events: {
                 click: () => {
-                  clearDataSocket();
                   getToken(item);
                 },
               },
