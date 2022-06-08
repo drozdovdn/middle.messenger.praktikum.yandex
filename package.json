@@ -7,7 +7,7 @@
     "check": "tsc --noEmit",
     "test": "mocha --require ignore-styles",
     "build": "parcel build static/index.html",
-    "dev": "parcel  static/index.html --port=3000 --open",
+    "dev": "parcel  static/index.html --port=4000 --open",
     "lint": "eslint --fix ./ --ext .ts",
     "stylelint": "stylelint  \"src/**/*.{css,less}\"",
     "stylelint:fix": "stylelint \"src/**/*.{css,less}\" --fix",
