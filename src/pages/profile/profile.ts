@@ -7,6 +7,9 @@ import BackPanel from './modules/backPanel';
 import Control from './modules/control';
 import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
+import { getStore } from '../../actions/auth';
+import Router from '../../utils/router/router';
+import { RoutePath } from '../../utils/router/route-path';
 
 export class Profile extends Block {
   constructor() {
@@ -14,6 +17,12 @@ export class Profile extends Block {
   }
 
   render(): DocumentFragment {
+    const store = getStore();
+    if (!store?.state?.auth) {
+      this.hide();
+      const router = new Router('.root');
+      router.go(RoutePath.SIGN_IN);
+    }
     const profileContext = {
       backPanel: new BackPanel(),
       avatar: new Avatar(),

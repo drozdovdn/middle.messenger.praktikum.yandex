@@ -11,6 +11,7 @@ import { createChat } from './utils';
 import ChatList from './modules/chatList';
 import { ChatProps } from '../../store/models';
 import DialogWindow from './modules/dialogWindow';
+import { getStore } from '../../actions/auth';
 
 type Props = {
   data_list: Record<string, ChatProps>;
@@ -28,6 +29,12 @@ export class Chat extends Block {
   render(): DocumentFragment {
     const search = new Search();
 
+    const store = getStore();
+    if (!store?.state?.auth) {
+      this.hide();
+      const router = new Router('.root');
+      router.go(RoutePath.SIGN_IN);
+    }
     const chatContext = {
       search,
       createChat: new ButtonLink({
