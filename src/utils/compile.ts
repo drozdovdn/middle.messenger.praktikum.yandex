@@ -7,11 +7,7 @@ import Block from './block';
  * @param tmpl
  * @param props
  */
-export const compile = (
-  templater: (tmpl: string, p: any) => string,
-  tmpl: string,
-  props: any
-): DocumentFragment => {
+export const compile = (templater: (tmpl: string, p: any) => string, tmpl: string, props: any): DocumentFragment => {
   const fragment = document.createElement('template');
   const components: Record<string, Block> = {};
   //Вставляем заглушку вместо элемента
@@ -41,7 +37,7 @@ export const compile = (
     if (!stub) {
       return;
     }
-    stub.replaceWith(component.getContent());
+    stub.replaceWith(component.getContent() as Node);
   });
 
   return fragment.content;

@@ -14,9 +14,12 @@ type DataProps = {
 
 export class ItemControl extends Block {
   constructor(props: DataProps) {
-    super('button', {
-      ...props,
-      className: [...props.className, 'item-control'],
+    super({
+      tagName: 'button',
+      data: {
+        ...props,
+        className: props.className ? [...props.className, 'item-control'] : ['item-control'],
+      },
     });
   }
 

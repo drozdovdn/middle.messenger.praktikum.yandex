@@ -5,8 +5,8 @@ import { templater } from '../../../../templater';
 import { messageTmpl } from './message.tmpl';
 
 export class Message extends Block {
-  constructor(props) {
-    super('div', { ...props, className: ['message'] });
+  constructor(props: Record<string, unknown>) {
+    super({ tagName: 'div', data: { ...props, className: ['message'] } });
   }
 
   render(): DocumentFragment {

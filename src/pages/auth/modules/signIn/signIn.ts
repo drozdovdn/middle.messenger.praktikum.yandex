@@ -8,12 +8,16 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import Input from '../../../../components/input';
 import { isLogin, isPassword } from '../../../../utils/validations';
+import ButtonLink from '../../../../components/buttonLink';
+import { RoutePath } from '../../../../utils/router/route-path';
+import { getStore, requestSignIn } from '../../../../actions/auth';
+import Router from '../../../../utils/router/router';
 
 export class SignIn extends Block {
   inputs: { [key: string]: string };
 
   constructor() {
-    super('form', { className: ['form', 'sign-in'] });
+    super({ tagName: 'form', data: { className: ['form', 'sign-in'] } });
     this.inputs = {
       login: '',
       password: '',
@@ -35,6 +39,12 @@ export class SignIn extends Block {
   }
 
   render(): DocumentFragment {
+    const store = getStore();
+    if (store?.state?.auth) {
+      this.hide();
+      const router = new Router('.root');
+      router.go(RoutePath.CHAT);
+    }
     const title = new Title({ title: 'Вход', className: [] });
     const autButton = new Button({
       name: 'Авторизация',
@@ -45,7 +55,7 @@ export class SignIn extends Block {
           if (Object.values(this.inputs).includes('')) {
             console.log('Поля не заполенны');
           } else {
-            console.log(this.inputs);
+            requestSignIn(this.inputs);
           }
         },
       },
@@ -99,10 +109,17 @@ export class SignIn extends Block {
         },
       ],
       button: autButton,
-      link: {
-        title: 'Нет аккаунта?',
-        href: '#auth#signup',
-      },
+      link: new ButtonLink({
+        name: 'Нет аккаунта?',
+        className: ['form__link'],
+        events: {
+          click: (e) => {
+            e!.preventDefault();
+            const router = new Router('.root');
+            router.go(RoutePath.SIGN_UP);
+          },
+        },
+      }),
     };
 
     return compile(templater, formTmpl, signInContext);

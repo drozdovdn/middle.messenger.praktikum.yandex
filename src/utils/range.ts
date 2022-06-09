@@ -25,14 +25,14 @@ export const range = (start: number, end?: number, step?: number) => {
       return [...out.reverse()];
     }
 
-    if (start >= 0 && end && end > start && step > 0) {
+    if (start >= 0 && end && end > start && step && step > 0) {
       for (let i = start; i < end; i += step) {
         out.push(i);
       }
       return [...out];
     }
 
-    if (start <= 0 && end && end < start && step < 0) {
+    if (start <= 0 && end && end < start && step && step < 0) {
       for (let i = end + 1; i <= start; i += step) {
         out.push(i);
       }

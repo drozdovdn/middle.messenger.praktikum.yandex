@@ -8,24 +8,20 @@ export const substitutionData = (tmpl: string, context: object): string => {
   const TEMPLATE_REGEXP_KEY = /\{\{(.*?)\}\}/gi;
 
   while (TEMPLATE_REGEXP.exec(_tmpl)) {
+    key = TEMPLATE_REGEXP_KEY.exec(_tmpl);
 
-    key = TEMPLATE_REGEXP_KEY.exec(_tmpl)
-
-    const keyWithBrackets = key[0];
-    const keyWithoutBrackets = key[1];
+    const keyWithBrackets = key ? key?.[0] : '';
+    const keyWithoutBrackets = key?.[1];
 
     if (keyWithoutBrackets) {
-      const tmplValue = keyWithoutBrackets.trim();
+      const tmplValue: any = keyWithoutBrackets.trim();
 
       const data = get(_context, tmplValue);
 
       //Если это функция
       if (typeof data === 'function') {
         window[tmplValue] = data;
-        _tmpl = _tmpl.replace(
-          new RegExp(keyWithBrackets, 'gi'),
-          `window.${keyWithoutBrackets.trim()}(this)`
-        );
+        _tmpl = _tmpl.replace(new RegExp(keyWithBrackets, 'gi'), `window.${keyWithoutBrackets.trim()}(this)`);
         continue;
       }
       _tmpl = _tmpl.replace(new RegExp(keyWithBrackets, 'gi'), data);

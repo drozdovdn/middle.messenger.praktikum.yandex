@@ -44,7 +44,7 @@
         "no-sparse-arrays": "error",              //Запрещает разреженные массивы
         "no-template-curly-in-string": "error",   //Запрещает синтаксис заполнителя литерала шаблона в обычных строках
         "no-unexpected-multiline": "error",       //Запрещает запутанные многострочные выражения
-        "no-unreachable": "error",                //Запрещает недостижимый код после операторов return, throw, continueиbreak
+//        "no-unreachable": "error",                //Запрещает недостижимый код после операторов return, throw, continueиbreak
         "curly": "error",                         //Применять согласованный стиль фигурных скобок для всех операторов управления
         "default-case": "error",                  //Требовать default падежи в switchоператорах
         "eqeqeq": "error",                        //Требовать использования === и !==

@@ -1,6 +1,6 @@
 export const buttonAvatarTmpl = `
    <img class="avatar__img" 
-         src="avatar_icon.svg" 
+         src={{src}} 
          alt="Аватар"
    >
    <span class="avatar__hove"></span>

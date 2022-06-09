@@ -1,5 +1,5 @@
-export const ModalSettingsTmpl = `
-  {{#width data}}
-    {{item}}
-  {{/with}}  
+export const modalSettingsTmpl = `
+    {{#with data}}
+      {{item}}
+    {{/with}}  
 `;

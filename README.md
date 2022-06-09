@@ -1,22 +1,28 @@
 ## Сылка на Netlify
     https://fervent-stonebraker-ab93f8.netlify.app/
     
-## Figma
+## [Figma](https://www.figma.com/file/SsaMneaZ0TST9Qk7HIfUnZ/YandexPracticumeMessage?node-id=0%3A1)
     https://www.figma.com/file/SsaMneaZ0TST9Qk7HIfUnZ/YandexPracticumeMessage?node-id=0%3A1
     
-## [Сылка pull requests (Sprint 1)](https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/2)
+## [Сылка pull requests (Sprint 2)](https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/4)
+    https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/4
+
 ## Messager
 Проект чата, проект в разработке.
 На данные момент реализовано:
 - Шаблон генерирующий строку с тегами и подставленными значениями из контекста
 - Верстка всех страниц
-- Временный роутинг с использованием тега \<a>
-- Реализована  валидация с выводом данных в консоль
+- Роутинг страниц
+- Реализована авторизация, регистрация, возможность создавать чат, добавлять / удалять пользователя из чата
+обмениваться сообщениями по webSocket
+- Написаны тесты
 
 ## Клонирование проекта
 SSH `git clone git@github.com:drozdovdn/middle.messenger.praktikum.yandex.git`
 
 После клонирования выполнить команду `npm i`
+
+`npm run test` - запуск тестов
 
 `npm run dev` - режим разработки (запускается parcel) PORT=3000
 
@@ -34,7 +40,7 @@ SSH `git clone git@github.com:drozdovdn/middle.messenger.praktikum.yandex.git`
 
 
   В проекте подключен Eslint, Stylelint и Prettier так же подключен пакет Hucky
-  который запускает перед коммитом Stylelint и Eslint c Prettier
+  который запускает перед коммитом Stylelint и Eslint c Prettier, проверят типы и запускает тесты
 
 
 ### Структура проекта

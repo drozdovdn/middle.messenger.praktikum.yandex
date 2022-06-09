@@ -8,11 +8,16 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import Input from '../../../../components/input';
 import { isEmail, isLogin, isName, isPassword, isPhone } from '../../../../utils/validations';
+import ButtonLink from '../../../../components/buttonLink';
+import { RoutePath } from '../../../../utils/router/route-path';
+import { getStore, requestSignUp } from '../../../../actions/auth';
+import Router from '../../../../utils/router/router';
 
 export class SignUp extends Block {
   inputs: Record<string, string>;
   constructor() {
-    super('form', { className: ['form', 'sign-up'] });
+    super({ tagName: 'form', data: { className: ['form', 'sign-up'] } });
+
     this.inputs = {
       email: '',
       login: '',
@@ -39,6 +44,12 @@ export class SignUp extends Block {
   }
 
   render(): DocumentFragment {
+    const store = getStore();
+    if (store?.state?.auth) {
+      this.hide();
+      const router = new Router('.root');
+      router.go(RoutePath.CHAT);
+    }
     const signUpContext = {
       title: new Title({ title: 'Регистрация', className: [] }),
       data: [
@@ -199,15 +210,25 @@ export class SignUp extends Block {
             if (Object.values(this.inputs).includes('')) {
               console.log('Поля не заполенны');
             } else {
-              console.log(this.inputs);
+              const data = this.inputs;
+              delete data.repeat_password;
+
+              requestSignUp(data);
             }
           },
         },
       }),
-      link: {
-        title: 'Войти',
-        href: '#auth#signin',
-      },
+      link: new ButtonLink({
+        name: 'Войти',
+        className: ['form__link'],
+        events: {
+          click: (e) => {
+            e!.preventDefault();
+            const router = new Router('.root');
+            router.go(RoutePath.SIGN_IN);
+          },
+        },
+      }),
     };
 
     return compile(templater, formTmpl, signUpContext);
