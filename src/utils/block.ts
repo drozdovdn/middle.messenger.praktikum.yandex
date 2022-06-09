@@ -15,6 +15,7 @@ type BlockProps = {
 
 export default class Block<
   P extends Record<string, any> | BlockProps = {
+    className: string[];
     auth?: boolean;
     user?: {
       id: number;
@@ -45,7 +46,7 @@ export default class Block<
 
   public id = nanoid(6);
   public eventBus: () => EventBus;
-  protected props: P;
+  props: P;
 
   public constructor(props: Record<string, any> = { tagName: 'div', data: {} }) {
     const eventBus = new EventBus();
@@ -96,11 +97,12 @@ export default class Block<
   }
 
   private _componentDidUpdate(oldProps: P, newProps: P) {
-    const response = !(oldProps && newProps && isEqualObj(oldProps, newProps));
-    if (!response) {
-      return;
-    }
-    this._render();
+    // const response = !(oldProps && newProps && isEqualObj(oldProps, newProps));
+    // if (!response) {
+    //   return;
+    // }
+    // this._render();
+    this.componentDidUpdate(oldProps, newProps);
   }
 
   public componentDidUpdate(oldProps: P, newProps: P) {
