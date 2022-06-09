@@ -1,6 +1,6 @@
 import { HTTPTransport } from './http-transport';
 
-describe.only('HTTP Transport', () => {
+describe('HTTP Transport', () => {
   describe('Test GET method', () => {
     const http = new HTTPTransport('https://jsonplaceholder.typicode.com/');
     it('GET REQUEST', (done) => {
