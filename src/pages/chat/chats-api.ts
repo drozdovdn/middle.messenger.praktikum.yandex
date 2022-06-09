@@ -1,7 +1,9 @@
 import { HTTPTransport } from '../../utils/http-transport';
+import { apiSettings } from '../../api/api-settings';
+const { baseUrl } = apiSettings;
 
-const http = new HTTPTransport('/chats');
-const httpUser = new HTTPTransport('/user');
+const http = new HTTPTransport(`${baseUrl }/chats`);
+const httpUser = new HTTPTransport(`${baseUrl }/user`);
 
 export const chatsApi = {
   getChats: () => {

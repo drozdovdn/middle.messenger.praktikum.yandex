@@ -1,5 +1,3 @@
-import { apiSettings } from '../api/api-settings';
-
 type ParamsProps = Record<string, unknown>;
 
 type MethodProps = 'GET' | 'POST' | 'PUT' | 'DELETE';
@@ -19,13 +17,11 @@ enum METHODS {
   DELETE = 'DELETE',
 }
 
-const { baseUrl } = apiSettings;
-
 export class HTTPTransport {
   public url: string;
 
   constructor(url: string) {
-    this.url = baseUrl + url;
+    this.url = url;
   }
 
   get = (url: string, options: OptionsProps) => {
@@ -63,7 +59,7 @@ export class HTTPTransport {
     const isJSON = contentType && contentType.includes('application/json');
 
     return new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
+      const xhr = new window.XMLHttpRequest();
       method && xhr.open(method, url);
 
       //Добавляем заголовки
@@ -91,7 +87,7 @@ export class HTTPTransport {
       } else if (isJSON) {
         xhr.send(JSON.stringify(data));
       } else {
-        xhr.send(data as XMLHttpRequestBodyInit);
+        xhr.send(JSON.stringify(data) as XMLHttpRequestBodyInit);
       }
     });
   };

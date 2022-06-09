@@ -1,6 +1,7 @@
 import { HTTPTransport } from '../../utils/http-transport';
-
-const http = new HTTPTransport('/auth');
+import { apiSettings } from '../../api/api-settings';
+const { baseUrl } = apiSettings;
+const http = new HTTPTransport(`${baseUrl }/auth`);
 
 export const authApi = {
   signIn: (data: Record<string, unknown>) => {
