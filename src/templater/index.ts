@@ -21,7 +21,7 @@ import { processingWith } from './processWith';
  * @param template
  * @param context
  */
-export const templater = (template: string, context: Record<string, any>) => {
+export const templater = (template: string, context: Record<string, any>): string => {
   const _context = { ...context };
   let _template = `${template}`;
   const TEMPLATE_REGEXP = /\{\{(.*?)\}\}/gi;
