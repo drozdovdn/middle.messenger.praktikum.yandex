@@ -13,9 +13,6 @@ export const itemChatTmpl = `
          <div class="item-chat__date">
             {{date}}
          </div>
-         <div class="item-chat__counter">
-            {{counter}}
-         </div>
       </div>
     </div>
 `;

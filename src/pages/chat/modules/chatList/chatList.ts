@@ -22,7 +22,6 @@ export class ChatList extends Block {
               name: item?.title ?? '',
               desc: item?.last_message?.content ?? '',
               date: '',
-              counter: item?.unread_count ?? '',
               className: [],
               events: {
                 click: () => {

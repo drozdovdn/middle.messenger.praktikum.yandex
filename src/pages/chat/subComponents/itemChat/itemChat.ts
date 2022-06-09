@@ -9,7 +9,7 @@ export type DataPropsItemChats = {
   name: string;
   desc: string;
   date: string;
-  counter?: number;
+  counter?: number | string;
   className?: string[];
   events?: {
     click?: (e?: Event) => void;

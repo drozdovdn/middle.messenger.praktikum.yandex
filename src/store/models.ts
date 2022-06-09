@@ -28,7 +28,7 @@ export type ChatProps = {
   id: number;
   last_message: LastMessageProps | null;
   title: string;
-  unread_count: number;
+  unread_count?: number | string;
 };
 
 export type DataSocketProps = {
