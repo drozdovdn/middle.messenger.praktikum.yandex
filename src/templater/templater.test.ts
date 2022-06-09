@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import { templater } from './index';
 
-describe('Шаблогизатор', () => {
+describe('Шаблонизатор', () => {
   it('Простая подстановка', () => {
     const context = {
       name: 'BUTTON',
