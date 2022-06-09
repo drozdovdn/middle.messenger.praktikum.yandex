@@ -9,6 +9,7 @@ import Error_500 from './pages/errors/modules/500';
 import Chat from './pages/chat';
 import Profile from './pages/profile';
 import Store from './store';
+import store from './store';
 
 declare global {
   interface Window {
@@ -17,6 +18,7 @@ declare global {
 }
 window.AppStore = Store;
 document.addEventListener('DOMContentLoaded', () => {
+  store.removeAll();
   const router = new Router('.root');
 
   router
