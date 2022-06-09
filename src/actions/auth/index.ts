@@ -27,16 +27,17 @@ export const requestSignUp = (data: Record<string, unknown>) => {
   });
 };
 export const requestAutchUser = () => {
-  if (store.state.auth) {
-    return;
-  }
   if (![RoutePath.SIGN_IN, RoutePath.SIGN_UP, RoutePath.CHAT, RoutePath.PROFILE, RoutePath.ERROR].includes(window.location.pathname as RoutePath)) {
     const router = new Router('.root');
     return router.go(RoutePath.NOT_FIND);
   }
   if (RoutePath.ERROR === (window.location.pathname as RoutePath)) {
-return;
-}
+    return;
+  }
+  if (store.state.auth) {
+    return;
+  }
+
   authApi.user().then((res) => {
     if (res?.status === 200) {
       const { response } = res;
