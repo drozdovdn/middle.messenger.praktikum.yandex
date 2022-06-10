@@ -5,11 +5,10 @@ import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import ButtonAvatar from '../buttonAvatar';
 import AddAvatarModal from '../../../../features/addAvatarModal';
-import { getUserData } from '../../../../actions/user';
 
 export class Avatar extends Block {
-  constructor() {
-    super({ tagName: 'div', data: { className: ['avatar'] } });
+  constructor(props: any) {
+    super({ tagName: 'div', data: {...props, className: ['avatar'] } });
   }
 
   openModal() {
@@ -34,10 +33,10 @@ export class Avatar extends Block {
   }
 
   render(): DocumentFragment {
-    const user = getUserData();
     let avatar = 'avatar_icon.svg';
-    if (user?.avatar) {
-      avatar = `https://ya-praktikum.tech/api/v2/resources${user.avatar}`;
+
+    if(this.props?.user) {
+      avatar = `https://ya-praktikum.tech/api/v2/resources${this.props?.user?.avatar}`;
     }
 
     const button = new ButtonAvatar({
@@ -50,7 +49,7 @@ export class Avatar extends Block {
     });
 
     const avatarContext = {
-      name: user?.first_name,
+      name: this.props.user?.first_name,
       button,
     };
 

@@ -1,5 +1,5 @@
-import { Store } from '../../store/store';
-import { profileApi } from '../../features/addAvatarModal/change-avatar-api';
+import {EVENT_UPDATE, Store} from '../../store/store';
+import {profileApi} from '../../features/addAvatarModal/change-avatar-api';
 
 const store = new Store();
 
@@ -10,7 +10,7 @@ export const changeAvatar = (data: FormData) => {
       modal?.classList.add('hidden-modal');
 
       const { response } = res;
-      store.set('user', JSON.parse(response));
+      store.set('user', JSON.parse(response), EVENT_UPDATE.SETTINGS);
     }
   });
 };
