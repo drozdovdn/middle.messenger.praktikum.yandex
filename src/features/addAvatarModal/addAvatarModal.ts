@@ -29,6 +29,7 @@ export class AddAvatarModal extends Block {
           if (this.file) {
             const data = new FormData();
             data.append('avatar', this.file);
+            console.log(data.constructor.name)
             changeAvatar(data);
           }
         },

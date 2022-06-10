@@ -86,8 +86,10 @@ export class HTTPTransport {
         xhr.send();
       } else if (isJSON) {
         xhr.send(JSON.stringify(data));
+      } else if(data.constructor.name.includes('FormData')) {
+        xhr.send(data as XMLHttpRequestBodyInit);
       } else {
-        xhr.send(JSON.stringify(data) as XMLHttpRequestBodyInit);
+        xhr.send(JSON.stringify(data));
       }
     });
   };
