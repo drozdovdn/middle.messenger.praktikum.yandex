@@ -19,6 +19,8 @@ export default class Block<
     auth?: boolean;
     user?: {
       id: number;
+      avatar: string;
+      first_name: string;
     };
     data_list?: {};
     data_message?: {};
