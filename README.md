@@ -1,5 +1,5 @@
-## [Сылка на Netlify](https://upbeat-torvalds-1689b2.netlify.app/)
-    https://upbeat-torvalds-1689b2.netlify.app/
+## [Сылка на Netlify](https://genuine-bublanina-6e8acb.netlify.app/)
+    https://genuine-bublanina-6e8acb.netlify.app/
     
 ## [Figma](https://www.figma.com/file/SsaMneaZ0TST9Qk7HIfUnZ/YandexPracticumeMessage?node-id=0%3A1)
     https://www.figma.com/file/SsaMneaZ0TST9Qk7HIfUnZ/YandexPracticumeMessage?node-id=0%3A1
