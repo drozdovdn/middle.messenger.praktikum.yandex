@@ -5,31 +5,35 @@ import { changePasswordTmpl } from './changePassword.tmpl';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 import Input from '../../../../components/input';
-import { Store } from '../../../../store';
+
 import { isPassword } from '../../../../utils/validations';
+
+export let passwordLocalData: Record<string, any> = {
+  oldPassword: '',
+  newPassword: '',
+  repeatNewPassword: '',
+};
 
 export class ChangePassword extends Block {
   constructor() {
-    super('section', { className: ['change-password'] });
+    super({ tagName: 'section', data: { className: ['change-password'] } });
   }
 
-  onFocus(e: Event) {
-    const target = e.target as HTMLInputElement;
+  onFocus(e?: Event) {
+    const target = e?.target as HTMLInputElement;
     if (target.classList.contains('input-error-settings')) {
       target.classList.remove('input-error-settings');
     }
   }
 
-  onBlur(e: Event) {
-    const target = e.target as HTMLInputElement;
-    if (Store.changePassword[target.name] === '') {
+  onBlur(e?: Event) {
+    const target = e?.target as HTMLInputElement;
+    if (passwordLocalData[target.name] === '') {
       target.classList.add('input-error-settings');
     }
   }
 
   render(): DocumentFragment {
-    const { oldPassword, newPassword, repeatNewPassword } = Store.changePassword;
-
     const changePasswordContext = {
       data: [
         {
@@ -38,23 +42,21 @@ export class ChangePassword extends Block {
             input: new Input({
               className: ['profile__input'],
               name: 'oldPassword',
-              value: oldPassword,
+              value: passwordLocalData.oldPassword,
               type: 'password',
               events: {
-                change: (e: Event) => {
-                  const target = e.target as HTMLInputElement;
+                change: (e?: Event) => {
+                  const target = e?.target as HTMLInputElement;
                   const isValidValue = isPassword(target.value);
                   if (isValidValue) {
-                    if (Store.oldData.oldPassword === isValidValue) {
-                      Store.changePassword = {
-                        ...Store.changePassword,
-                        [target.name]: isValidValue,
-                      };
-                    }
+                    passwordLocalData = {
+                      ...passwordLocalData,
+                      [target.name]: isValidValue,
+                    };
                   }
                 },
-                focus: (e: Event) => this.onFocus(e),
-                blur: (e: Event) => this.onBlur(e),
+                focus: (e?: Event) => this.onFocus(e),
+                blur: (e?: Event) => this.onBlur(e),
               },
             }),
           }),
@@ -65,21 +67,21 @@ export class ChangePassword extends Block {
             input: new Input({
               className: ['profile__input'],
               name: 'newPassword',
-              value: newPassword,
+              value: passwordLocalData.newPassword,
               type: 'password',
               events: {
-                change: (e: Event) => {
-                  const target = e.target as HTMLInputElement;
+                change: (e?: Event) => {
+                  const target = e?.target as HTMLInputElement;
                   const isValidValue = isPassword(target.value);
                   if (isValidValue) {
-                    Store.changePassword = {
-                      ...Store.changePassword,
+                    passwordLocalData = {
+                      ...passwordLocalData,
                       [target.name]: isValidValue,
                     };
                   }
                 },
-                focus: (e: Event) => this.onFocus(e),
-                blur: (e: Event) => this.onBlur(e),
+                focus: (e?: Event) => this.onFocus(e),
+                blur: (e?: Event) => this.onBlur(e),
               },
             }),
           }),
@@ -90,24 +92,24 @@ export class ChangePassword extends Block {
             input: new Input({
               className: ['profile__input'],
               name: 'repeatNewPassword',
-              value: repeatNewPassword,
+              value: passwordLocalData.repeatNewPassword,
               type: 'password',
               events: {
-                change: (e: Event) => {
-                  const target = e.target as HTMLInputElement;
-                  const { newPassword } = Store.changePassword;
+                change: (e?: Event) => {
+                  const target = e?.target as HTMLInputElement;
+                  const { newPassword } = passwordLocalData;
                   const isValudValue = isPassword(target.value);
                   if (isValudValue) {
                     if (newPassword === target.value) {
-                      Store.changePassword = {
-                        ...Store.changePassword,
+                      passwordLocalData = {
+                        ...passwordLocalData,
                         [target.name]: isValudValue,
                       };
                     }
                   }
                 },
-                focus: (e: Event) => this.onFocus(e),
-                blur: (e: Event) => this.onBlur(e),
+                focus: (e?: Event) => this.onFocus(e),
+                blur: (e?: Event) => this.onBlur(e),
               },
             }),
           }),

@@ -14,7 +14,7 @@ type DataProps = {
 
 export class InputMessage extends Block {
   constructor(props: DataProps) {
-    super('div', { ...props });
+    super({ tagName: 'div', data: { ...props } });
   }
 
   render(): DocumentFragment {

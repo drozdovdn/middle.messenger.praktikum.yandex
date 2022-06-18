@@ -13,38 +13,28 @@ export const rangeRight = (start: number, end?: number, step?: number) => {
       return [...out.reverse()];
     }
 
-    if (
-      start >= ZERO &&
-      end &&
-      end > start &&
-      (!step || Math.abs(step) === ZERO)
-    ) {
+    if (start >= ZERO && end && end > start && (!step || Math.abs(step) === ZERO)) {
       for (let i = start; i < end; i++) {
         out.push(i);
       }
       return [...out.reverse()];
     }
 
-    if (
-      start <= ZERO &&
-      end &&
-      end < start &&
-      (!step || Math.abs(step) === ZERO)
-    ) {
+    if (start <= ZERO && end && end < start && (!step || Math.abs(step) === ZERO)) {
       for (let i = end + 1; i <= start; ++i) {
         out.push(i);
       }
       return [...out];
     }
 
-    if (start >= ZERO && end && end > start && step > ZERO) {
+    if (start >= ZERO && end && end > start && step && step > ZERO) {
       for (let i = start; i < end; i += step) {
         out.push(i);
       }
       return [...out.reverse()];
     }
 
-    if (start <= ZERO && end && end < start && step < ZERO) {
+    if (start <= ZERO && end && end < start && step && step < ZERO) {
       for (let i = end + 1; i <= start; i += step) {
         out.push(i);
       }

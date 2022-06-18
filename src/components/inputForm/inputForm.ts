@@ -12,7 +12,7 @@ type DataProps = {
 
 export class InputForm extends Block {
   constructor(props: DataProps) {
-    super('label', props);
+    super({ tagName: 'label', data: props });
   }
   render(): DocumentFragment {
     return compile(templater, InputTmpl, { ...this.props });

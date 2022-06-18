@@ -13,9 +13,12 @@ type DataProps = {
 
 export class InputProfile extends Block {
   constructor(props: DataProps) {
-    super('label', {
-      ...props,
-      className: ['profile__label'],
+    super({
+      tagName: 'label',
+      data: {
+        ...props,
+        className: ['profile__label'],
+      },
     });
   }
 

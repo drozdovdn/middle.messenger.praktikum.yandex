@@ -1,139 +1,32 @@
 import './main.less';
-import { templater } from './templater';
 import Auth from './pages/auth';
-import Profile from './pages/profile';
-import Error from './pages/errors';
+import Router from './utils/router/router';
+import SignIn from './pages/auth/modules/signIn';
+import SignUp from './pages/auth/modules/signUp';
+import { RoutePath } from './utils/router/route-path';
+import Error_404 from './pages/errors/modules/404';
+import Error_500 from './pages/errors/modules/500';
 import Chat from './pages/chat';
-import Block from './utils/block';
-import { compile } from './utils/compile';
+import Profile from './pages/profile';
+import Store from './store';
+import store from './store';
 
-//Временные ссылки для демонстрации
-const linksTemplate = `
-    <nav class="links">
-    <div>
-        {{title}}
-    </div>
-    <ul class="links_list">
-    <li class="links__item">
-        <a href="{{profile.href}}">
-            {{profile.name}}
-        </a>
-    </li>
-    <li class="links__item">
-        <a href="{{error_500.href}}">
-            {{error_500.name}}
-        </a>
-    </li>
-    <li class="links__item">
-        <a href="{{error_404.href}}">
-            {{error_404.name}}
-        </a>
-    </li>
-    <li class="links__item">
-        <a href="{{home.href}}">
-        {{home.name}}
-        </a>
-    </li>
-    <li class="links__item">
-        <a href="{{chat.href}}">
-        {{chat.name}}
-        </a>
-    </li>
-    </ul>
-    </nav>
-`;
-
-const linksContext = {
-  title: 'Временные ссылки для перехода на страницы:',
-  profile: {
-    href: '#profile',
-    name: 'Profile',
-  },
-  error_500: {
-    href: '#error#_500_',
-    name: 'Страница ошибки 500',
-  },
-  error_404: {
-    href: '#error#_404_',
-    name: 'Страница ошибки 404',
-  },
-  home: {
-    href: '#auth#signin',
-    name: 'Auth',
-  },
-  chat: {
-    href: '#chat',
-    name: 'Chat',
-  },
-};
-
-class Links extends Block {
-  constructor() {
-    super('div');
-  }
-
-  render(): DocumentFragment {
-    return compile(templater, linksTemplate, linksContext);
+declare global {
+  interface Window {
+    AppStore: Record<string, any>;
   }
 }
+window.AppStore = Store;
+document.addEventListener('DOMContentLoaded', () => {
+  store.removeAll();
+  const router = new Router('.root');
 
-function render(query, block) {
-  const root = document.querySelector(query);
-  if (!root) {
-    return;
-  }
-  root.appendChild(block.getContent());
-
-  return root;
-}
-
-render('.root', new Links());
-
-render('.root', new Auth());
-
-//Временно вместо роутинга
-window.addEventListener('hashchange', () => {
-  const { hash } = window.location;
-  if (hash.includes('auth') || hash === '') {
-    const auth = document.querySelector('.auth');
-    const profile = document.querySelector('.profile');
-    const errors = document.querySelector('.errors');
-    const chat = document.querySelector('.chat');
-    chat?.remove();
-    profile?.remove();
-    errors?.remove();
-    if (!auth) {
-      render('.root', new Auth());
-    }
-  }
-  if (hash.includes('profile')) {
-    const auth = document.querySelector('.auth');
-    const errors = document.querySelector('.errors');
-    const chat = document.querySelector('.chat');
-    chat?.remove();
-    auth?.remove();
-    errors?.remove();
-    render('.root', new Profile());
-  }
-  if (hash.includes('chat')) {
-    const auth = document.querySelector('.auth');
-    const errors = document.querySelector('.errors');
-    const profile = document.querySelector('.profile');
-    auth?.remove();
-    errors?.remove();
-    profile?.remove();
-    render('.root', new Chat());
-  }
-  if (hash.includes('error')) {
-    const auth = document.querySelector('.auth');
-    const profile = document.querySelector('.profile');
-    const errors = document.querySelector('.errors');
-    const chat = document.querySelector('.chat');
-    chat?.remove();
-    auth?.remove();
-    profile?.remove();
-    if (!errors) {
-      render('.root', new Error());
-    }
-  }
+  router
+    .use(RoutePath.SIGN_IN, () => new Auth({ content: new SignIn() }))
+    .use(RoutePath.SIGN_UP, () => new Auth({ content: new SignUp() }))
+    .use(RoutePath.CHAT, () => new Chat())
+    .use(RoutePath.PROFILE, () => new Profile())
+    .use(RoutePath.NOT_FIND, () => new Error_404())
+    .use(RoutePath.ERROR, () => new Error_500())
+    .start();
 });

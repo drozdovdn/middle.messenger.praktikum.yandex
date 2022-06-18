@@ -14,7 +14,7 @@ type DataProps = {
 
 export class ItemButtonSettings extends Block {
   constructor(props: DataProps) {
-    super('button', { ...props, className: ['item-button'] });
+    super({ tagName: 'button', data: { ...props, className: ['item-button'] } });
   }
 
   render(): DocumentFragment {

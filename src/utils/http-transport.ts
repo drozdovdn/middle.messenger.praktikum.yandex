@@ -1,12 +1,11 @@
-type DataProps = XMLHttpRequestBodyInit;
 type ParamsProps = Record<string, unknown>;
 
 type MethodProps = 'GET' | 'POST' | 'PUT' | 'DELETE';
 
 type OptionsProps = {
-  method: MethodProps;
+  method?: MethodProps;
   timeout?: number;
-  data?: DataProps;
+  data?: Record<string, any>;
   params?: ParamsProps;
   headers?: Record<string, string>;
 };
@@ -19,8 +18,14 @@ enum METHODS {
 }
 
 export class HTTPTransport {
+  public url: string;
+
+  constructor(url: string) {
+    this.url = url;
+  }
+
   get = (url: string, options: OptionsProps) => {
-    let urlRequest = url;
+    let urlRequest = this.url + url;
     if (options.params && Object.values(options.params).length) {
       urlRequest += queryStringify(options.params);
     }
@@ -28,7 +33,7 @@ export class HTTPTransport {
   };
 
   put = (url: string, options: OptionsProps) => {
-    let urlRequest = url;
+    let urlRequest = this.url + url;
     if (options.params && Object.values(options.params).length) {
       urlRequest += queryStringify(options.params);
     }
@@ -36,7 +41,7 @@ export class HTTPTransport {
   };
 
   post = (url: string, options: OptionsProps) => {
-    let urlRequest = url;
+    let urlRequest = this.url + url;
     if (options.params && Object.values(options.params).length) {
       urlRequest += queryStringify(options.params);
     }
@@ -44,20 +49,21 @@ export class HTTPTransport {
   };
 
   delete = (url: string, options: OptionsProps) => {
-    return this.request(url, { ...options, method: METHODS.DELETE }, options.timeout);
+    return this.request(this.url + url, { ...options, method: METHODS.DELETE }, options.timeout);
   };
 
-  // options:
-  // headers — obj
-  // data — obj
-  request = (url: string, options: OptionsProps, timeout = 5000) => {
+  request = (url: string, options: OptionsProps, timeout = 5000): Promise<XMLHttpRequest> => {
     const { method, data, headers = { 'content-type': 'application/json' } } = options;
 
-    return new Promise((resolve, reject) => {
-      const xhr = new XMLHttpRequest();
-      xhr.open(method, url);
+    const contentType = headers['content-type'];
+    const isJSON = contentType && contentType.includes('application/json');
 
-      if (Object.values(headers).lenght !== 0) {
+    return new Promise((resolve, reject) => {
+      const xhr = new window.XMLHttpRequest();
+      method && xhr.open(method, url);
+
+      //Добавляем заголовки
+      if (Object.values(headers).length !== 0) {
         Object.keys(headers).forEach((item) => {
           xhr.setRequestHeader(item, headers[item]);
         });
@@ -65,9 +71,10 @@ export class HTTPTransport {
 
       xhr.timeout = timeout;
 
-      xhr.withCredentials = true;
+      xhr.withCredentials = true; //Подцепляем cookie
 
       xhr.onload = function () {
+        //Происходит когда получин какой то ответ
         resolve(xhr);
       };
 
@@ -75,10 +82,14 @@ export class HTTPTransport {
       xhr.onerror = reject;
       xhr.ontimeout = reject;
 
-      if (data) {
-        xhr.send(data);
-      } else {
+      if (method === METHODS.GET || !data) {
         xhr.send();
+      } else if (isJSON) {
+        xhr.send(JSON.stringify(data));
+      } else if(data.constructor.name.includes('FormData')) {
+        xhr.send(data as XMLHttpRequestBodyInit);
+      } else {
+        xhr.send(JSON.stringify(data));
       }
     });
   };

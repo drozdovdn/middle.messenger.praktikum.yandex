@@ -7,14 +7,22 @@ import BackPanel from './modules/backPanel';
 import Control from './modules/control';
 import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
+import { getStore } from '../../actions/auth';
+import Router from '../../utils/router/router';
+import { RoutePath } from '../../utils/router/route-path';
 
 export class Profile extends Block {
   constructor() {
-    super('div', { className: ['profile'] });
+    super({ tagName: 'div', data: { className: ['profile'] } });
   }
 
   render(): DocumentFragment {
-    console.log(this.props.state);
+    const store = getStore();
+    if (!store?.state?.auth) {
+      this.hide();
+      const router = new Router('.root');
+      router.go(RoutePath.SIGN_IN);
+    }
     const profileContext = {
       backPanel: new BackPanel(),
       avatar: new Avatar(),

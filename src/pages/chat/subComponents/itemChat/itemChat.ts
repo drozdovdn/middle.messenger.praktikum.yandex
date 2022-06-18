@@ -4,18 +4,21 @@ import { itemChatTmpl } from './itemChat.tmpl';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
 
-type DataProps = {
+export type DataPropsItemChats = {
   src: string;
   name: string;
   desc: string;
   date: string;
-  counter?: number;
+  counter?: number | string;
   className?: string[];
+  events?: {
+    click?: (e?: Event) => void;
+  };
 };
 
 export class ItemChat extends Block {
-  constructor(props: DataProps) {
-    super('div', { ...props, className: [...props.className, 'item-chat'] });
+  constructor(props: DataPropsItemChats) {
+    super({ tagName: 'div', data: { ...props, className: props.className ? [...props.className, 'item-chat'] : ['item-chat'] } });
   }
   render(): DocumentFragment {
     return compile(templater, itemChatTmpl, { ...this.props });

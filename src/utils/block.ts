@@ -1,7 +1,38 @@
 import EventBus from './event-bus';
 import { nanoid } from 'nanoid';
+import { isEqualObj } from './isEqualObj';
 
-export default class Block<P extends Record<string, unknown> = {}> {
+type BlockProps = {
+  data_list?: Record<string, unknown>;
+  data_message?: Record<string, unknown>;
+  data_socket?: Record<string, unknown>;
+  user?: Record<string, unknown>;
+  activeSoket?: any;
+  className?: string;
+  _soket?: any;
+  _token?: string;
+};
+
+export default class Block<
+  P extends Record<string, any> | BlockProps = {
+    className: string[];
+    auth?: boolean;
+    user?: {
+      id: number;
+      avatar: string;
+      first_name: string;
+    };
+    data_list?: {};
+    data_message?: {};
+    data_socket?: {
+      id: number;
+      token: '';
+    };
+    activeSoket?: WebSocket | null;
+    _token?: '';
+    _soket?: WebSocket | null;
+  }
+> {
   static EVENTS = {
     INIT: 'init',
     FLOW_CDM: 'flow:component-did-mount',
@@ -11,22 +42,22 @@ export default class Block<P extends Record<string, unknown> = {}> {
 
   private _element: HTMLElement | undefined;
   private _meta: {
-    tagName: string;
-    props: P;
+    tagName?: string;
+    props?: P;
   } | null = null;
 
   public id = nanoid(6);
   public eventBus: () => EventBus;
-  protected props: P;
+  props: P;
 
-  public constructor(tagName = 'div', props = {}) {
+  public constructor(props: Record<string, any> = { tagName: 'div', data: {} }) {
     const eventBus = new EventBus();
     this._meta = {
-      tagName,
-      props,
+      tagName: props.tagName,
+      props: props.data,
     };
 
-    this.props = this._makePropsProxy(props);
+    this.props = this._makePropsProxy(props.data);
 
     this.eventBus = () => eventBus;
 
@@ -42,9 +73,9 @@ export default class Block<P extends Record<string, unknown> = {}> {
   }
 
   private _createResources() {
-    const { tagName } = this._meta;
-    const { className } = this.props;
-    this._element = this._createDocumentElement(tagName);
+    const tagName = this._meta?.tagName;
+    const className = this.props?.className;
+    this._element = tagName ? this._createDocumentElement(tagName) : document.createElement('div');
 
     if (className?.length) {
       className.forEach((item: string) => {
@@ -63,19 +94,25 @@ export default class Block<P extends Record<string, unknown> = {}> {
   }
 
   public componentDidMount(oldProps: P) {
+    console.log(oldProps);
     //
   }
 
   private _componentDidUpdate(oldProps: P, newProps: P) {
-    const response = this.componentDidUpdate(oldProps, newProps);
+    // const response = !(oldProps && newProps && isEqualObj(oldProps, newProps));
+    // if (!response) {
+    //   return;
+    // }
+    // this._render();
+    this.componentDidUpdate(oldProps, newProps);
+  }
+
+  public componentDidUpdate(oldProps: P, newProps: P) {
+    const response = !(oldProps && newProps && isEqualObj(oldProps, newProps));
     if (!response) {
       return;
     }
     this._render();
-  }
-
-  public componentDidUpdate(oldProps: P, newProps: P) {
-    return true;
   }
 
   public setProps = (nextProps: P) => {
@@ -84,6 +121,7 @@ export default class Block<P extends Record<string, unknown> = {}> {
     }
 
     Object.assign(this.props, nextProps);
+    this.eventBus().emit(Block.EVENTS.FLOW_CDU);
   };
 
   public get element() {
@@ -153,7 +191,7 @@ export default class Block<P extends Record<string, unknown> = {}> {
     }
 
     Object.entries(events).forEach(([event, listener]) => {
-      this._element.removeEventListener(event, listener);
+      this._element?.removeEventListener(event, listener);
     });
   }
 
@@ -165,14 +203,14 @@ export default class Block<P extends Record<string, unknown> = {}> {
     }
 
     Object.entries(events).forEach(([event, listener]) => {
-      this._element.addEventListener(event, listener);
+      this._element?.addEventListener(event, listener);
     });
   }
   public show() {
-    this.getContent().style.display = 'block';
+    this.getContent()?.classList.remove('block-hidden');
   }
 
   public hide() {
-    this.getContent().style.display = 'none';
+    this.getContent()?.classList.add('block-hidden');
   }
 }

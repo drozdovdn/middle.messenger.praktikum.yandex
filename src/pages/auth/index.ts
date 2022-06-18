@@ -1,2 +1,5 @@
 import { Auth } from './auth';
-export default Auth;
+import { connect } from '../../store/connect';
+import Block from '../../utils/block';
+
+export default connect(Auth as typeof Block, (state) => state);

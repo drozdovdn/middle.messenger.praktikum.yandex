@@ -5,10 +5,19 @@ import Button from '../../components/button';
 import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
 import Input from '../../components/input';
+import { changeAvatar } from '../../actions/profile';
+
+type AddAvatarModalProps = {
+  events?: {
+    click?: (e?: Event) => void;
+  };
+};
 
 export class AddAvatarModal extends Block {
-  constructor() {
-    super('div', { className: ['add-avatar-modal'] });
+  file: File | null;
+  constructor(props: AddAvatarModalProps) {
+    super({ tagName: 'div', data: { ...props, className: ['add-avatar-modal'] } });
+    this.file = null;
   }
 
   render(): DocumentFragment {
@@ -16,7 +25,14 @@ export class AddAvatarModal extends Block {
       name: 'Поменять',
       className: [],
       events: {
-        click: () => console.log('Поменять клик'),
+        click: () => {
+          if (this.file) {
+            const data = new FormData();
+            data.append('avatar', this.file);
+            console.log(data.constructor.name)
+            changeAvatar(data);
+          }
+        },
       },
     });
 
@@ -26,10 +42,11 @@ export class AddAvatarModal extends Block {
       className: ['add-avatar-modal__input'],
       events: {
         change: (e) => {
-          const target = e.target as HTMLInputElement;
+          const target = e?.target as HTMLInputElement;
           const nameLabel = document.querySelector('.add-avatar-modal__name');
           const files = target.files;
           if (files && nameLabel) {
+            this.file = files[0];
             nameLabel.textContent = files[0].name;
             nameLabel.classList.add('file-name');
             target.disabled = true;
