@@ -4,8 +4,8 @@
 ## [Figma](https://www.figma.com/file/SsaMneaZ0TST9Qk7HIfUnZ/YandexPracticumeMessage?node-id=0%3A1)
     https://www.figma.com/file/SsaMneaZ0TST9Qk7HIfUnZ/YandexPracticumeMessage?node-id=0%3A1
     
-## [Сылка pull requests (Sprint 3)](https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/6)
-    https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/6
+## [Сылка pull requests (Sprint 4)](https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/10)
+    https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/10
 
 ## Messager
 Проект чата, проект в разработке.
