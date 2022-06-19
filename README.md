@@ -1,3 +1,6 @@
+## [Сылка на Heroku](https://thawing-coast-30633.herokuapp.com/)
+    https://thawing-coast-30633.herokuapp.com/
+
 ## [Сылка на Netlify](https://genuine-bublanina-6e8acb.netlify.app/)
     https://genuine-bublanina-6e8acb.netlify.app/
     
@@ -7,17 +10,17 @@
 ## [Сылка pull requests (Sprint 3)](https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/6)
     https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/6
 
-## Messager
-Проект чата, проект в разработке.
-На данные момент реализовано:
-- Шаблон генерирующий строку с тегами и подставленными значениями из контекста
-- Верстка всех страниц
-- Роутинг страниц
+## Messenger
+Самостоятельный проект <b>MESSENGER</b> в котором реализовано:
+- Собственный щаблонизатор генерирующий строку с тегами и подставленными значениями из контекста
+- Собственный роутинг страниц
 - Реализована авторизация, регистрация, возможность создавать чат, добавлять / удалять пользователя из чата
 обмениваться сообщениями по webSocket
-- Написаны тесты
+- Написаны тесты с использованием mocha и chai
+- Проект собирает Webpack 5
+- Добавлен Dockerfile, который заворачивает проект в контейнер
 
-## Клонирование проекта
+### Клонирование проекта
 SSH `git clone git@github.com:drozdovdn/middle.messenger.praktikum.yandex.git`
 
 После клонирования выполнить команду `npm i`
@@ -26,7 +29,7 @@ SSH `git clone git@github.com:drozdovdn/middle.messenger.praktikum.yandex.git`
 
 `npm run dev` - режим разработки (запускается parcel) PORT=3000
 
-`npm run start` - режим servera (вначале проект билдится и express server раздает статику из папки dist) PORT=3000
+`npm run start` - режим server (вначале проект билдится и express server раздает статику из папки dist) PORT=3000
 
 `npm run buid` - сборка проекта
 
@@ -57,3 +60,11 @@ SSH `git clone git@github.com:drozdovdn/middle.messenger.praktikum.yandex.git`
         utils/      //Вспомогательные функции
     static/         //Статические файлы (icons/, index.html)   
 ```
+
+### TODO 
+- удаление чата
+- передачу файлов
+- icon чата
+- ping чата
+  
+
