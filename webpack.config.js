@@ -23,7 +23,10 @@ module.exports = {
     port: 3000,
     open: true,
     client: {
-      overlay: true,
+      overlay: {
+        errors: true,
+        warnings: false,
+      },
     },
   },
   resolve: {
