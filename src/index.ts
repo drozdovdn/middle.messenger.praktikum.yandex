@@ -20,7 +20,6 @@ window.AppStore = Store;
 document.addEventListener('DOMContentLoaded', () => {
   store.removeAll();
   const router = new Router('.root');
-
   router
     .use(RoutePath.SIGN_IN, () => new Auth({ content: new SignIn() }))
     .use(RoutePath.SIGN_UP, () => new Auth({ content: new SignUp() }))
