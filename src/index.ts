@@ -1,13 +1,13 @@
 import './main.less';
-import Auth from './pages/auth';
+import Auth from '@pages/auth';
+import SignIn from '@pages/auth/modules/signIn';
+import SignUp from '@pages/auth/modules/signUp';
+import Error_404 from '@pages/errors/modules/404';
+import Error_500 from '@pages/errors/modules/500';
+import Chat from '@pages/chat';
+import Profile from '@pages/profile';
 import Router from './utils/router/router';
-import SignIn from './pages/auth/modules/signIn';
-import SignUp from './pages/auth/modules/signUp';
 import { RoutePath } from './utils/router/route-path';
-import Error_404 from './pages/errors/modules/404';
-import Error_500 from './pages/errors/modules/500';
-import Chat from './pages/chat';
-import Profile from './pages/profile';
 import Store from './store';
 import store from './store';
 

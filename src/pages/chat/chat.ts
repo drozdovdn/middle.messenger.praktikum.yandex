@@ -4,7 +4,7 @@ import { chatTmpl } from './chat.tmpl';
 import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
 import Search from './modules/search';
-import ButtonLink from '../../components/buttonLink';
+import ButtonLink from '@components/buttonLink';
 import Router from '../../utils/router/router';
 import { RoutePath } from '../../utils/router/route-path';
 import { createChat } from './utils';

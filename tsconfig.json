@@ -22,7 +22,12 @@
       "es5",
       "scripthost",
       "es2015.proxy"
-    ]
+    ],
+    "baseUrl": "src/",
+    "paths": {
+      "@components/*": ["components/*"],
+      "@pages/*": ["pages/*"]
+    }
   },
   "include": ["src/**/*"],
   "exclude": [

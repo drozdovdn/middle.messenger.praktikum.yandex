@@ -1,10 +1,10 @@
 import './addAvatarModal.less';
 import { templater } from '../../templater';
 import { addAvatarModalTmpl } from './addAvatarModal.tmpl';
-import Button from '../../components/button';
+import Button from '@components/button';
 import Block from '../../utils/block';
 import { compile } from '../../utils/compile';
-import Input from '../../components/input';
+import Input from '@components/input';
 import { changeAvatar } from '../../actions/profile';
 
 type AddAvatarModalProps = {
@@ -29,7 +29,7 @@ export class AddAvatarModal extends Block {
           if (this.file) {
             const data = new FormData();
             data.append('avatar', this.file);
-            console.log(data.constructor.name)
+            console.log(data.constructor.name);
             changeAvatar(data);
           }
         },

@@ -1,10 +1,10 @@
 import './changePassword.less';
-import InputProfile from '../../../../components/inputProfile';
+import InputProfile from '@components/inputProfile';
 import { templater } from '../../../../templater';
 import { changePasswordTmpl } from './changePassword.tmpl';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
-import Input from '../../../../components/input';
+import Input from '@components/input';
 
 import { isPassword } from '../../../../utils/validations';
 

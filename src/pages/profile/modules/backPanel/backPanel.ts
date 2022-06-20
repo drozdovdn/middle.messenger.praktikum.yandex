@@ -3,7 +3,7 @@ import { templater } from '../../../../templater';
 import { backPanelTmpl } from './backPanel.tmpl';
 import Block from '../../../../utils/block';
 import { compile } from '../../../../utils/compile';
-import ButtonLink from '../../../../components/buttonLink';
+import ButtonLink from '@components/buttonLink';
 import { RoutePath } from '../../../../utils/router/route-path';
 import Router from '../../../../utils/router/router';
 

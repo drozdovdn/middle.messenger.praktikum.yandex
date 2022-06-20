@@ -31,6 +31,10 @@ module.exports = {
   },
   resolve: {
     extensions: ['.ts', '.js'],
+    alias: {
+      '@components': path.resolve(__dirname, 'src/components/'),
+      '@pages': path.resolve(__dirname, 'src/pages/'),
+    },
   },
   optimization: {
     minimizer: [new CssMinimizerPlugin()],
