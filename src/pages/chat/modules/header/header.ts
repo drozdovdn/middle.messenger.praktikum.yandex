@@ -1,6 +1,6 @@
 import './header.less';
-import Block from '../../../../utils/block';
-import { compile } from '../../../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 import { templater } from '../../../../templater';
 import { headerTmpl } from './header.tmpl';
 import ButtonSettings from '../../subComponents/buttonSettings';
@@ -11,7 +11,7 @@ import { AddDelete } from '../addDelete/addDelete';
 import Input from '@components/input';
 import InputForm from '@components/inputForm';
 import Button from '@components/button';
-import { isLogin } from '../../../../utils/validations';
+import { isLogin } from '@utils/validations';
 import { addUserInChat, deleteUserInChat } from '../../../../actions/chat';
 
 const showModalAddUser = () => {

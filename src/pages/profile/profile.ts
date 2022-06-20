@@ -5,11 +5,11 @@ import { profileTmpl } from './profile.tmpl';
 import Avatar from './modules/avatar';
 import BackPanel from './modules/backPanel';
 import Control from './modules/control';
-import Block from '../../utils/block';
-import { compile } from '../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 import { getStore } from '../../actions/auth';
-import Router from '../../utils/router/router';
-import { RoutePath } from '../../utils/router/route-path';
+import Router from '@utils/router/router';
+import { RoutePath } from '@utils/router/route-path';
 
 export class Profile extends Block {
   constructor() {

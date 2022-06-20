@@ -6,10 +6,9 @@ import Error_404 from '@pages/errors/modules/404';
 import Error_500 from '@pages/errors/modules/500';
 import Chat from '@pages/chat';
 import Profile from '@pages/profile';
-import Router from './utils/router/router';
-import { RoutePath } from './utils/router/route-path';
+import Router from '@utils/router/router';
+import { RoutePath } from '@utils/router/route-path';
 import Store from './store';
-import store from './store';
 
 declare global {
   interface Window {
@@ -18,7 +17,7 @@ declare global {
 }
 window.AppStore = Store;
 document.addEventListener('DOMContentLoaded', () => {
-  store.removeAll();
+  Store.removeAll();
   const router = new Router('.root');
   router
     .use(RoutePath.SIGN_IN, () => new Auth({ content: new SignIn() }))

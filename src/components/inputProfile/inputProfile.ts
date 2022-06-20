@@ -1,8 +1,8 @@
 import './inputProfile.less';
 import { templater } from '../../templater';
 import { inputProfileTmpl } from './inputProfile.tmpl';
-import Block from '../../utils/block';
-import { compile } from '../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 import Input from '../input';
 
 type DataProps = {

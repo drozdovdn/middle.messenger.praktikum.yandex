@@ -1,8 +1,8 @@
 import './inputForm.less';
 import { templater } from '../../templater';
 import { InputTmpl } from './input.tmpl';
-import Block from '../../utils/block';
-import { compile } from '../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 import Input from '../input';
 
 type DataProps = {

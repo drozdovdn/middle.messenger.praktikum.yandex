@@ -1,8 +1,8 @@
 import './itemControl.less';
 import { templater } from '../../templater';
 import { itemControlTmpl } from './itemControl.tmpl';
-import Block from '../../utils/block';
-import { compile } from '../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 
 type DataProps = {
   title: string;

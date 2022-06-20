@@ -1,6 +1,6 @@
 import './inputMessage.less';
-import Block from '../../../../utils/block';
-import { compile } from '../../../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 import { templater } from '../../../../templater';
 import { inputMessageTmpl } from './inputMessage.tmpl';
 import Input from '@components/input';

@@ -2,8 +2,8 @@ import './addAvatarModal.less';
 import { templater } from '../../templater';
 import { addAvatarModalTmpl } from './addAvatarModal.tmpl';
 import Button from '@components/button';
-import Block from '../../utils/block';
-import { compile } from '../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 import Input from '@components/input';
 import { changeAvatar } from '../../actions/profile';
 

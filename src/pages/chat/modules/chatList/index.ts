@@ -1,7 +1,7 @@
 import { ChatList } from './chatList';
 import { connect } from '../../../../store/connect';
 import { EVENT_UPDATE } from '../../../../store/store';
-import Block from '../../../../utils/block';
+import Block from '@utils/block';
 import { StoreProps } from '../../../../store/models';
 
 export default connect(

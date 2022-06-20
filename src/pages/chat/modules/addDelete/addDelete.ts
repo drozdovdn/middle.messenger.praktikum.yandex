@@ -1,6 +1,6 @@
 import './addDelete.less';
-import Block from '../../../../utils/block';
-import { compile } from '../../../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 import { templater } from '../../../../templater';
 import { addDeleteTmpl } from './addDelete.tmpl';
 import Input from '@components/input';

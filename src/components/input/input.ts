@@ -1,5 +1,5 @@
 import './input.less';
-import Block from '../../utils/block';
+import Block from '@utils/block';
 
 type DataProps = {
   name: string;

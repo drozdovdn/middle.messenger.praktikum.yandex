@@ -1,8 +1,8 @@
 import './itemChat.less';
 import { templater } from '../../../../templater';
 import { itemChatTmpl } from './itemChat.tmpl';
-import Block from '../../../../utils/block';
-import { compile } from '../../../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 
 export type DataPropsItemChats = {
   src: string;

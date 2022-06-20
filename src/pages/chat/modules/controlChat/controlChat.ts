@@ -1,6 +1,6 @@
 import './controlChat.less';
-import Block from '../../../../utils/block';
-import { compile } from '../../../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 import { templater } from '../../../../templater';
 import { controlChatTmpl } from './controlChat.tmpl';
 import ButtonSettings from '../../subComponents/buttonSettings';
