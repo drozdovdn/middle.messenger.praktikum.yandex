@@ -1,8 +1,8 @@
 import './button.less';
 import { templater } from '../../templater';
 import { buttonTmpl } from './button.tmpl';
-import Block from '../../utils/block';
-import { compile } from '../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 
 type DataType = {
   name: string;

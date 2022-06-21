@@ -1,9 +1,9 @@
 import './deleteChatModal.less';
-import Block from '../../../../utils/block';
-import { compile } from '../../../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 import { templater } from '../../../../templater';
 import { deleteChatModalTmpl } from './deleteChatModal.tmpl';
-import Button from '../../../../components/button';
+import Button from '@components/button';
 
 export class DeleteChatModal extends Block {
   constructor() {

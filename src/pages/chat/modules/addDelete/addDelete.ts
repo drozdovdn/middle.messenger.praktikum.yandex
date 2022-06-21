@@ -1,11 +1,11 @@
 import './addDelete.less';
-import Block from '../../../../utils/block';
-import { compile } from '../../../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 import { templater } from '../../../../templater';
 import { addDeleteTmpl } from './addDelete.tmpl';
-import Input from '../../../../components/input';
-import Button from '../../../../components/button';
-import InputForm from '../../../../components/inputForm';
+import Input from '@components/input';
+import Button from '@components/button';
+import InputForm from '@components/inputForm';
 
 type DataProps = {
   title: string;

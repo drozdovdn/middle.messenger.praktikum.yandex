@@ -1,6 +1,6 @@
 import './dialogMessage.less';
-import Block from '../../../../utils/block';
-import { compile } from '../../../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 import { templater } from '../../../../templater';
 import { DialogMessageTpml } from './dialogMessage.tpml';
 import Message from '../message';

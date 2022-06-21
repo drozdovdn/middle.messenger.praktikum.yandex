@@ -1,11 +1,11 @@
 import './settinps.less';
-import { InputProfile } from '../../../../components/inputProfile/inputProfile';
+import { InputProfile } from '@components/inputProfile/inputProfile';
 import { templater } from '../../../../templater';
 import { settingsTmpl } from './settings.tmpl';
-import Block from '../../../../utils/block';
-import { compile } from '../../../../utils/compile';
-import Input from '../../../../components/input';
-import { isEmail, isLogin, isName, isPhone } from '../../../../utils/validations';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
+import Input from '@components/input';
+import { isEmail, isLogin, isName, isPhone } from '@utils/validations';
 import { getUserData } from '../../../../actions/user';
 
 //Локальные данные Settings

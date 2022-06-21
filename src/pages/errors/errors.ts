@@ -3,8 +3,8 @@ import Error_404 from './modules/404';
 import Error_500 from './modules/500';
 import { templater } from '../../templater';
 import { errorsTmpl } from './errors.tmpl';
-import Block from '../../utils/block';
-import { compile } from '../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 
 export class Errors extends Block {
   constructor() {

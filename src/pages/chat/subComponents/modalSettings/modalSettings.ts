@@ -1,6 +1,6 @@
 import './modalSettings.less';
-import Block from '../../../../utils/block';
-import { compile } from '../../../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 import { templater } from '../../../../templater';
 import { modalSettingsTmpl } from './modalSettings.tmpl';
 

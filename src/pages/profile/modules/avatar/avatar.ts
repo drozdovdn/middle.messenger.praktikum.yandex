@@ -1,14 +1,14 @@
 import './avatar.less';
 import { templater } from '../../../../templater';
 import { avatarTmpl } from './avatar.tmpl';
-import Block from '../../../../utils/block';
-import { compile } from '../../../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 import ButtonAvatar from '../buttonAvatar';
 import AddAvatarModal from '../../../../features/addAvatarModal';
 
 export class Avatar extends Block {
   constructor(props: any) {
-    super({ tagName: 'div', data: {...props, className: ['avatar'] } });
+    super({ tagName: 'div', data: { ...props, className: ['avatar'] } });
   }
 
   openModal() {
@@ -35,7 +35,7 @@ export class Avatar extends Block {
   render(): DocumentFragment {
     let avatar = 'avatar_icon.svg';
 
-    if(this.props?.user) {
+    if (this.props?.user) {
       avatar = `https://ya-praktikum.tech/api/v2/resources${this.props?.user?.avatar}`;
     }
 

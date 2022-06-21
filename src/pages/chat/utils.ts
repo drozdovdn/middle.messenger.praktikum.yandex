@@ -1,7 +1,7 @@
 import AddDelete from './modules/addDelete';
-import InputForm from '../../components/inputForm';
-import Input from '../../components/input';
-import Button from '../../components/button';
+import InputForm from '@components/inputForm';
+import Input from '@components/input';
+import Button from '@components/button';
 import { createNewChat } from '../../actions/chat';
 
 export const createChat = () => {

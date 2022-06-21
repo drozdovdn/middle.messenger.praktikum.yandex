@@ -1,8 +1,8 @@
 import './title.less';
 import { templater } from '../../templater';
 import { titleTmpl } from './title.tmpl';
-import { compile } from '../../utils/compile';
-import Block from '../../utils/block';
+import { compile } from '@utils/compile';
+import Block from '@utils/block';
 
 type DataProps = {
   title: string;

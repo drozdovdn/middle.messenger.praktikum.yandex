@@ -1,10 +1,10 @@
 import './control.less';
-import ItemControl from '../../../../components/itemControl';
+import ItemControl from '@components/itemControl';
 import { templater } from '../../../../templater';
 import { controlTmpl } from './control.tmpl';
-import Block from '../../../../utils/block';
-import { compile } from '../../../../utils/compile';
-import Button from '../../../../components/button';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
+import Button from '@components/button';
 import ChangePassword from '../changePassword';
 import { localData } from '../settings/settings';
 import { changeUserData, changeUserPassword, getUserData } from '../../../../actions/user';

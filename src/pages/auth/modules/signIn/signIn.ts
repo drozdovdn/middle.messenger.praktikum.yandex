@@ -1,17 +1,17 @@
 import '../form.less';
 import { formTmpl } from '../form.tmpl';
-import InputForm from '../../../../components/inputForm';
+import InputForm from '@components/inputForm';
 import { templater } from '../../../../templater';
-import Title from '../../../../components/title';
-import Button from '../../../../components/button';
-import Block from '../../../../utils/block';
-import { compile } from '../../../../utils/compile';
-import Input from '../../../../components/input';
-import { isLogin, isPassword } from '../../../../utils/validations';
-import ButtonLink from '../../../../components/buttonLink';
-import { RoutePath } from '../../../../utils/router/route-path';
+import Title from '@components/title';
+import Button from '@components/button';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
+import Input from '@components/input';
+import { isLogin, isPassword } from '@utils/validations';
+import ButtonLink from '@components/buttonLink';
+import { RoutePath } from '@utils/router/route-path';
 import { getStore, requestSignIn } from '../../../../actions/auth';
-import Router from '../../../../utils/router/router';
+import Router from '@utils/router/router';
 
 export class SignIn extends Block {
   inputs: { [key: string]: string };

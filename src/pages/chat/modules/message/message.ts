@@ -1,6 +1,6 @@
 import './message.less';
-import Block from '../../../../utils/block';
-import { compile } from '../../../../utils/compile';
+import Block from '@utils/block';
+import { compile } from '@utils/compile';
 import { templater } from '../../../../templater';
 import { messageTmpl } from './message.tmpl';
 
