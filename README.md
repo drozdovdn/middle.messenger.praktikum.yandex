@@ -1,15 +1,4 @@
-## [Сылка на Heroku](https://thawing-coast-30633.herokuapp.com/)
-    https://thawing-coast-30633.herokuapp.com/
-
-## [Сылка на Netlify](https://genuine-bublanina-6e8acb.netlify.app/)
-    https://genuine-bublanina-6e8acb.netlify.app/
-    
-## [Figma](https://www.figma.com/file/SsaMneaZ0TST9Qk7HIfUnZ/YandexPracticumeMessage?node-id=0%3A1)
-    https://www.figma.com/file/SsaMneaZ0TST9Qk7HIfUnZ/YandexPracticumeMessage?node-id=0%3A1
-    
-## [Сылка pull requests (Sprint 4)](https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/10)
-    https://github.com/drozdovdn/middle.messenger.praktikum.yandex/pull/10
-
+## [Heroku](https://thawing-coast-30633.herokuapp.com/) | [Netlify](https://genuine-bublanina-6e8acb.netlify.app/) | [Figma](https://www.figma.com/file/SsaMneaZ0TST9Qk7HIfUnZ/YandexPracticumeMessage?node-id=0%3A1)
 ## Messenger
 Самостоятельный проект <b>MESSENGER</b> в котором реализовано:
 - Собственный щаблонизатор генерирующий строку с тегами и подставленными значениями из контекста
